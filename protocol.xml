@@ -1,0 +1,1917 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+****************************************************************************
+*  Copyright (c) 2022,  Skyline Communications NV  All Rights Reserved.    *
+****************************************************************************
+
+By using this driver, you expressly agree with the usage terms and
+conditions set out below.
+This driver and all related materials are protected by copyrights and
+other intellectual property rights that exclusively belong
+to Skyline Communications.
+
+A user license granted for this driver is strictly for personal use only.
+This driver may not be used in any way by anyone without the prior
+written consent of Skyline Communications. Any sublicensing of this
+driver is forbidden.
+
+Any modifications to this driver by the user are only allowed for
+personal use and within the intended purpose of the driver,
+and will remain the sole responsibility of the user.
+Skyline Communications will not be responsible for any damages or
+malfunctions whatsoever of the driver resulting from a modification
+or adaptation by the user.
+
+The content of this driver is confidential information.
+The user hereby agrees to keep this confidential information strictly
+secret and confidential and not to disclose or reveal it, in whole
+or in part, directly or indirectly to any person, entity, organization
+or administration without the prior written consent of
+Skyline Communications.
+
+Any inquiries can be addressed to:
+
+	Skyline Communications NV
+	Ambachtenstraat 33
+	B-8870 Izegem
+	Belgium
+	Tel.	: +32 51 31 35 69
+	Fax.	: +32 51 31 01 29
+	E-mail	: info@skyline.be
+	Web		: www.skyline.be
+	Contact	: Ben Vandenberghe
+
+
+
+Revision History (auto generated):
+
+DATE          VERSION    AUTHOR                         COMMENTS
+
+17/05/2022    1.0.0.1    GMV, Skyline Communications    NF: Initial version
+-->
+<Protocol xmlns="http://www.skyline.be/protocol">
+	<Name>GV AMPP</Name>
+	<Description>GV AMPP DataMiner driver</Description>
+	<Version>1.0.0.1</Version>
+	<IntegrationID>DMS-DRV-999</IntegrationID>
+	<Provider>Skyline Communications</Provider>
+	<Vendor>Skyline Communications</Vendor>
+	<VendorOID>1.3.6.1.4.1.8813.2.99</VendorOID>
+	<DeviceOID>99</DeviceOID>
+	<ElementType>Platform</ElementType>
+	<Type relativeTimers="true" advanced="http:HTTP Connection">smart-serial</Type>
+	<Display defaultPage="General" pageOrder="General;Test Signal Generatos;Applications;Workloads;Debug;Web Interface#https://us-east-1.gvampp.com/portal/ampp" wideColumnPages="Debug;Applications;Workloads;Test Signal Generatos" />
+	<SNMP includepages="true">auto</SNMP>
+	<Compliancies>
+		<CassandraReady>true</CassandraReady>
+		<MinimumRequiredVersion>10.1.2.0 - 9866</MinimumRequiredVersion>
+	</Compliancies>
+	<Params>
+		<Param id="2">
+			<Name>AfterStartup</Name>
+			<Description>After Startup</Description>
+			<Type>dummy</Type>
+		</Param>
+		<Param id="40" trending="false">
+			<Name>MessageFromAmpp</Name>
+			<Description>Message From Ampp</Description>
+			<Information>
+				<Subtext>Message received from Ampp.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Debug</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type lines="20">string</Type>
+			</Measurement>
+		</Param>
+		<Param id="41" trending="false">
+			<Name>ResponseToAmpp</Name>
+			<Description>Response to AMPP</Description>
+			<Information>
+				<Subtext>Response sent to Ampp.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Debug</Page>
+						<Column>1</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type lines="20">string</Type>
+			</Measurement>
+		</Param>
+		<Param id="42">
+			<Name>ProcessMessageFromAmpp</Name>
+			<Description>ProcessMessageFromAmpp</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+		</Param>
+		<Param id="50" trending="false" save="true">
+			<Name>APIToken</Name>
+			<Description>API Token</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>API Token</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type options="password">string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+		</Param>
+		<Param id="51" trending="false">
+			<Name>Debug</Name>
+			<Description>Debug</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Debug</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type lines="8">string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Debug</Page>
+						<Column>1</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+		</Param>
+		<Param id="52">
+			<Name>AuthorizationAPIKEY</Name>
+			<Description>Authorization API Key</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="53" trending="false">
+			<Name>LoginStatus</Name>
+			<Description>Login Status</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>NA</Display>
+					</Discreet>
+					<Discreet>
+						<Value>1</Value>
+						<Display>OK</Display>
+					</Discreet>
+					<Discreet>
+						<Value>2</Value>
+						<Display>Error</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="54">
+			<Name>BearerTokenResponse</Name>
+			<Description>Bearer Token Response</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="55">
+			<Name>Token</Name>
+			<Description>Token</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="56">
+			<Name>TokenExpiration</Name>
+			<Description>Token Expiration</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="57">
+			<Name>ApplicationsResponse</Name>
+			<Description>Applications Response</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="58">
+			<Name>WorkloadsResponse</Name>
+			<Description>Workloads Response</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="59">
+			<Name>GenericCommandControlResponse</Name>
+			<Description>Generic Request Response</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<Param id="60">
+			<Name>Connect</Name>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Connects to Grass Valley AMPP platform</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>1</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Connect</Display>
+						<Value>0</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="61" trending="false">
+			<Name>MessageQueue</Name>
+			<Description>Message Queue</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Contains a queue of received messages.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Debug</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type lines="20">string</Type>
+			</Measurement>
+		</Param>
+		<Param id="62">
+			<Name>ProcessMessageQueue</Name>
+			<Description>Process Message Queue</Description>
+			<Type>dummy</Type>
+		</Param>
+		<Param id="150" setter="true">
+			<Name>APIToken</Name>
+			<Description>API Token</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type options="password">string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+		</Param>
+		<Param id="63" trending="false">
+			<Name>GenericCommandControlBody</Name>
+			<Description>Control Body</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>text</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+		</Param>
+		<Param id="200" trending="false">
+			<Name>OkStatusCodeResponse</Name>
+			<Description>Ok Status Code Response</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>
+		<!--<Param id="201" trending="false">
+			<Name>TestSignalGeneratorStatusCode</Name>
+			<Description>Control Status Code</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+		</Param>-->
+		<Param id="1000" trending="false">
+			<Name>ApplicationTypes</Name>
+			<Description>Application Types</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0" options=";naming=/1001">
+				<!--Key & Index-->
+				<ColumnOption idx="0" pid="1001" type="retrieved" value="" options="" />
+				<ColumnOption idx="1" pid="1002" type="retrieved" value="" options="" />
+				<ColumnOption idx="2" pid="1003" type="retrieved" value="" options="" />
+			</ArrayOptions>
+			<Information>
+				<Text>description</Text>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Applications</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:1001|0-1002|1-1003|2,width:203-100-145,sort:INT-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="1001" trending="false">
+			<Name>ApplicationTypeName</Name>
+			<Description>Name [IDX] Application Types</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Name [IDX] Application Types</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="1002" trending="false">
+			<Name>NeedSaving</Name>
+			<Description>Needs Saving</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Needs Saving</Subtext>
+			</Information>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>False</Display>
+					</Discreet>
+					<Discreet>
+						<Value>1</Value>
+						<Display>True</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="1003" trending="false">
+			<Name>SupportedCommands</Name>
+			<Description>Supported Commands</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Supported Commands</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="2000" trending="false">
+			<Name>Workloads</Name>
+			<Description>Workloads</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0" options=";naming=/2001">
+				<!--Key & Index-->
+				<ColumnOption idx="0" pid="2001" type="retrieved" value="" options="" />
+				<ColumnOption idx="1" pid="2002" type="retrieved" value="" options="" />
+				<ColumnOption idx="2" pid="2003" type="retrieved" value="" options="" />
+				<ColumnOption idx="3" pid="2004" type="retrieved" value="" options="" />
+				<ColumnOption idx="4" pid="2005" type="retrieved" value="" options="" />
+				<ColumnOption idx="5" pid="2070" type="retrieved" value="" options="" />
+			</ArrayOptions>
+			<Information>
+				<Text>description</Text>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Workloads</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2070|5,width:121-110-120-102-110-110,sort:INT-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="2001" trending="false">
+			<Name>WorkloadId</Name>
+			<Description>Workload [IDX]</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload [IDX]</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="2002" trending="false">
+			<Name>WorkloadName</Name>
+			<Description>Workload Name</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload Name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="2003" trending="false">
+			<Name>WorkloadApplicationName</Name>
+			<Description>Application Name</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Application Name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="2004" trending="false">
+			<Name>ApplicationPackageName</Name>
+			<Description>Package Name</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Package Name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="2005" trending="false">
+			<Name>ApplicationPackageVersion</Name>
+			<Description>Package Version</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Package Version</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="2070">
+			<Name>WorkLoadGetState</Name>
+			<Description>Workload GetState</Description>
+			<Message>Would you like to subscribe to getstate?</Message>
+			<Type>write</Type>
+			<Information>
+				<Subtext>This will subscribe to the workload get state.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>Get State</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3000">
+			<Name>TestSignalGenerators</Name>
+			<Description>Test Signal Generators</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="3001" type="retrieved" options="" />
+				<ColumnOption idx="1" pid="3002" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="3003" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="3004" type="retrieved" options="" />
+				<ColumnOption idx="4" pid="3005" type="retrieved" options="" />
+				<ColumnOption idx="5" pid="3006" type="retrieved" options="" />
+				<ColumnOption idx="6" pid="3007" type="retrieved" options="" />
+				<ColumnOption idx="7" pid="3008" type="retrieved" options="" />
+				<ColumnOption idx="8" pid="3009" type="retrieved" options="" />
+				<ColumnOption idx="9" pid="3010" type="retrieved" options="" />
+				<ColumnOption idx="10" pid="3011" type="retrieved" options="" />
+				<ColumnOption idx="11" pid="3012" type="retrieved" options="" />
+				<ColumnOption idx="12" pid="3013" type="retrieved" options="" />
+				<ColumnOption idx="13" pid="3014" type="retrieved" options="" />
+				<ColumnOption idx="14" pid="3015" type="retrieved" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>tableInformation</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Test Signal Generatos</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:3001|0-3002|1-3003|2-3004|3-3005|4-3006|5-3007|6-3008|7-3015|14-3009|8-3010|9-3011|10-3012|11-3013|12-3014|13,width:100-215-100-100-100-100-100-100-100-100-100-100-100-100-100,sort:STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="3001" trending="false">
+			<Name>SignalGeneratorsInstance</Name>
+			<Description>Instance (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="3002" trending="false">
+			<Name>FrameRate</Name>
+			<Description>Frame Rate (Test Signal Generator)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Frame Rate (Test Signal Generator)</Subtext>
+			</Information>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Value>24000x1001</Value>
+						<Display>24000x1001</Display>
+					</Discreet>
+					<Discreet>
+						<Value>24x1</Value>
+						<Display>24x1</Display>
+					</Discreet>
+					<Discreet>
+						<Value>25x1</Value>
+						<Display>25x1</Display>
+					</Discreet>
+					<Discreet>
+						<Value>30000x1001</Value>
+						<Display>30000x1001</Display>
+					</Discreet>
+					<Discreet>
+						<Value>30x1</Value>
+						<Display>30x1</Display>
+					</Discreet>
+					<Discreet>
+						<Value>50x1</Value>
+						<Display>50x1</Display>
+					</Discreet>
+					<Discreet>
+						<Value>60000x1001</Value>
+						<Display>60000x1001</Display>
+					</Discreet>
+					<Discreet>
+						<Value>60x1</Value>
+						<Display>60x1</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
+		<Param id="3003" trending="false">
+			<Name>TestSignalGeneratorsResolution</Name>
+			<Description>Resolution (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Resolution for the specific workload</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>720x480</Display>
+						<Value>720x480</Value>
+					</Discreet>
+					<Discreet>
+						<Display>720x576</Display>
+						<Value>720x576</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1280x720</Display>
+						<Value>1280x720</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1920x1080</Display>
+						<Value>1920x1080</Value>
+					</Discreet>
+					<Discreet>
+						<Display>3840x2160</Display>
+						<Value>3840x2160</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3004" trending="false">
+			<Name>TestSignalGeneratorsScanMode</Name>
+			<Description>Scan Mode (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Scan mode</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Interlaced</Display>
+						<Value>Interlaced</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Progressive</Display>
+						<Value>Progressive</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3005" trending="false">
+			<Name>TestSignalGeneratorsColor</Name>
+			<Description>Color (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Color</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Black</Display>
+						<Value>Black</Value>
+					</Discreet>
+					<Discreet>
+						<Display>White</Display>
+						<Value>White</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Red</Display>
+						<Value>Red</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Green</Display>
+						<Value>Green</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Blue</Display>
+						<Value>Blue</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Magenta</Display>
+						<Value>Magenta</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Cyan</Display>
+						<Value>Cyan</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Yellow</Display>
+						<Value>Yellow</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3055">
+			<Name>TestSignalGeneratorsColor</Name>
+			<Description>Color (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Black</Display>
+						<Value>Black</Value>
+					</Discreet>
+					<Discreet>
+						<Display>White</Display>
+						<Value>White</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Red</Display>
+						<Value>Red</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Green</Display>
+						<Value>Green</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Blue</Display>
+						<Value>Blue</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Magenta</Display>
+						<Value>Magenta</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Cyan</Display>
+						<Value>Cyan</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Yellow</Display>
+						<Value>Yellow</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3006" trending="false">
+			<Name>TestSignalGeneratorsFrequency</Name>
+			<Description>Frequency (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Frequency</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>440 Hz</Display>
+						<Value>440 Hz</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1 kHz</Display>
+						<Value>1 kHz</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3056">
+			<Name>TestSignalGeneratorsFrequency</Name>
+			<Description>Frequency (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>440 Hz</Display>
+						<Value>440 Hz</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1 kHz</Display>
+						<Value>1 kHz</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3007" trending="false">
+			<Name>TestSignalGeneratorsIdent</Name>
+			<Description>Ident (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Ident</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="3057">
+			<Name>TestSignalGeneratorsIdent</Name>
+			<Description>Ident (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="3008" trending="false">
+			<Name>TestSignalGeneratorsIdentOverlay</Name>
+			<Description>Ident Overlay (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Ident Overlay</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3058">
+			<Name>TestSignalGeneratorsIdentOverlay</Name>
+			<Description>Ident Overlay (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3009" trending="false">
+			<Name>TestSignalGeneratorsPattern</Name>
+			<Description>Pattern (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Pattern</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Color bars</Display>
+						<Value>Color bars</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Solid color</Display>
+						<Value>Solid color</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3059">
+			<Name>TestSignalGeneratorsPattern</Name>
+			<Description>Pattern (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Color bars</Display>
+						<Value>Color bars</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Solid color</Display>
+						<Value>Solid color</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3010" trending="false">
+			<Name>TestSignalGeneratorsSoundMode</Name>
+			<Description>Sound Mode (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Sound Mode</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Continuous</Display>
+						<Value>Continuous</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Synch</Display>
+						<Value>Synch</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3060">
+			<Name>TestSignalGeneratorsSoundMode</Name>
+			<Description>Sound Mode (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Continuous</Display>
+						<Value>Continuous</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Synch</Display>
+						<Value>Synch</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3011" trending="false">
+			<Name>TestSignalGeneratorsSyncFlash</Name>
+			<Description>Sync Flash (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Sync Flash</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3061">
+			<Name>TestSignalGeneratorsSyncFlash</Name>
+			<Description>Sync Flash (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3012" trending="false">
+			<Name>TestSignalGeneratorsSyncPeriod</Name>
+			<Description>Sync Period (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Sync Period</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>1 second</Display>
+						<Value>1 second</Value>
+					</Discreet>
+					<Discreet>
+						<Display>2 seconds</Display>
+						<Value>2 seconds</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3062">
+			<Name>TestSignalGeneratorsSyncPeriod</Name>
+			<Description>Sync Period (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>1 second</Display>
+						<Value>1 second</Value>
+					</Discreet>
+					<Discreet>
+						<Display>2 seconds</Display>
+						<Value>2 seconds</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3013" trending="false">
+			<Name>TestSignalGeneratorsToneLevel</Name>
+			<Description>Tone Level (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Tone Level</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>0 dB</Display>
+						<Value>0 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-6 dB</Display>
+						<Value>-6 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-12 dB</Display>
+						<Value>-12 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-15 dB</Display>
+						<Value>-15 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-18 dB</Display>
+						<Value>-18 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-20 dB</Display>
+						<Value>-20 dB</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3063">
+			<Name>TestSignalGeneratorsToneLevel</Name>
+			<Description>Tone Level (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>0 dB</Display>
+						<Value>0 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-6 dB</Display>
+						<Value>-6 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-12 dB</Display>
+						<Value>-12 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-15 dB</Display>
+						<Value>-15 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-18 dB</Display>
+						<Value>-18 dB</Value>
+					</Discreet>
+					<Discreet>
+						<Display>-20 dB</Display>
+						<Value>-20 dB</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3014" trending="false">
+			<Name>TestSignalGeneratorsTodOverlay</Name>
+			<Description>Tod Overlay (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Tod Overlay</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3064">
+			<Name>TestSignalGeneratorsTodOverlay</Name>
+			<Description>Tod Overlay (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3015" trending="false">
+			<Name>TestSignalGeneratorsInfoOverlay</Name>
+			<Description>Info Overlay (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Info Overlay</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="3065">
+			<Name>TestSignalGeneratorsInfoOverlay</Name>
+			<Description>Info Overlay (Test Signal Generators)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Off</Display>
+						<Value>Off</Value>
+					</Discreet>
+					<Discreet>
+						<Display>On</Display>
+						<Value>On</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+	</Params>
+	<QActions>
+		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
+
+		</QAction>
+		<QAction id="2" name="After Startup" encoding="csharp" triggers="2">
+
+		</QAction>
+		<QAction id="60" name="Connect to GV" encoding="csharp" triggers="60">
+
+		</QAction>
+		<QAction id="54" name="Parse Token" encoding="csharp" inputParameters="54" triggers="54">
+
+		</QAction>
+		<QAction id="57" name="Parse Applications" encoding="csharp" triggers="57" inputParameters="57">
+
+		</QAction>
+		<QAction id="58" name="Parse Workloads" encoding="csharp" triggers="58" inputParameters="58">
+
+		</QAction>
+		<QAction id="42" name="Process Message From AMPP" encoding="csharp" triggers="42" inputParameters="40">
+
+		</QAction>
+		<QAction id="62" name="Process Message" encoding="csharp" triggers="62">
+
+		</QAction>
+		<QAction id="2071" name="Other On Workload GetState" encoding="csharp" triggers="2070" row="true">
+		</QAction>
+		<QAction id="3000" name="Test Signal Generator Table Sets" encoding="csharp" triggers="3055;3056;3057;3058;3059;3060;3061;3062;3063;3064;3065" row="true">
+		</QAction>
+		<QAction id="59" name="Parse Generic Control Response" encoding="csharp" triggers="59">
+		</QAction>
+	</QActions>
+	<HTTP>
+		<Session id="1" name="Login">
+			<Connection id="1" name="GVAMPP">
+				<Request verb="POST" url="identity/connect/token">
+					<Headers>
+						<Header key="Authorization" pid="52" />
+						<Header key="Content-Type">application/x-www-form-urlencoded</Header>
+					</Headers>
+					<!--<Data pid="53" />-->
+					<Parameters>
+						<Parameter key="grant_type">client_credentials</Parameter>
+						<Parameter key="scope">platform cluster.readonly</Parameter>
+					</Parameters>
+				</Request>
+				<Response statusCode="200">
+					<Content pid="54" />
+				</Response>
+			</Connection>
+		</Session>
+		<Session id="2" name="Get Applications">
+			<Connection id="1" name="GVAMPP">
+				<Request verb="GET" url="ampp/control/api/v1/control/application/references">
+					<Headers>
+						<Header key="Authorization" pid="55" />
+					</Headers>
+				</Request>
+				<Response statusCode="200">
+					<Content pid="57" />
+				</Response>
+			</Connection>
+		</Session>
+		<Session id="3" name="Get Workloads">
+			<Connection id="1" name="GVAMPP">
+				<Request verb="GET" url="cluster/state/api/v1/workloads">
+					<Headers>
+						<Header key="Authorization" pid="55" />
+					</Headers>
+				</Request>
+				<Response statusCode="200">
+					<Content pid="58" />
+				</Response>
+			</Connection>
+		</Session>
+		<Session id="4" name="Test Signal Control">
+			<Connection id="1" name="GVAMPP">
+				<Request verb="POST" url="ampp/control/api/v1/control/commit">
+					<Headers>
+						<Header key="Authorization" pid="55" />
+						<Header key="Content-Type">application/json</Header>
+					</Headers>
+					<Data pid="63"></Data>
+				</Request>
+				<Response statusCode="200">
+					<Content pid="59" />
+				</Response>
+			</Connection>
+		</Session>
+	</HTTP>
+	<Groups>
+		<Group id="1" connection="1">
+			<Name>GetToken</Name>
+			<Description>Get Token</Description>
+			<Type>poll</Type>
+			<Content>
+				<Session>1</Session>
+			</Content>
+		</Group>
+		<Group id="2">
+			<Name>After Startup</Name>
+			<Description>After Startup</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>2</Action>
+			</Content>
+		</Group>
+		<Group id="3" connection="1">
+			<Name>GetInformationGroup</Name>
+			<Description>Get Information</Description>
+			<Type>poll</Type>
+			<Content>
+				<Session>2</Session>
+				<Session>3</Session>
+			</Content>
+		</Group>
+		<Group id="40">
+			<Name>SendResponseToAmpp</Name>
+			<Description>SendResponseToAmpp</Description>
+			<Type>poll</Type>
+			<Content>
+				<Pair>40</Pair>
+			</Content>
+		</Group>
+		<Group id="100">
+			<Name>ProcessMessageQueue</Name>
+			<Description>ProcessMessageQueue</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>101</Action>
+			</Content>
+		</Group>
+		<Group id="44" connection="1">
+			<Name>PostGenericCommandControl</Name>
+			<Description>Post Generic Command Control</Description>
+			<Type>poll</Type>
+			<Content>
+				<Session>4</Session>
+			</Content>
+		</Group>
+	</Groups>
+	<Pairs>
+		<Pair id="40">
+			<Name>ResponseToAmpp</Name>
+			<Description>ResponseToAmpp</Description>
+			<Content>
+				<Command>40</Command>
+			</Content>
+		</Pair>
+	</Pairs>
+	<Commands>
+		<Command id="40" ascii="true">
+			<Name>ResponseToAmpp</Name>
+			<Description>ResponseToAmpp</Description>
+			<Content>
+				<Param>41</Param>
+			</Content>
+		</Command>
+	</Commands>
+	<Responses>
+		<!-- SuppressValidator 4705 Response used to act as a server listening for messages from Playbook -->
+		<Response id="40" options="Connection:0">
+			<Name>MessageFromAmpp</Name>
+			<Description>MessageFromAmpp</Description>
+			<Content>
+				<Param>40</Param>
+			</Content>
+		</Response>
+		<!-- /SuppressValidator 4705 -->
+	</Responses>
+	<Triggers>
+		<Trigger id="1">
+			<Name>After Startup</Name>
+			<On>protocol</On>
+			<Time>after startup</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>1</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="2">
+			<Name>SendLoginRequest</Name>
+			<Type>action</Type>
+			<Content>
+				<Id>3</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="3">
+			<Name>SendInformationRequests</Name>
+			<Type>action</Type>
+			<Content>
+				<Id>4</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="40">
+			<Name>AfterMessageFromAmpp</Name>
+			<On id="40">response</On>
+			<Time>after</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>40</Id>
+				<Id>41</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="41">
+			<Name>BeforeEachResponse</Name>
+			<On id="each">response</On>
+			<Time>before</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>42</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="42">
+			<Name>SendResponseToAmpp</Name>
+			<Type>action</Type>
+			<Content>
+				<Id>43</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="44">
+			<Name>SendGenericCommandControl</Name>
+			<Type>action</Type>
+			<Content>
+				<Id>44</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="100">
+			<Name>ProcessMessageQueue</Name>
+			<Type>action</Type>
+			<Content>
+				<Id>100</Id>
+			</Content>
+		</Trigger>
+	</Triggers>
+	<Actions>
+		<Action id="1">
+			<Name>After Startup Group</Name>
+			<On id="2">group</On>
+			<Type>execute next</Type>
+		</Action>
+		<Action id="2">
+			<Name>After Startup QAction</Name>
+			<On id="2">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+		<Action id="3">
+			<Name>Send Login Request</Name>
+			<On id="1">group</On>
+			<Type>execute next</Type>
+		</Action>
+		<Action id="4">
+			<Name>Send Information Requests</Name>
+			<On id="3">group</On>
+			<Type>execute next</Type>
+		</Action>
+		<Action id="40">
+			<Name>ProcessMessageFromAmpp</Name>
+			<On id="42">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+		<Action id="41">
+			<Name>ClearResponse</Name>
+			<On id="40">response</On>
+			<Type>clear</Type>
+		</Action>
+		<Action id="42">
+			<Name>ReadResponse</Name>
+			<On>response</On>
+			<Type>read</Type>
+		</Action>
+		<Action id="43">
+			<Name>SendResponseToAmpp</Name>
+			<On id="40">group</On>
+			<Type>execute</Type>
+		</Action>
+		<Action id="44">
+			<Name>Send Generic Requests Control</Name>
+			<On id="44">group</On>
+			<Type>execute next</Type>
+		</Action>
+		<Action id="100">
+			<Name>ProcessMessageQueueGroup</Name>
+			<On id="100">group</On>
+			<Type>execute next</Type>
+		</Action>
+		<Action id="101">
+			<Name>ProcessMessageQueueQAction</Name>
+			<On id="62">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+	</Actions>
+	<Timers>
+		<Timer id="1">
+			<Name>Fast Timer (10s)</Name>
+			<Time initial="true">10000</Time>
+			<Interval>75</Interval>
+			<Content>
+			</Content>
+		</Timer>
+		<Timer id="2">
+			<Name>Medium Timer (1m)</Name>
+			<Time initial="true" dataDisplay="30000">60000</Time>
+			<Interval>75</Interval>
+			<Content>
+				<Group>3</Group>
+			</Content>
+		</Timer>
+		<Timer id="3">
+			<Name>Slow Timer (1h)</Name>
+			<Time initial="true">3600000</Time>
+			<Interval>75</Interval>
+			<Content>
+			</Content>
+		</Timer>
+	</Timers>
+	<PortSettings name="IP Connection">
+		<BusAddress>
+			<Disabled>true</Disabled>
+		</BusAddress>
+		<PortTypeSerial>
+			<Disabled>true</Disabled>
+		</PortTypeSerial>
+		<PortTypeUDP>
+			<Disabled>true</Disabled>
+		</PortTypeUDP>
+		<IPport>
+			<DefaultValue>5100</DefaultValue>
+		</IPport>
+		<Type>
+			<DefaultValue>ip</DefaultValue>
+		</Type>
+	</PortSettings>
+	<Ports>
+		<PortSettings name="HTTP Connection">
+			<BusAddress>
+				<DefaultValue>bypassproxy</DefaultValue>
+				<Disabled>false</Disabled>
+			</BusAddress>
+			<PortTypeSerial>
+				<Disabled>true</Disabled>
+			</PortTypeSerial>
+			<PortTypeUDP>
+				<Disabled>true</Disabled>
+			</PortTypeUDP>
+			<IPport>
+				<DefaultValue>443</DefaultValue>
+			</IPport>
+		</PortSettings>
+	</Ports>
+	<VersionHistory>
+		<Branches>
+			<Branch id="1">
+				<Comment>Main Branch</Comment>
+				<SystemVersions>
+					<SystemVersion id="0">
+						<MajorVersions>
+							<MajorVersion id="0">
+								<MinorVersions>
+									<MinorVersion id="1">
+										<Date>2022-05-17</Date>
+										<Provider>
+											<Author>GMV</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<NewFeature>Initial version</NewFeature>
+										</Changes>
+									</MinorVersion>
+								</MinorVersions>
+							</MajorVersion>
+						</MajorVersions>
+					</SystemVersion>
+				</SystemVersions>
+			</Branch>
+		</Branches>
+	</VersionHistory>
+</Protocol>
