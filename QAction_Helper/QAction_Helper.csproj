@@ -23,7 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\Internal\Code Analysis\qaction-debug.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Internal\Code Analysis\SonarLint-QuickActions-Inactive.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Debug\QAction_Helper.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -33,7 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>..\Internal\Code Analysis\qaction-release.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\Internal\Code Analysis\SonarLint-QuickActions-Inactive.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>bin\Release\QAction_Helper.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
@@ -59,7 +59,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkId="" DisProjectType="qactionHelperProject" DisLinkedXmlFile="..\protocol.xml" />
+      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionHelperProject" DisLinkId="" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

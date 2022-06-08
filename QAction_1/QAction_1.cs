@@ -712,9 +712,11 @@ namespace Skyline.Protocol
 
 			private void MapTestSignalGenerator(string id, SignalGeneratorSectionAPayload sectionA)
 			{
+				var workloadname = protocol.GetParameterIndexByKey(Parameter.Workloads.tablePid, id, 2) as string;
 				TestsignalgeneratorsQActionRow row = new TestsignalgeneratorsQActionRow
 				{
 					Signalgeneratorsinstance_3001 = id,
+					Testsignageneratorsworkloadname_3016 = workloadname,
 					Framerate_3002 = sectionA.FrameRate,
 					Testsignalgeneratorsresolution_3003 = sectionA.Resolution,
 					Testsignalgeneratorsscanmode_3004 = sectionA.ScanMode,
