@@ -76,11 +76,23 @@
         <member name="F:Skyline.DataMiner.Scripting.Parameter.workloadsresponse">
             <summary>PID: 58 | Type: read</summary>
         </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.genericcommandcontrolresponse_59">
+            <summary>PID: 59 | Type: read</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.genericcommandcontrolresponse">
+            <summary>PID: 59 | Type: read</summary>
+        </member>
         <member name="F:Skyline.DataMiner.Scripting.Parameter.messagequeue_61">
             <summary>PID: 61 | Type: read</summary>
         </member>
         <member name="F:Skyline.DataMiner.Scripting.Parameter.messagequeue">
             <summary>PID: 61 | Type: read</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.genericcommandcontrolbody_63">
+            <summary>PID: 63 | Type: read</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.genericcommandcontrolbody">
+            <summary>PID: 63 | Type: read</summary>
         </member>
         <member name="F:Skyline.DataMiner.Scripting.Parameter.okstatuscoderesponse_200">
             <summary>PID: 200 | Type: read</summary>
@@ -99,6 +111,72 @@
         </member>
         <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.apitoken">
             <summary>PID: 150 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorscolor_3055">
+            <summary>PID: 3055 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorscolor">
+            <summary>PID: 3055 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsfrequency_3056">
+            <summary>PID: 3056 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsfrequency">
+            <summary>PID: 3056 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsident_3057">
+            <summary>PID: 3057 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsident">
+            <summary>PID: 3057 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsidentoverlay_3058">
+            <summary>PID: 3058 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsidentoverlay">
+            <summary>PID: 3058 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorspattern_3059">
+            <summary>PID: 3059 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorspattern">
+            <summary>PID: 3059 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorssoundmode_3060">
+            <summary>PID: 3060 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorssoundmode">
+            <summary>PID: 3060 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorssyncflash_3061">
+            <summary>PID: 3061 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorssyncflash">
+            <summary>PID: 3061 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorssyncperiod_3062">
+            <summary>PID: 3062 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorssyncperiod">
+            <summary>PID: 3062 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorstonelevel_3063">
+            <summary>PID: 3063 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorstonelevel">
+            <summary>PID: 3063 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorstodoverlay_3064">
+            <summary>PID: 3064 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorstodoverlay">
+            <summary>PID: 3064 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsinfooverlay_3065">
+            <summary>PID: 3065 | Type: write</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Write.testsignalgeneratorsinfooverlay">
+            <summary>PID: 3065 | Type: write</summary>
         </member>
         <member name="F:Skyline.DataMiner.Scripting.Parameter.Applicationtypes.tablePid">
             <summary>PID: 1000</summary>
@@ -418,6 +496,39 @@
         <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Workloadgetstate">
             <summary>PID: 2070  | Type: write | DISCREETS: Get State = 0</summary>
         </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorscolor">
+            <summary>PID: 3055  | Type: write | DISCREETS: Black = Black, White = White, Red = Red, Green = Green, Blue = Blue, Magenta = Magenta, Cyan = Cyan, Yellow = Yellow</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorsfrequency">
+            <summary>PID: 3056  | Type: write | DISCREETS: 440 Hz = 440 Hz, 1 kHz = 1 kHz</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorsident">
+            <summary>PID: 3057  | Type: write</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorsidentoverlay">
+            <summary>PID: 3058  | Type: write | DISCREETS: Off = Off, On = On</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorspattern">
+            <summary>PID: 3059  | Type: write | DISCREETS: Color bars = Color bars, Solid color = Solid color</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorssoundmode">
+            <summary>PID: 3060  | Type: write | DISCREETS: Off = Off, Continuous = Continuous, Synch = Synch</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorssyncflash">
+            <summary>PID: 3061  | Type: write | DISCREETS: Off = Off, On = On</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorssyncperiod">
+            <summary>PID: 3062  | Type: write | DISCREETS: 1 second = 1 second, 2 seconds = 2 seconds</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorstonelevel">
+            <summary>PID: 3063  | Type: write | DISCREETS: 0 dB = 0 dB, -6 dB = -6 dB, -12 dB = -12 dB, -15 dB = -15 dB, -18 dB = -18 dB, -20 dB = -20 dB</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorstodoverlay">
+            <summary>PID: 3064  | Type: write | DISCREETS: Off = Off, On = On</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Testsignalgeneratorsinfooverlay">
+            <summary>PID: 3065  | Type: write | DISCREETS: Off = Off, On = On</summary>
+        </member>
         <member name="P:Skyline.DataMiner.Scripting.SLProtocolExt.applicationtypes">
             <summary>PID: 1000</summary>
         </member>
@@ -511,6 +622,12 @@
         <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Workloadsresponse">
             <summary>PID: 58  | Type: read</summary>
         </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Genericcommandcontrolresponse_59">
+            <summary>PID: 59  | Type: read</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Genericcommandcontrolresponse">
+            <summary>PID: 59  | Type: read</summary>
+        </member>
         <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Connect_60">
             <summary>PID: 60  | Type: write | DISCREETS: Connect = 0</summary>
         </member>
@@ -525,6 +642,12 @@
         </member>
         <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Processmessagequeue_dummy">
             <summary>PID: 62  | Type: dummy</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Genericcommandcontrolbody_63">
+            <summary>PID: 63  | Type: read</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Genericcommandcontrolbody">
+            <summary>PID: 63  | Type: read</summary>
         </member>
         <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Apitoken_150">
             <summary>PID: 150  | Type: write</summary>
@@ -678,6 +801,39 @@
         </member>
         <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorsinfooverlay">
             <summary>PID: 3015  | Type: read | DISCREETS: Off = Off, On = On</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorscolor_3055">
+            <summary>PID: 3055  | Type: write | DISCREETS: Black = Black, White = White, Red = Red, Green = Green, Blue = Blue, Magenta = Magenta, Cyan = Cyan, Yellow = Yellow</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorsfrequency_3056">
+            <summary>PID: 3056  | Type: write | DISCREETS: 440 Hz = 440 Hz, 1 kHz = 1 kHz</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorsident_3057">
+            <summary>PID: 3057  | Type: write</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorsidentoverlay_3058">
+            <summary>PID: 3058  | Type: write | DISCREETS: Off = Off, On = On</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorspattern_3059">
+            <summary>PID: 3059  | Type: write | DISCREETS: Color bars = Color bars, Solid color = Solid color</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorssoundmode_3060">
+            <summary>PID: 3060  | Type: write | DISCREETS: Off = Off, Continuous = Continuous, Synch = Synch</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorssyncflash_3061">
+            <summary>PID: 3061  | Type: write | DISCREETS: Off = Off, On = On</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorssyncperiod_3062">
+            <summary>PID: 3062  | Type: write | DISCREETS: 1 second = 1 second, 2 seconds = 2 seconds</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorstonelevel_3063">
+            <summary>PID: 3063  | Type: write | DISCREETS: 0 dB = 0 dB, -6 dB = -6 dB, -12 dB = -12 dB, -15 dB = -15 dB, -18 dB = -18 dB, -20 dB = -20 dB</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorstodoverlay_3064">
+            <summary>PID: 3064  | Type: write | DISCREETS: Off = Off, On = On</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorsinfooverlay_3065">
+            <summary>PID: 3065  | Type: write | DISCREETS: Off = Off, On = On</summary>
         </member>
         <member name="T:Skyline.DataMiner.Scripting.ApplicationtypesQActionTable">
             <summary>IDX: 0</summary>

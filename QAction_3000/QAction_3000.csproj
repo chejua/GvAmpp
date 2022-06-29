@@ -39,6 +39,9 @@
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\..\Skyline DataMiner\ProtocolScripts\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <ProjectReference Include="..\QAction_Helper\QAction_Helper.csproj">
       <Project>{9677A631-34AD-431F-B5CD-88E87CDDAD97}</Project>
@@ -71,6 +74,7 @@
     </Reference>
     <AdditionalFiles Include="stylecop.json" />
     <Content Include=".editorconfig" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -157,3 +157,7 @@ C:\GIT\Protocols\AMMP\GV AMPP\QAction_2071\obj\Debug\QAction_2071.csproj.CoreCom
 C:\GIT\Protocols\AMMP\GV AMPP\QAction_2071\obj\Debug\QAction_2071.csproj.CopyComplete
 C:\GIT\Protocols\AMMP\GV AMPP\QAction_2071\obj\Debug\QAction_2071.dll
 C:\GIT\Protocols\AMMP\GV AMPP\QAction_2071\obj\Debug\QAction_2071.pdb
+C:\Users\GeovannyGA\Documents\Github Repo\META\GvAmpp\GvAmpp\QAction_2071\obj\Debug\QAction_2071.csproj.AssemblyReference.cache
+C:\Users\GeovannyGA\Documents\Github Repo\META\GvAmpp\GvAmpp\QAction_2071\obj\Debug\QAction_2071.csproj.CoreCompileInputs.cache
+C:\Users\GeovannyGA\Documents\Github Repo\META\GvAmpp\GvAmpp\QAction_2071\obj\Debug\QAction_2071.dll
+C:\Users\GeovannyGA\Documents\Github Repo\META\GvAmpp\GvAmpp\QAction_2071\obj\Debug\QAction_2071.pdb
