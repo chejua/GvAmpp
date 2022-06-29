@@ -455,6 +455,54 @@ public static class Parameter
 			public const int testsignageneratorsworkloadname = 15;
 		}
 	}
+	public class System
+	{
+		/// <summary>PID: 4000</summary>
+		public const int tablePid = 4000;
+		/// <summary>IDX: 0</summary>
+		public const int indexColumn = 0;
+		/// <summary>PID: 4001</summary>
+		public const int indexColumnPid = 4001;
+		public class Pid
+		{
+			/// <summary>PID: 4001 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systeminstance_4001 = 4001;
+			/// <summary>PID: 4001 | Type: read</summary>
+			public const int systeminstance = 4001;
+			/// <summary>PID: 4002 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemworkloadname_4002 = 4002;
+			/// <summary>PID: 4002 | Type: read</summary>
+			public const int systemworkloadname = 4002;
+			/// <summary>PID: 4003 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemversion_4003 = 4003;
+			/// <summary>PID: 4003 | Type: read</summary>
+			public const int systemversion = 4003;
+			public class Write
+			{
+			}
+		}
+		public class Idx
+		{
+			/// <summary>IDX: 0 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systeminstance_4001 = 0;
+			/// <summary>IDX: 0 | Type: read</summary>
+			public const int systeminstance = 0;
+			/// <summary>IDX: 1 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemworkloadname_4002 = 1;
+			/// <summary>IDX: 1 | Type: read</summary>
+			public const int systemworkloadname = 1;
+			/// <summary>IDX: 2 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemversion_4003 = 2;
+			/// <summary>IDX: 2 | Type: read</summary>
+			public const int systemversion = 2;
+		}
+	}
 }
 public class WriteParameters
 {
@@ -500,6 +548,8 @@ public interface SLProtocolExt : SLProtocol
 	WorkloadsQActionTable workloads { get; set; }
 	/// <summary>PID: 3000</summary>
 	TestsignalgeneratorsQActionTable testsignalgenerators { get; set; }
+	/// <summary>PID: 4000</summary>
+	SystemQActionTable system { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Messagefromampp_40 { get; set; }
 	object Messagefromampp { get; set; }
@@ -598,6 +648,12 @@ public interface SLProtocolExt : SLProtocol
 	object Testsignalgeneratorstonelevel_3063 { get; set; }
 	object Testsignalgeneratorstodoverlay_3064 { get; set; }
 	object Testsignalgeneratorsinfooverlay_3065 { get; set; }
+	object Systeminstance_4001 { get; set; }
+	object Systeminstance { get; set; }
+	object Systemworkloadname_4002 { get; set; }
+	object Systemworkloadname { get; set; }
+	object Systemversion_4003 { get; set; }
+	object Systemversion { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -608,6 +664,8 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public WorkloadsQActionTable workloads { get; set; }
 	/// <summary>PID: 3000</summary>
 	public TestsignalgeneratorsQActionTable testsignalgenerators { get; set; }
+	/// <summary>PID: 4000</summary>
+	public SystemQActionTable system { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 40  | Type: read</summary>
@@ -856,12 +914,28 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 3065  | Type: write | DISCREETS: Off = Off, On = On</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Testsignalgeneratorsinfooverlay_3065 {get { return GetParameter(3065); }set { SetParameter(3065, value); }}
+	/// <summary>PID: 4001  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systeminstance_4001 {get { return GetParameter(4001); }set { SetParameter(4001, value); }}
+	/// <summary>PID: 4001  | Type: read</summary>
+	public System.Object Systeminstance {get { return GetParameter(4001); }set { SetParameter(4001, value); }}
+	/// <summary>PID: 4002  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemworkloadname_4002 {get { return GetParameter(4002); }set { SetParameter(4002, value); }}
+	/// <summary>PID: 4002  | Type: read</summary>
+	public System.Object Systemworkloadname {get { return GetParameter(4002); }set { SetParameter(4002, value); }}
+	/// <summary>PID: 4003  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemversion_4003 {get { return GetParameter(4003); }set { SetParameter(4003, value); }}
+	/// <summary>PID: 4003  | Type: read</summary>
+	public System.Object Systemversion {get { return GetParameter(4003); }set { SetParameter(4003, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
 		applicationtypes = new ApplicationtypesQActionTable(this, 1000, "applicationtypes");
 		workloads = new WorkloadsQActionTable(this, 2000, "workloads");
 		testsignalgenerators = new TestsignalgeneratorsQActionTable(this, 3000, "testsignalgenerators");
+		system = new SystemQActionTable(this, 4000, "system");
 		Write = new WriteParameters(this);
 	}
 }
@@ -885,6 +959,13 @@ public class TestsignalgeneratorsQActionTable : QActionTable, IEnumerable<Testsi
 	public TestsignalgeneratorsQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
 	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
 	public IEnumerator<TestsignalgeneratorsQActionRow> GetEnumerator() { return new QActionTableEnumerator<TestsignalgeneratorsQActionRow>(this); }
+}
+/// <summary>IDX: 0</summary>
+public class SystemQActionTable : QActionTable, IEnumerable<SystemQActionRow>
+{
+	public SystemQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
+	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
+	public IEnumerator<SystemQActionRow> GetEnumerator() { return new QActionTableEnumerator<SystemQActionRow>(this); }
 }
 /// <summary>IDX: 0</summary>
 public class ApplicationtypesQActionRow : QActionTableRow
@@ -1033,5 +1114,28 @@ public class TestsignalgeneratorsQActionRow : QActionTableRow
 	public TestsignalgeneratorsQActionRow(System.Object[] oRow) : base(0, 16, oRow) { }
 	public static implicit operator TestsignalgeneratorsQActionRow(System.Object[] source) { return new TestsignalgeneratorsQActionRow(source); }
 	public static implicit operator System.Object[](TestsignalgeneratorsQActionRow source) { return source.ToObjectArray(); }
+}
+/// <summary>IDX: 0</summary>
+public class SystemQActionRow : QActionTableRow
+{
+	/// <summary>PID: 4001 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systeminstance_4001 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 4001 | Type: read</summary>
+	public System.Object Systeminstance { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 4002 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemworkloadname_4002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 4002 | Type: read</summary>
+	public System.Object Systemworkloadname { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 4003 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemversion_4003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 4003 | Type: read</summary>
+	public System.Object Systemversion { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	public SystemQActionRow() : base(0, 3) { }
+	public SystemQActionRow(System.Object[] oRow) : base(0, 3, oRow) { }
+	public static implicit operator SystemQActionRow(System.Object[] source) { return new SystemQActionRow(source); }
+	public static implicit operator System.Object[](SystemQActionRow source) { return source.ToObjectArray(); }
 }
 }

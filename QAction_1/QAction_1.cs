@@ -1,10 +1,10 @@
 namespace Skyline.Protocol
 {
-	using Newtonsoft.Json.Linq;
 	using System;
-	using System.Reflection;
-	using System.Linq;
 	using System.Collections.Generic;
+	using System.Linq;
+	using System.Reflection;
+	using Newtonsoft.Json.Linq;
 	using Skyline.Protocol.Models;
 
 	namespace Extensions
@@ -46,6 +46,10 @@ namespace Skyline.Protocol
 				{
 					NotificationMessageBuilder.GetTypeHashCode<MultiviewerSectionAPayload>(),
 					typeof(MultiviewerSectionAPayload)
+				},
+				{
+					NotificationMessageBuilder.GetTypeHashCode<SystemClass>(),
+					typeof(SystemClass)
 				},
 
 			};
@@ -272,6 +276,15 @@ namespace Skyline.Protocol
 			#endregion
 		}
 
+		public class SystemClass
+		{
+			public string Name { get; set; }
+
+			public string Workload { get; set; }
+
+			public string version { get; set; }
+		}
+
 		public class MultiviewerSectionAPayload
 		{
 			public string AudioLevelMode { get; set; }
@@ -366,16 +379,14 @@ namespace Skyline.Protocol
 
 	namespace MessageProcessing
 	{
+		using System;
+		using System.Text;
 		using Newtonsoft.Json;
 		using Skyline.DataMiner.Net.Messages.Advanced;
 		using Skyline.DataMiner.Scripting;
-		using Skyline.Protocol.Models;
-		using System;
-		using System.Collections.Generic;
-		using System.Linq;
-		using System.Text;
-		using SLNetMessages = Skyline.DataMiner.Net.Messages;
 		using Skyline.Protocol.Extensions;
+		using Skyline.Protocol.Models;
+		using SLNetMessages = Skyline.DataMiner.Net.Messages;
 
 		public class AutomationScript
 		{
@@ -594,7 +605,9 @@ namespace Skyline.Protocol
 			public IMessageHandler GetMessageHandler(string path, string message)
 			{
 				var factoryDictionary = new Dictionary<string, Func<IMessageHandler>>
-				{ { "/notification", () => new HandleNotificationMessage(protocol, message) }, };
+				{
+					{ "/notification", () => new HandleNotificationMessage(protocol, message) },
+				};
 
 				if (factoryDictionary.ContainsKey(path))
 				{
@@ -686,6 +699,10 @@ namespace Skyline.Protocol
 							};
 						}
 					}
+					else if (result is SystemClass)
+					{
+						protocol.Log(8, 5, "@@@@@@@@@@@@@@@@@@ System message parse here");
+					}
 
 					protocol.Log(string.Format(">>>QA{0} ExecuteMessage succesfully deserialized the object:\n\r {1}", protocol.QActionID, JsonConvert.SerializeObject(result, Formatting.Indented)),
 					 LogType.Allways,
@@ -701,7 +718,7 @@ namespace Skyline.Protocol
 
 			private void ExecuteActionBaseOnWorkLoadType(string id, object result)
 			{
-				var workLoadRow =  new WorkloadsQActionRow((object[])protocol.GetRow(Parameter.Workloads.tablePid, id));
+				var workLoadRow = new WorkloadsQActionRow((object[])protocol.GetRow(Parameter.Workloads.tablePid, id));
 
 				if (workLoadRow.Workloadapplicationname_2003 is "Test Signal Generator")
 					MapTestSignalGenerator(id, (SignalGeneratorSectionAPayload) result);

@@ -40,6 +40,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <ProjectReference Include="..\QAction_1\QAction_1.csproj">
+      <Project>{59CBE1AD-B3C2-451A-8F28-0505C108E3F7}</Project>
+      <Name>QAction_1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QAction_Helper\QAction_Helper.csproj">
       <Project>{21A8ADD0-3039-4DE7-92ED-E9BA03A45677}</Project>
       <Name>QAction_Helper</Name>
@@ -70,10 +74,6 @@
     <Reference Include="SLLoggerUtil">
       <HintPath>C:\Skyline DataMiner\Files\SLLoggerUtil.dll</HintPath>
     </Reference>
-    <ProjectReference Include="..\QAction_1\QAction_1.csproj">
-      <Project>{59CBE1AD-B3C2-451A-8F28-0505C108E3F7}</Project>
-      <Name>QAction_1</Name>
-    </ProjectReference>
     <AdditionalFiles Include="stylecop.json" />
     <Content Include=".editorconfig" />
   </ItemGroup>
@@ -92,7 +92,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkId="62" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
+      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="62" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

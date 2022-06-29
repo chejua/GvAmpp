@@ -61,7 +61,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>GV AMPP</Name>
 	<Description>GV AMPP DataMiner driver</Description>
-	<Version>1.0.0.2</Version>
+	<Version>1.0.0.3</Version>
 	<IntegrationID>DMS-DRV-999</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -69,7 +69,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 	<DeviceOID>99</DeviceOID>
 	<ElementType>Platform</ElementType>
 	<Type relativeTimers="true" advanced="http:HTTP Connection">smart-serial</Type>
-	<Display defaultPage="General" pageOrder="General;Test Signal Generatos;Applications;Workloads;Debug;Web Interface#https://us-east-1.gvampp.com/portal/ampp" wideColumnPages="Debug;Applications;Workloads;Test Signal Generatos" />
+	<Display defaultPage="General" pageOrder="General;Test Signal Generatos;Applications;Workloads;Debug;Web Interface#https://us-east-1.gvampp.com/portal/ampp;System" wideColumnPages="Debug;Applications;Workloads;Test Signal Generatos;System" />
 	<SNMP includepages="true">auto</SNMP>
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
@@ -1564,6 +1564,89 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<RTDisplay>true</RTDisplay>
 			</Display>
 		</Param>
+		<Param id="4000">
+			<Name>System</Name>
+			<Description>System</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="4001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="4002" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="4003" type="retrieved" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>tableInformation</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>System</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:4001|0-4002|1-4003|2,width:100-110-100,sort:STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="4001" trending="false">
+			<Name>SystemInstance</Name>
+			<Description>Instance (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload ID.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4002" trending="false">
+			<Name>SystemWorkloadName</Name>
+			<Description>Workload Name (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4003" trending="false">
+			<Name>SystemVersion</Name>
+			<Description>Version (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Version</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 	</Params>
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
@@ -1936,6 +2019,16 @@ DATE          VERSION    AUTHOR                         COMMENTS
 										<Changes>
 											<NewFeature>Initial version</NewFeature>
 											<NewFeature>Added workload name to the Test Signal Generators</NewFeature>
+										</Changes>
+									</MinorVersion>
+									<MinorVersion id="3" basedOn="1.0.0.2">
+										<Date>2022-06-29</Date>
+										<Provider>
+											<Author>GGA</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<NewFeature>Adding snapshot commands</NewFeature>
 										</Changes>
 									</MinorVersion>
 								</MinorVersions>
