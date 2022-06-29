@@ -397,6 +397,15 @@
         <member name="F:Skyline.DataMiner.Scripting.Parameter.Testsignalgenerators.Pid.testsignalgeneratorsinfooverlay">
             <summary>PID: 3015 | Type: read</summary>
         </member>
+<<<<<<< HEAD
+=======
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Testsignalgenerators.Pid.testsignageneratorsworkloadname_3016">
+            <summary>PID: 3016 | Type: read</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Testsignalgenerators.Pid.testsignageneratorsworkloadname">
+            <summary>PID: 3016 | Type: read</summary>
+        </member>
+>>>>>>> aef1e11e1177ec0683a2fa9e64fc7442dac8ca23
         <member name="F:Skyline.DataMiner.Scripting.Parameter.Testsignalgenerators.Idx.signalgeneratorsinstance_3001">
             <summary>IDX: 0 | Type: read</summary>
         </member>
@@ -487,6 +496,15 @@
         <member name="F:Skyline.DataMiner.Scripting.Parameter.Testsignalgenerators.Idx.testsignalgeneratorsinfooverlay">
             <summary>IDX: 14 | Type: read</summary>
         </member>
+<<<<<<< HEAD
+=======
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Testsignalgenerators.Idx.testsignageneratorsworkloadname_3016">
+            <summary>IDX: 15 | Type: read</summary>
+        </member>
+        <member name="F:Skyline.DataMiner.Scripting.Parameter.Testsignalgenerators.Idx.testsignageneratorsworkloadname">
+            <summary>IDX: 15 | Type: read</summary>
+        </member>
+>>>>>>> aef1e11e1177ec0683a2fa9e64fc7442dac8ca23
         <member name="P:Skyline.DataMiner.Scripting.WriteParameters.Connect">
             <summary>PID: 60  | Type: write | DISCREETS: Connect = 0</summary>
         </member>
@@ -802,6 +820,15 @@
         <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorsinfooverlay">
             <summary>PID: 3015  | Type: read | DISCREETS: Off = Off, On = On</summary>
         </member>
+<<<<<<< HEAD
+=======
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignageneratorsworkloadname_3016">
+            <summary>PID: 3016  | Type: read</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignageneratorsworkloadname">
+            <summary>PID: 3016  | Type: read</summary>
+        </member>
+>>>>>>> aef1e11e1177ec0683a2fa9e64fc7442dac8ca23
         <member name="P:Skyline.DataMiner.Scripting.ConcreteSLProtocolExt.Testsignalgeneratorscolor_3055">
             <summary>PID: 3055  | Type: write | DISCREETS: Black = Black, White = White, Red = Red, Green = Green, Blue = Blue, Magenta = Magenta, Cyan = Cyan, Yellow = Yellow</summary>
         </member>
@@ -997,5 +1024,14 @@
         <member name="P:Skyline.DataMiner.Scripting.TestsignalgeneratorsQActionRow.Testsignalgeneratorsinfooverlay">
             <summary>PID: 3015 | Type: read</summary>
         </member>
+<<<<<<< HEAD
+=======
+        <member name="P:Skyline.DataMiner.Scripting.TestsignalgeneratorsQActionRow.Testsignageneratorsworkloadname_3016">
+            <summary>PID: 3016 | Type: read</summary>
+        </member>
+        <member name="P:Skyline.DataMiner.Scripting.TestsignalgeneratorsQActionRow.Testsignageneratorsworkloadname">
+            <summary>PID: 3016 | Type: read</summary>
+        </member>
+>>>>>>> aef1e11e1177ec0683a2fa9e64fc7442dac8ca23
     </members>
 </doc>

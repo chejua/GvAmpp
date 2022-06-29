@@ -39,8 +39,18 @@
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\..\..\..\..\Skyline DataMiner\ProtocolScripts\Newtonsoft.Json.dll</HintPath>
+=======
+    <Reference Include="Interop.SLDms">
+      <HintPath>..\..\..\..\..\Skyline DataMiner\Files\Interop.SLDms.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Skyline DataMiner\ProtocolScripts\Newtonsoft.Json.dll</HintPath>
+>>>>>>> aef1e11e1177ec0683a2fa9e64fc7442dac8ca23
     </Reference>
     <Reference Include="System" />
     <ProjectReference Include="..\QAction_Helper\QAction_Helper.csproj">
@@ -54,9 +64,6 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="Interop.SLDms">
-      <HintPath>C:\Skyline DataMiner\ProtocolScripts\Interop.SLDms.dll</HintPath>
-    </Reference>
     <Reference Include="SLManagedScripting">
       <HintPath>C:\Skyline DataMiner\Files\SLManagedScripting.dll</HintPath>
     </Reference>
@@ -91,7 +98,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkId="3000" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
+      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="3000" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

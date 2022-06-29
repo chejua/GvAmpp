@@ -53,7 +53,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>GV AMPP</Name>
 	<Description>GV AMPP DataMiner driver</Description>
-	<Version>1.0.0.1</Version>
+	<Version>1.0.0.2</Version>
 	<IntegrationID>DMS-DRV-999</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -708,6 +708,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<ColumnOption idx="12" pid="3013" type="retrieved" options="" />
 				<ColumnOption idx="13" pid="3014" type="retrieved" options="" />
 				<ColumnOption idx="14" pid="3015" type="retrieved" options="" />
+				<ColumnOption idx="15" pid="3016" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>tableInformation</Subtext>
@@ -723,7 +724,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:3001|0-3002|1-3003|2-3004|3-3005|4-3006|5-3007|6-3008|7-3015|14-3009|8-3010|9-3011|10-3012|11-3013|12-3014|13,width:100-215-100-100-100-100-100-100-100-100-100-100-100-100-100,sort:STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:3001|0-3016|15-3002|1-3003|2-3004|3-3005|4-3006|5-3007|6-3008|7-3015|14-3009|8-3010|9-3011|10-3012|11-3013|12-3014|13,width:100-110-215-100-100-100-100-100-100-100-100-100-100-100-100-100,sort:STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="3001" trending="false">
@@ -1583,6 +1584,25 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
+		<Param id="3016" trending="false" >
+			<Name>TestSignaGeneratorsWorkloadName</Name>
+			<Description>Workload Name (Test Signal Generators)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload Name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+		</Param>
 	</Params>
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
@@ -1943,7 +1963,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 						<MajorVersions>
 							<MajorVersion id="0">
 								<MinorVersions>
-									<MinorVersion id="1">
+									<MinorVersion id="2">
 										<Date>2022-05-17</Date>
 										<Provider>
 											<Author>GMV</Author>
@@ -1951,6 +1971,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 										</Provider>
 										<Changes>
 											<NewFeature>Initial version</NewFeature>
+											<NewFeature>Added workload name to the Test Signal Generators</NewFeature>
 										</Changes>
 									</MinorVersion>
 								</MinorVersions>
