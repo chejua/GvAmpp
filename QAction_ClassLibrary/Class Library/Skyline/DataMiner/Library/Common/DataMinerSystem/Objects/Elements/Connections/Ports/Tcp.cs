@@ -160,7 +160,7 @@ namespace Skyline.DataMiner.Library.Common
 			this.ChangedPropertyList.Clear();
 		}
 
-		internal override ElementPortInfo CreateElementPortInfo(int portPosition, bool isCompatibilityIssueDetected)
+		internal override ElementPortInfo CreateElementPortInfo(int portPosition)
 		{
 			throw new NotSupportedException(
 				"Method is not supported. ElementPortInfo content is directly created in corresponding connection.");

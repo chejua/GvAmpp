@@ -31,6 +31,7 @@
 		private IDmsScheduler scheduler;
 		private AgentState state;
 		private bool stateRetrieved;
+		private bool isRsaLoaded;
 		private string versionInfo;
 
 		/// <summary>
@@ -50,6 +51,7 @@
 
 			this.dms = dms;
 			this.id = id;
+			this.isRsaLoaded = false;
 		}
 
 		internal Dma(IDms dms, GetDataMinerInfoResponseMessage infoMessage)
@@ -60,6 +62,7 @@
 				throw new ArgumentNullException("infoMessage");
 			}
 
+			isRsaLoaded = false;
 			Parse(infoMessage);
 		}
 
@@ -182,8 +185,12 @@
 			{
 				try
 				{
-					bool isCompatibilityIssueDetected = IsVersionHigher(SnmpV3AuthenticationChangeDMAVersion);
-					AddElementMessage createMessage = HelperClass.CreateAddElementMessage(configuration, isCompatibilityIssueDetected);
+					if (configuration.Connections.ContainsSnmpV3())
+					{
+						LoadRsa(); // RSA Public key will need to be loaded in case of SnmpV3.
+					}
+
+					AddElementMessage createMessage = HelperClass.CreateAddElementMessage(configuration);
 					createMessage.DataMinerID = id;
 
 					AddElementResponseMessage createResponse = (AddElementResponseMessage)dms.Communication.SendSingleResponseMessage(createMessage);
@@ -585,6 +592,33 @@
 					Parse(buildInfoResponse);
 				}
 
+				scheduler = new DmsScheduler(this);
+
+				IsLoaded = true;
+			}
+			catch (DataMinerException e)
+			{
+				if (e.ErrorCode == -2146233088)
+				{
+					// 0x80131500, No agent available with ID.
+					throw new AgentNotFoundException(id);
+				}
+				else
+				{
+					throw;
+				}
+			}
+		}
+
+		internal void LoadRsa()
+		{
+			try
+			{
+				if (isRsaLoaded)
+				{
+					return;
+				}
+
 				RSAPublicKeyRequest rsapkr;
 				rsapkr = new RSAPublicKeyRequest(id)
 				{
@@ -598,9 +632,7 @@
 					Exponent = resp.Exponent
 				};
 
-				scheduler = new DmsScheduler(this);
-
-				IsLoaded = true;
+				isRsaLoaded = true;
 			}
 			catch (DataMinerException e)
 			{

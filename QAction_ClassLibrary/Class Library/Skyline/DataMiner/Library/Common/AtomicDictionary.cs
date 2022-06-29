@@ -4,14 +4,28 @@
 	using System.Collections.Concurrent;
 	using System.Collections.Generic;
 
+	internal class ValueWithLock<T>
+	{
+		public ValueWithLock(T value, object lockObject) 
+		{
+			Value = value;
+			Lock = lockObject;
+		}
+
+		public T Value { get; private set; }
+
+		public object Lock { get; private set; }
+	}
+
 	/// <summary>
 	/// Performs all actions on values alongside dictionary manipulation in an atomic and thread-safe way.
 	/// </summary>
 	/// <typeparam name="T">The type of the values in the dictionary.</typeparam>
 	internal class AtomicDictionary<T>
 	{
-		private readonly ConcurrentDictionary<string, T> allValues = new ConcurrentDictionary<string, T>();
-		private readonly ConcurrentDictionary<string, object> valueLocks = new ConcurrentDictionary<string, object>();
+		private readonly ConcurrentDictionary<string, ValueWithLock<T>> allValueWithLock = new ConcurrentDictionary<string, ValueWithLock<T>>();
+		//private readonly ConcurrentDictionary<string, ValueWithLock<T>> allValues = new ConcurrentDictionary<string, ValueWithLock<T>>();
+		//private readonly ConcurrentDictionary<string, object> valueLocks = new ConcurrentDictionary<string, object>();
 
 		/// <summary>
 		/// Will perform a thread-safe action using the specific key/value and then remove this key/value. If the key does not exist it will do nothing.
@@ -22,24 +36,25 @@
 		public bool ActionAndRemove(string key, Action<T> a)
 		{
 			if (a == null) return false;
-			object myValueLock;
-			if (!valueLocks.TryGetValue(key, out myValueLock))
+
+			ValueWithLock<T> myValueAndLock;
+			
+			if (!allValueWithLock.TryGetValue(key, out myValueAndLock))
 			{
 				return false;
 			}
+
+			object myValueLock = myValueAndLock.Lock;
+			T myValue = myValueAndLock.Value;
 
 			lock (myValueLock)
 			{
 				System.Diagnostics.Debug.WriteLine(DateTime.Now.ToLongTimeString() + ":TryActionAndRemove entered lock " + key);
 
-				T myValue;
-				allValues.TryGetValue(key, out myValue);
 				a(myValue);
 
-				T removedValue;
-				allValues.TryRemove(key, out removedValue);
-				object removedLock;
-				valueLocks.TryRemove(key, out removedLock);
+				ValueWithLock<T> removedValue;
+				allValueWithLock.TryRemove(key, out removedValue);
 			}
 
 			System.Diagnostics.Debug.WriteLine(DateTime.Now.ToLongTimeString() + ":TryActionAndRemove EXIT lock " + key);
@@ -53,8 +68,7 @@
 		/// <param name="valueToAdd"></param>
 		public void Add(string key, T valueToAdd)
 		{
-			allValues.TryAdd(key, valueToAdd);
-			valueLocks.TryAdd(key, new object());
+			allValueWithLock.TryAdd(key, new ValueWithLock<T>(valueToAdd, new object()));
 		}
 
 		/// <summary>
@@ -67,11 +81,14 @@
 		{
 			if (a == null) return;
 
-			var myValueLock = valueLocks.GetOrAdd(key, new object());
+			var valueWithLock = allValueWithLock.GetOrAdd(key, (b) => { return new ValueWithLock<T>(inCaseOfAddition, new object()); });
+
+			var myValueLock = valueWithLock.Lock;
+			var myValue = valueWithLock.Value;
+
 			lock (myValueLock)
 			{
 				System.Diagnostics.Debug.WriteLine(DateTime.Now.ToLongTimeString() + ":AddOrGetAndAction entered lock" + key);
-				var myValue = allValues.GetOrAdd(key, inCaseOfAddition);
 				a(myValue);
 			}
 
@@ -86,15 +103,20 @@
 		public void GetAndAction(string key, Action<T> a)
 		{
 			if (a == null) return;
-			object myValueLock;
-			if (!valueLocks.TryGetValue(key, out myValueLock)) return;
+
+			ValueWithLock<T> myValueAndLock;
+
+			if (!allValueWithLock.TryGetValue(key, out myValueAndLock))
+			{
+				return;
+			}
+
+			object myValueLock = myValueAndLock.Lock;
+			T myValue = myValueAndLock.Value;
 
 			lock (myValueLock)
 			{
 				System.Diagnostics.Debug.WriteLine(DateTime.Now.ToLongTimeString() + ":GetAndAction entered lock" + key);
-
-				T myValue;
-				if (!allValues.TryGetValue(key, out myValue)) throw new InvalidOperationException("AtomicDictionary out of sync. Lock found for " + key + " but not value.");
 				a(myValue);
 			}
 
@@ -103,7 +125,7 @@
 
 		public ICollection<string> GetKeys()
 		{
-			return allValues.Keys;
+			return allValueWithLock.Keys;
 		}
 
 		/// <summary>
@@ -112,10 +134,8 @@
 		/// <param name="key"></param>
 		public void Remove(string key)
 		{
-			T removedValue;
-			allValues.TryRemove(key, out removedValue);
-			object removedLock;
-			valueLocks.TryRemove(key, out removedLock);
+			ValueWithLock<T> removedItem;
+			allValueWithLock.TryRemove(key, out removedItem);
 		}
 	}
 }

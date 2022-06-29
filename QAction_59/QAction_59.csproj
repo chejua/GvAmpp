@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3A0FC821-818A-4C6D-BB4A-BCA9982673C1}</ProjectGuid>
+    <ProjectGuid>{ACA97726-E656-4E66-A034-A9CEB29CBE70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QAction_59</RootNamespace>
@@ -39,22 +39,22 @@
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.SLDms">
-      <HintPath>..\..\..\..\..\Skyline DataMiner\Files\Interop.SLDms.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <ProjectReference Include="..\QAction_Helper\QAction_Helper.csproj">
-      <Project>{9677A631-34AD-431F-B5CD-88E87CDDAD97}</Project>
+      <Project>{21A8ADD0-3039-4DE7-92ED-E9BA03A45677}</Project>
       <Name>QAction_Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\QAction_ClassLibrary\QAction_ClassLibrary.csproj">
-      <Project>{EAE15065-F468-4573-9517-1B50C5037D25}</Project>
+      <Project>{ECB9AACA-554D-480C-8F3F-F5E7D6559EAE}</Project>
       <Name>QAction_ClassLibrary</Name>
     </ProjectReference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Interop.SLDms">
+      <HintPath>C:\Skyline DataMiner\ProtocolScripts\Interop.SLDms.dll</HintPath>
+    </Reference>
     <Reference Include="SLManagedScripting">
       <HintPath>C:\Skyline DataMiner\Files\SLManagedScripting.dll</HintPath>
     </Reference>
@@ -88,7 +88,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="59" />
+      <UserProperties DisLinkId="59" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

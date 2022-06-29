@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C5725EAB-3BA2-42B8-8F92-4517F031BCDC}</ProjectGuid>
+    <ProjectGuid>{E5869E13-6BF9-4BC3-B96A-237FA6873453}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>QAction_3000</RootNamespace>
@@ -39,31 +39,22 @@
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\..\..\..\Skyline DataMiner\ProtocolScripts\Newtonsoft.Json.dll</HintPath>
-=======
-    <Reference Include="Interop.SLDms">
-      <HintPath>..\..\..\..\..\Skyline DataMiner\Files\Interop.SLDms.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Skyline DataMiner\ProtocolScripts\Newtonsoft.Json.dll</HintPath>
->>>>>>> aef1e11e1177ec0683a2fa9e64fc7442dac8ca23
-    </Reference>
     <Reference Include="System" />
     <ProjectReference Include="..\QAction_Helper\QAction_Helper.csproj">
-      <Project>{9677A631-34AD-431F-B5CD-88E87CDDAD97}</Project>
+      <Project>{21A8ADD0-3039-4DE7-92ED-E9BA03A45677}</Project>
       <Name>QAction_Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\QAction_ClassLibrary\QAction_ClassLibrary.csproj">
-      <Project>{EAE15065-F468-4573-9517-1B50C5037D25}</Project>
+      <Project>{ECB9AACA-554D-480C-8F3F-F5E7D6559EAE}</Project>
       <Name>QAction_ClassLibrary</Name>
     </ProjectReference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Interop.SLDms">
+      <HintPath>C:\Skyline DataMiner\ProtocolScripts\Interop.SLDms.dll</HintPath>
+    </Reference>
     <Reference Include="SLManagedScripting">
       <HintPath>C:\Skyline DataMiner\Files\SLManagedScripting.dll</HintPath>
     </Reference>
@@ -79,9 +70,11 @@
     <Reference Include="SLLoggerUtil">
       <HintPath>C:\Skyline DataMiner\Files\SLLoggerUtil.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Skyline DataMiner\ProtocolScripts\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <AdditionalFiles Include="stylecop.json" />
     <Content Include=".editorconfig" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,7 +91,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="3000" />
+      <UserProperties DisLinkId="3000" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

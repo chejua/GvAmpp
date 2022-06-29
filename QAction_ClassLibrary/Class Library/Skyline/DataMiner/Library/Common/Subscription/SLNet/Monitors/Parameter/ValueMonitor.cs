@@ -1,14 +1,13 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Monitors
 {
-	using System;
+    using System;
 
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.SLNetHelper;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.SLNetHelper;
+    using System.Collections.Concurrent;
+    using System.Threading;
 
-	using System.Collections.Concurrent;
-	using System.Threading;
-
-	internal class ValueMonitor : Monitor
+    internal class ValueMonitor : Monitor
 	{
 		internal ValueMonitor(ICommunication connection, string sourceId, Param selection, string handleId) : base(connection, sourceId)
 		{

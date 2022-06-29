@@ -1,14 +1,13 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using Skyline.DataMiner.Library.Common.Subscription.Waiters;
 
-	using System;
+    using System;
 
-	/// <summary>
-	/// DataMiner table column interface of a specific type.
-	/// </summary>
-	/// <typeparam name="T">The type of the column.</typeparam>
-	public interface IDmsColumn<T> : IDmsColumn
+    /// <summary>
+    /// DataMiner table column interface of a specific type.
+    /// </summary>
+    /// <typeparam name="T">The type of the column.</typeparam>
+    public interface IDmsColumn<T> : IDmsColumn
 	{
 		/// <summary>
 		/// Gets the value of the cell that corresponds with the specified primary key.

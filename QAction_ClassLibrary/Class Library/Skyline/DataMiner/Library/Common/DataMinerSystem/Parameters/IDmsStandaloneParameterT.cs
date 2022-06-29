@@ -1,14 +1,10 @@
-﻿using Skyline.DataMiner.Library.Common.Subscription.Waiters;
-
-using System;
-
-namespace Skyline.DataMiner.Library.Common
+﻿namespace Skyline.DataMiner.Library.Common
 {
-	/// <summary>
-	/// DataMiner standalone parameter interface for a parameter of a specific type.
-	/// </summary>
-	/// <typeparam name="T">The type of the standalone parameter.</typeparam>
-	public interface IDmsStandaloneParameter<T> : IDmsStandaloneParameter
+    /// <summary>
+    /// DataMiner standalone parameter interface for a parameter of a specific type.
+    /// </summary>
+    /// <typeparam name="T">The type of the standalone parameter.</typeparam>
+    public interface IDmsStandaloneParameter<T> : IDmsStandaloneParameter
 	{
 		/// <summary>
 		/// Gets the parameter value.

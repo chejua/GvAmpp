@@ -25,8 +25,10 @@
         public Serializer(Type rootType, List<Type> knownTypes = null)
         {
             RootType = rootType;
-            KnownTypes = knownTypes != null ? new KnownTypesBinder(knownTypes) : new KnownTypesBinder();
+			if (knownTypes == null) knownTypes = new List<Type>();
+			if(!knownTypes.Contains(rootType))knownTypes.Add(rootType);
 
+			KnownTypes = new KnownTypesBinder(knownTypes);
 			ApplySettings();
         }
 
@@ -65,7 +67,7 @@
             Settings = new JsonSerializerSettings
             {
                 SerializationBinder = KnownTypes,
-                TypeNameHandling = TypeNameHandling.Auto,
+                TypeNameHandling = TypeNameHandling.All,
                 TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Full,
                 MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
                 ObjectCreationHandling = ObjectCreationHandling.Replace,

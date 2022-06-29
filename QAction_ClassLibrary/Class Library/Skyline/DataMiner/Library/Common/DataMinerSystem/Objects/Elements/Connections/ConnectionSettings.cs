@@ -125,9 +125,8 @@
 		/// Creates an ElementPortPortInfo object based on the field contents.
 		/// </summary>
 		/// <param name="portPosition">The corresponding port number.</param>
-		/// <param name="isCompatibilityIssueDetected">Indicates if compatibility changes need to be taken into account.</param>
 		/// <returns>ElementPortInfo object.</returns>
-		internal abstract ElementPortInfo CreateElementPortInfo(int portPosition, bool isCompatibilityIssueDetected);
+		internal abstract ElementPortInfo CreateElementPortInfo(int portPosition);
 
 		/// <summary>
 		/// Updates the provided ElementPortInfo object with any performed changes on the object.

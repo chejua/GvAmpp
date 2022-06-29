@@ -1,15 +1,15 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Monitors
 {
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.SLNetHelper;
-	using Skyline.DataMiner.Net;
-	using Skyline.DataMiner.Net.Messages;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.SLNetHelper;
+    using Skyline.DataMiner.Net;
+    using Skyline.DataMiner.Net.Messages;
+    using Skyline.DataMiner.Library.Common;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Threading;
 
-	using System;
-	using System.Collections.Concurrent;
-	using System.Threading;
-
-	internal class ElementAlarmLevelMonitor : Monitor
+    internal class ElementAlarmLevelMonitor : Monitor
 	{
 		private Action<ElementAlarmlevelChange> onChange;
 

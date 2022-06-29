@@ -1,11 +1,10 @@
 ﻿namespace Skyline.DataMiner.Library.Protocol.Matrix
 {
-	using System.Collections.Generic;
-	using System.Globalization;
-	using Net.Messages;
-	using Skyline.DataMiner.Scripting;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using Net.Messages;
 
-	[Skyline.DataMiner.Library.Common.Attributes.DllImport("SLManagedScripting.dll")]
+    [Skyline.DataMiner.Library.Common.Attributes.DllImport("SLManagedScripting.dll")]
 	[Skyline.DataMiner.Library.Common.Attributes.DllImport("SLNetTypes.dll")]
 	internal class MatrixHelperParameterNames
 	{

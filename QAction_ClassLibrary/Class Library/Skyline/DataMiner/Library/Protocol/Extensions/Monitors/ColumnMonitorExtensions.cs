@@ -1,16 +1,16 @@
 ﻿namespace Skyline.DataMiner.Library.Protocol.Subscription.Monitors
 {
-	using Skyline.DataMiner.Library.Common;
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Subscription.Monitors;
-	using Skyline.DataMiner.Scripting;
+    using Skyline.DataMiner.Library.Common;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Subscription.Monitors;
+    using Skyline.DataMiner.Scripting;
 
-	using System;
+    using System;
 
-	/// <summary>
-	/// Defines extension methods on the <see cref="IDmsColumn"/> class for monitoring.
-	/// </summary>
-	public static class ColumnMonitorExtensions
+    /// <summary>
+    /// Defines extension methods on the <see cref="IDmsColumn"/> class for monitoring.
+    /// </summary>
+    public static class ColumnMonitorExtensions
 	{
 		/// <summary>
 		///  Starts monitoring alarm level changes. Every change will perform the onChange action. Important: do not use SLProtocol in the provided action.
@@ -57,6 +57,7 @@
 			monitor.Start(onChange);
 		}
 
+	
 #pragma warning disable S3242 // Method parameters should be declared with base types
 		/// <summary>
 		///  Starts monitoring value changes. Every change will perform the onChange action. Important: do not use SLProtocol in the provided action.

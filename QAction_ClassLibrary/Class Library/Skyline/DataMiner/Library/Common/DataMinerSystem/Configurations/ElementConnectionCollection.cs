@@ -267,7 +267,7 @@
 		/// Creates a list of ElementPortInfo objects based on the list of IElementCommunicationConnection objects.
 		/// </summary>
 		/// <returns>List of <see cref="ElementPortInfo"/></returns>
-		internal IEnumerable<ElementPortInfo> CreatePortInfo(bool isCompatibilityIssueDetected)
+		internal IEnumerable<ElementPortInfo> CreatePortInfo()
 		{
 			ElementPortInfo[] portInfoMessages = new ElementPortInfo[connections.Length];
 
@@ -277,11 +277,54 @@
 
 				if(connection != null)
 				{
-					portInfoMessages[i] = connection.CreateElementPortInfo(i, isCompatibilityIssueDetected);
+					portInfoMessages[i] = connection.CreateElementPortInfo(i);
 				}
 			}
 
 			return portInfoMessages;
+		}
+
+		/// <summary>
+		/// Verifies if changes will need to be done to the SnmpV3 security.
+		/// </summary>
+		/// <returns>Boolean indicating is there are changes present for SnmpV3 security.</returns>
+		internal bool ContainsSnmpV3Changes()
+		{
+			for (int i = 0; i < connections.Length; i++)
+			{
+				SnmpV3Connection connection = connections[i] as SnmpV3Connection;
+				if (connection == null)
+				{
+					continue;
+				}
+
+				if (connection.ContainsSnmpV3Changes())
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Verifies if the element contains an SnmpV3 connection.
+		/// </summary>
+		/// <returns>Boolean indicating is there is an SnmpV3 connection present.</returns>
+		internal bool ContainsSnmpV3()
+		{
+			for (int i = 0; i < connections.Length; i++)
+			{
+				SnmpV3Connection connection = connections[i] as SnmpV3Connection;
+				if (connection == null)
+				{
+					continue;
+				}
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

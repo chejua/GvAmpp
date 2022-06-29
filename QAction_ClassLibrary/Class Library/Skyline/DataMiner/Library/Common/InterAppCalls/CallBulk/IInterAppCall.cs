@@ -20,11 +20,6 @@
 		string Guid { get; set; }
 
 		/// <summary>
-		/// The serializer used internally to convert data to and from a class model.
-		/// </summary>
-		ISerializer InternalSerializer { get; set; }
-
-		/// <summary>
 		/// Gets or sets all messages of this inter-app call.
 		/// </summary>
 		/// <value>The messages of this inter-app call.</value>
@@ -62,8 +57,9 @@
 		/// <param name="agentId">DataMiner Agent ID of the destination.</param>
 		/// <param name="elementId">Element ID of the destination.</param>
 		/// <param name="parameterId">Parameter ID of the destination.</param>
+		/// <param name="knownTypes">List of all possible message classes. Needed for the default serializer.</param>
 		/// <exception cref="InvalidOperationException">The state of the specified element is not "Active".</exception>
-		void Send(IConnection connection, int agentId, int elementId, int parameterId);
+		void Send(IConnection connection, int agentId, int elementId, int parameterId, List<Type> knownTypes);
 
 		/// <summary>
 		/// Sends this call via SLNet to the specific DataMiner Agent ID/element ID/parameter ID and waits until timeout for a single reply for each message.
@@ -74,9 +70,10 @@
 		/// <param name="parameterId">Parameter ID of the destination.</param>
 		/// <param name="timeout">Maximum time to wait between received replies. Resets each time a reply is received.</param>
 		/// <returns>The responses.</returns>
+		/// <param name="knownTypes">List of all possible message classes. Needed for the default serializer.</param>
 		/// <exception cref="InvalidOperationException">The state of the specified element is not "Active".</exception>
 		/// <exception cref="InvalidOperationException">ReturnAddress is not filled in.</exception>
-		IEnumerable<Message> Send(IConnection connection, int agentId, int elementId, int parameterId, TimeSpan timeout);
+		IEnumerable<Message> Send(IConnection connection, int agentId, int elementId, int parameterId, TimeSpan timeout, List<Type> knownTypes);
 
 		/// <summary>
 		/// Sends this call via SLNet to the specified DataMiner Agent ID/element ID/parameter ID without waiting on a reply.
@@ -102,11 +99,5 @@
 		/// <exception cref="InvalidOperationException">The state of the specified element is not "Active".</exception>
 		/// <exception cref="InvalidOperationException">ReturnAddress is not filled in.</exception>
 		IEnumerable<Message> Send(IConnection connection, int agentId, int elementId, int parameterId, TimeSpan timeout, ISerializer serializer);
-
-		/// <summary>
-		/// Serializes this call as a string.
-		/// </summary>
-		/// <returns>The string representing this serialized call.</returns>
-		string Serialize();
 	}
 }

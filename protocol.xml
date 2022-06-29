@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-NOTE PORT OF THE FORWARDER WAS CHANGED TO 5002 FOR META SERVER
+
 ****************************************************************************
 *  Copyright (c) 2022,  Skyline Communications NV  All Rights Reserved.    *
 ****************************************************************************
@@ -49,6 +49,14 @@ Revision History (auto generated):
 DATE          VERSION    AUTHOR                         COMMENTS
 
 17/05/2022    1.0.0.1    GMV, Skyline Communications    NF: Initial version
+
+
+Revision History (auto generated):
+
+DATE          VERSION    AUTHOR                         COMMENTS
+
+17/05/2022    1.0.0.2    GMV, Skyline Communications    NF: Initial version
+                                                        NF: Added workload name to the Test Signal Generators
 -->
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>GV AMPP</Name>
@@ -395,6 +403,13 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			</Measurement>
 			<Display>
 				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>General</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
 			</Display>
 		</Param>
 		<Param id="200" trending="false">
@@ -586,9 +601,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -608,9 +620,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -630,9 +639,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -652,9 +658,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -746,7 +749,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="3002" trending="true">
+		<Param id="3002" trending="false">
 			<Name>FrameRate</Name>
 			<Description>Frame Rate (Test Signal Generator)</Description>
 			<Type>read</Type>
@@ -795,14 +798,11 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
 		</Param>
-		<Param id="3003" trending="true">
+		<Param id="3003" trending="false">
 			<Name>TestSignalGeneratorsResolution</Name>
 			<Description>Resolution (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -814,9 +814,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -846,7 +843,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3004" trending="true">
+		<Param id="3004" trending="false">
 			<Name>TestSignalGeneratorsScanMode</Name>
 			<Description>Scan Mode (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -858,9 +855,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -878,7 +872,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3005" trending="true">
+		<Param id="3005" trending="false">
 			<Name>TestSignalGeneratorsColor</Name>
 			<Description>Color (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -890,9 +884,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -984,7 +975,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3006" trending="true">
+		<Param id="3006" trending="false">
 			<Name>TestSignalGeneratorsFrequency</Name>
 			<Description>Frequency (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -996,9 +987,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1054,9 +1042,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1080,7 +1065,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="3008" trending="true">
+		<Param id="3008" trending="false">
 			<Name>TestSignalGeneratorsIdentOverlay</Name>
 			<Description>Ident Overlay (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1092,9 +1077,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1138,7 +1120,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3009" trending="true">
+		<Param id="3009" trending="false">
 			<Name>TestSignalGeneratorsPattern</Name>
 			<Description>Pattern (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1150,9 +1132,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1196,7 +1175,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3010" trending="true">
+		<Param id="3010" trending="false">
 			<Name>TestSignalGeneratorsSoundMode</Name>
 			<Description>Sound Mode (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1208,9 +1187,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1262,7 +1238,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3011" trending="true">
+		<Param id="3011" trending="false">
 			<Name>TestSignalGeneratorsSyncFlash</Name>
 			<Description>Sync Flash (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1274,9 +1250,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1320,7 +1293,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3012" trending="true">
+		<Param id="3012" trending="false">
 			<Name>TestSignalGeneratorsSyncPeriod</Name>
 			<Description>Sync Period (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1332,9 +1305,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1378,7 +1348,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3013" trending="true">
+		<Param id="3013" trending="false">
 			<Name>TestSignalGeneratorsToneLevel</Name>
 			<Description>Tone Level (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1390,9 +1360,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1468,7 +1435,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3014" trending="true">
+		<Param id="3014" trending="false">
 			<Name>TestSignalGeneratorsTodOverlay</Name>
 			<Description>Tod Overlay (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1480,9 +1447,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1526,7 +1490,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3015" trending="true">
+		<Param id="3015" trending="false">
 			<Name>TestSignalGeneratorsInfoOverlay</Name>
 			<Description>Info Overlay (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1538,9 +1502,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
-			<Alarm>
-				<Monitored>true</Monitored>
-			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1584,7 +1545,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3016" trending="false" >
+		<Param id="3016" trending="false">
 			<Name>TestSignaGeneratorsWorkloadName</Name>
 			<Description>Workload Name (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1606,34 +1567,37 @@ DATE          VERSION    AUTHOR                         COMMENTS
 	</Params>
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
-
+			
 		</QAction>
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2">
-
+			
 		</QAction>
 		<QAction id="60" name="Connect to GV" encoding="csharp" triggers="60">
-
+			
 		</QAction>
 		<QAction id="54" name="Parse Token" encoding="csharp" inputParameters="54" triggers="54">
-
+			
 		</QAction>
 		<QAction id="57" name="Parse Applications" encoding="csharp" triggers="57" inputParameters="57">
-
+			
 		</QAction>
 		<QAction id="58" name="Parse Workloads" encoding="csharp" triggers="58" inputParameters="58">
-
+			
 		</QAction>
 		<QAction id="42" name="Process Message From AMPP" encoding="csharp" triggers="42" inputParameters="40">
-
+			
 		</QAction>
 		<QAction id="62" name="Process Message" encoding="csharp" triggers="62">
-
+			
 		</QAction>
 		<QAction id="2071" name="Other On Workload GetState" encoding="csharp" triggers="2070" row="true">
+			
 		</QAction>
 		<QAction id="3000" name="Test Signal Generator Table Sets" encoding="csharp" triggers="3055;3056;3057;3058;3059;3060;3061;3062;3063;3064;3065" row="true">
+			
 		</QAction>
 		<QAction id="59" name="Parse Generic Control Response" encoding="csharp" triggers="59">
+			
 		</QAction>
 	</QActions>
 	<HTTP>
@@ -1686,7 +1650,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 						<Header key="Authorization" pid="55" />
 						<Header key="Content-Type">application/json</Header>
 					</Headers>
-					<Data pid="63"></Data>
+					<Data pid="63" />
 				</Request>
 				<Response statusCode="200">
 					<Content pid="59" />

@@ -237,7 +237,7 @@
 		///     Creates a new <see cref="ElementPortInfo" /> object.
 		/// </summary>
 		/// <returns></returns>
-		internal override ElementPortInfo CreateElementPortInfo(int portPosition, bool isCompatibilityIssueDetected)
+		internal override ElementPortInfo CreateElementPortInfo(int portPosition)
 		{
 			throw new NotSupportedException(
 				"Method is not supported. ElementPortInfo content is directly created in corresponding connection.");

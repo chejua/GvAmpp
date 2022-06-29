@@ -1,14 +1,13 @@
 ﻿
 namespace Skyline.DataMiner.Library.Common.Subscription.Monitors.Parameter.Helpers
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
+    using System;
+    using System.Collections.Generic;
 
-	/// <summary>
-	/// Cache of the current values of the rows in a table.
-	/// </summary>
-	internal class TableCache
+    /// <summary>
+    /// Cache of the current values of the rows in a table.
+    /// </summary>
+    internal class TableCache
 	{
 		public TableCache()
 		{

@@ -114,7 +114,7 @@ namespace Skyline.DataMiner.Library.Common
 		/// Creates an ElementPortInfo object based on the properties.
 		/// </summary>
 		/// <returns></returns>
-		internal override ElementPortInfo CreateElementPortInfo(int portPosition, bool isCompatibilityIssueDetected)
+		internal override ElementPortInfo CreateElementPortInfo(int portPosition)
 		{
 			throw new NotSupportedException("RealConnection is not supported.");
 		}

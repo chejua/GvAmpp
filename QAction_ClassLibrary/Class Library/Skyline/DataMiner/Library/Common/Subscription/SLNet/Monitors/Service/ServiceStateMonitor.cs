@@ -1,15 +1,14 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Monitors
 {
-	using System;
-	using System.Collections.Concurrent;
-	using System.Threading;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Threading;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.SLNetHelper;
+    using Skyline.DataMiner.Net;
+    using Skyline.DataMiner.Net.Messages;
 
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.SLNetHelper;
-	using Skyline.DataMiner.Net;
-	using Skyline.DataMiner.Net.Messages;
-	
-	internal class ServiceStateMonitor : Monitor
+    internal class ServiceStateMonitor : Monitor
 	{
 		private Action<ServiceStateChange> onchange;
 
