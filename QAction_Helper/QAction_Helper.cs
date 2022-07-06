@@ -155,6 +155,11 @@ public static class Parameter
 		public const int testsignalgeneratorsinfooverlay_3065 = 3065;
 		/// <summary>PID: 3065 | Type: write</summary>
 		public const int testsignalgeneratorsinfooverlay = 3065;
+		/// <summary>PID: 4054 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int systemsnapshotid_4054 = 4054;
+		/// <summary>PID: 4054 | Type: write</summary>
+		public const int systemsnapshotid = 4054;
 	}
 	public class Applicationtypes
 	{
@@ -480,8 +485,28 @@ public static class Parameter
 			public const int systemversion_4003 = 4003;
 			/// <summary>PID: 4003 | Type: read</summary>
 			public const int systemversion = 4003;
+			/// <summary>PID: 4004 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemsnapshotid_4004 = 4004;
+			/// <summary>PID: 4004 | Type: read</summary>
+			public const int systemsnapshotid = 4004;
+			/// <summary>PID: 4006 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemoperationresult_4006 = 4006;
+			/// <summary>PID: 4006 | Type: read</summary>
+			public const int systemoperationresult = 4006;
+			/// <summary>PID: 4007 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemresultmessage_4007 = 4007;
+			/// <summary>PID: 4007 | Type: read</summary>
+			public const int systemresultmessage = 4007;
 			public class Write
 			{
+				/// <summary>PID: 4005 | Type: write</summary>
+				[EditorBrowsable(EditorBrowsableState.Never)]
+				public const int systemactions_4005 = 4005;
+				/// <summary>PID: 4005 | Type: write</summary>
+				public const int systemactions = 4005;
 			}
 		}
 		public class Idx
@@ -501,6 +526,21 @@ public static class Parameter
 			public const int systemversion_4003 = 2;
 			/// <summary>IDX: 2 | Type: read</summary>
 			public const int systemversion = 2;
+			/// <summary>IDX: 3 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemsnapshotid_4004 = 3;
+			/// <summary>IDX: 3 | Type: read</summary>
+			public const int systemsnapshotid = 3;
+			/// <summary>IDX: 4 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemoperationresult_4006 = 4;
+			/// <summary>IDX: 4 | Type: read</summary>
+			public const int systemoperationresult = 4;
+			/// <summary>IDX: 5 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int systemresultmessage_4007 = 5;
+			/// <summary>IDX: 5 | Type: read</summary>
+			public const int systemresultmessage = 5;
 		}
 	}
 }
@@ -534,6 +574,10 @@ public class WriteParameters
 	public System.Object Testsignalgeneratorstodoverlay {get { return Protocol.GetParameter(3064); }set { Protocol.SetParameter(3064, value); }}
 	/// <summary>PID: 3065  | Type: write | DISCREETS: Off = Off, On = On</summary>
 	public System.Object Testsignalgeneratorsinfooverlay {get { return Protocol.GetParameter(3065); }set { Protocol.SetParameter(3065, value); }}
+	/// <summary>PID: 4005  | Type: write | DISCREETS: Stop = 0, Start = 1</summary>
+	public System.Object Systemactions {get { return Protocol.GetParameter(4005); }set { Protocol.SetParameter(4005, value); }}
+	/// <summary>PID: 4054  | Type: write</summary>
+	public System.Object Systemsnapshotid {get { return Protocol.GetParameter(4054); }set { Protocol.SetParameter(4054, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -654,6 +698,15 @@ public interface SLProtocolExt : SLProtocol
 	object Systemworkloadname { get; set; }
 	object Systemversion_4003 { get; set; }
 	object Systemversion { get; set; }
+	object Systemsnapshotid_4004 { get; set; }
+	object Systemsnapshotid { get; set; }
+	object Systemactions_4005 { get; set; }
+	object Systemactions { get; set; }
+	object Systemoperationresult_4006 { get; set; }
+	object Systemoperationresult { get; set; }
+	object Systemresultmessage_4007 { get; set; }
+	object Systemresultmessage { get; set; }
+	object Systemsnapshotid_4054 { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -929,6 +982,28 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Systemversion_4003 {get { return GetParameter(4003); }set { SetParameter(4003, value); }}
 	/// <summary>PID: 4003  | Type: read</summary>
 	public System.Object Systemversion {get { return GetParameter(4003); }set { SetParameter(4003, value); }}
+	/// <summary>PID: 4004  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemsnapshotid_4004 {get { return GetParameter(4004); }set { SetParameter(4004, value); }}
+	/// <summary>PID: 4004  | Type: read</summary>
+	public System.Object Systemsnapshotid {get { return GetParameter(4004); }set { SetParameter(4004, value); }}
+	/// <summary>PID: 4005  | Type: write | DISCREETS: Stop = 0, Start = 1</summary>
+	public System.Object Systemactions_4005 {get { return GetParameter(4005); }set { SetParameter(4005, value); }}
+	/// <summary>PID: 4005  | Type: write | DISCREETS: Stop = 0, Start = 1</summary>
+	public System.Object Systemactions {get { return Write.Systemactions; }set { Write.Systemactions = value; }}
+	/// <summary>PID: 4006  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemoperationresult_4006 {get { return GetParameter(4006); }set { SetParameter(4006, value); }}
+	/// <summary>PID: 4006  | Type: read</summary>
+	public System.Object Systemoperationresult {get { return GetParameter(4006); }set { SetParameter(4006, value); }}
+	/// <summary>PID: 4007  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemresultmessage_4007 {get { return GetParameter(4007); }set { SetParameter(4007, value); }}
+	/// <summary>PID: 4007  | Type: read</summary>
+	public System.Object Systemresultmessage {get { return GetParameter(4007); }set { SetParameter(4007, value); }}
+	/// <summary>PID: 4054  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemsnapshotid_4054 {get { return GetParameter(4054); }set { SetParameter(4054, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -1133,8 +1208,27 @@ public class SystemQActionRow : QActionTableRow
 	public System.Object Systemversion_4003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
 	/// <summary>PID: 4003 | Type: read</summary>
 	public System.Object Systemversion { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
-	public SystemQActionRow() : base(0, 3) { }
-	public SystemQActionRow(System.Object[] oRow) : base(0, 3, oRow) { }
+	/// <summary>PID: 4004 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemsnapshotid_4004 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 4004 | Type: read</summary>
+	public System.Object Systemsnapshotid { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 4006 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemoperationresult_4006 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 4006 | Type: read</summary>
+	public System.Object Systemoperationresult { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 4007 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Systemresultmessage_4007 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 4007 | Type: read</summary>
+	public System.Object Systemresultmessage { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 4005 | Type: write</summary>
+	public System.Object Systemactions_4005 { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	/// <summary>PID: 4005 | Type: write</summary>
+	public System.Object Systemactions { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	public SystemQActionRow() : base(0, 7) { }
+	public SystemQActionRow(System.Object[] oRow) : base(0, 7, oRow) { }
 	public static implicit operator SystemQActionRow(System.Object[] source) { return new SystemQActionRow(source); }
 	public static implicit operator System.Object[](SystemQActionRow source) { return source.ToObjectArray(); }
 }

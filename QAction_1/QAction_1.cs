@@ -701,7 +701,15 @@ namespace Skyline.Protocol
 					}
 					else if (result is SystemClass)
 					{
-						protocol.Log(8, 5, "@@@@@@@@@@@@@@@@@@ System message parse here");
+						var systemResponse = result as SystemClass;
+
+						protocol.system.SetRow(
+							new SystemQActionRow
+							{
+								Systeminstance_4001 = systemResponse.Workload,
+								Systemworkloadname_4002 = systemResponse.Name,
+								Systemversion_4003 = systemResponse.version,
+							}, createRow: true);
 					}
 
 					protocol.Log(string.Format(">>>QA{0} ExecuteMessage succesfully deserialized the object:\n\r {1}", protocol.QActionID, JsonConvert.SerializeObject(result, Formatting.Indented)),
