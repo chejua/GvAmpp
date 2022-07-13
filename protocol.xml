@@ -61,7 +61,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>GV AMPP</Name>
 	<Description>GV AMPP DataMiner driver</Description>
-	<Version>1.0.0.3</Version>
+	<Version>1.0.0.4</Version>
 	<IntegrationID>DMS-DRV-999</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -69,7 +69,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 	<DeviceOID>99</DeviceOID>
 	<ElementType>Platform</ElementType>
 	<Type relativeTimers="true" advanced="http:HTTP Connection">smart-serial</Type>
-	<Display defaultPage="General" pageOrder="General;Test Signal Generatos;System;Applications;Workloads;Debug;Web Interface#https://us-east-1.gvampp.com/portal/ampp" wideColumnPages="Debug;Applications;Workloads;Test Signal Generatos;System" />
+	<Display defaultPage="General" pageOrder="General;Test Signal Generatos;System;Clip Player;----------;Applications;Workloads;Debug;----------;Web Interface#https://us-east-1.gvampp.com/portal/ampp" wideColumnPages="Debug;Applications;Workloads;Test Signal Generatos;System;Clip Player" />
 	<SNMP includepages="true">auto</SNMP>
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
@@ -285,7 +285,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			</Interprete>
 		</Param>
 		<Param id="58">
-			<Name>WorkloadsResponse</Name>
+			<Name>WorkloadsResponse</Name>2 vgv
 			<Description>Workloads Response</Description>
 			<Type>read</Type>
 			<Interprete>
@@ -1627,7 +1627,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<ColumnOption idx="1" pid="4002" type="retrieved" options="" />
 				<ColumnOption idx="2" pid="4003" type="retrieved" options="" />
 				<ColumnOption idx="3" pid="4004" type="retrieved" options="" />
-				<ColumnOption idx="4" pid="4006" type="retrieved" options=";enableHeaderSum;enableHistogram;enableHeatmap" />
+				<ColumnOption idx="4" pid="4006" type="retrieved" options="" />
 				<ColumnOption idx="5" pid="4007" type="retrieved" options="" />
 				<ColumnOption idx="6" pid="4005" type="custom" options="" />
 			</ArrayOptions>
@@ -1787,7 +1787,17 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
-				<Type>number</Type>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>Error</Display>
+					</Discreet>
+					<Discreet>
+						<Value>1</Value>
+						<Display>OK</Display>
+					</Discreet>
+				</Discreets>
 			</Measurement>
 		</Param>
 		<Param id="4007" trending="false">
@@ -1796,6 +1806,330 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			<Type>read</Type>
 			<Information>
 				<Subtext>Result message</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5000">
+			<Name>ClipPlayer</Name>
+			<Description>ClipPlayer</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="5001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="5002" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="5003" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="5004" type="retrieved" options="" />
+				<ColumnOption idx="4" pid="5005" type="retrieved" options="" />
+				<ColumnOption idx="5" pid="5006" type="retrieved" options="" />
+				<ColumnOption idx="6" pid="5007" type="retrieved" options="" />
+				<ColumnOption idx="7" pid="5008" type="retrieved" options="" />
+				<ColumnOption idx="8" pid="5009" type="retrieved" options="" />
+				<ColumnOption idx="9" pid="5010" type="retrieved" options="" />
+				<ColumnOption idx="10" pid="5011" type="retrieved" options="" />
+				<ColumnOption idx="11" pid="5012" type="retrieved" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>Clip player table with the response from the GetState</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Clip Player</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:5001|0-5002|1-5003|2-5004|3-5005|4-5006|5-5007|6-5008|7-5009|8-5010|9-5011|10-5012|11,width:100-100-100-100-100-100-100-130-100-100-100-100,sort:STRING-INT-STRING-INT-INT-INT-INT-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="5001" trending="false">
+			<Name>ClipPlayerInstance</Name>
+			<Description>Instance (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload ID.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5002" trending="false">
+			<Name>ClipPlayerState</Name>
+			<Description>State (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>State</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5003" trending="false">
+			<Name>ClipPlayerEndBehavior</Name>
+			<Description>End Behavior (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>End behavior</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5004" trending="false">
+			<Name>ClipPlayerPosition</Name>
+			<Description>Position (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Position</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5005" trending="false">
+			<Name>ClipPlayerInPosition</Name>
+			<Description>In Position (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>In position</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5006" trending="false">
+			<Name>ClipPlayerOutPoisition</Name>
+			<Description>Out Position (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Out position</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5007" trending="false">
+			<Name>ClipPlayerRate</Name>
+			<Description>Rate (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Rate</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5008" trending="false">
+			<Name>ClipPlayerPreserveResolution</Name>
+			<Description>Preserve Resolution (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5009" trending="false">
+			<Name>ClipPlayerResolution</Name>
+			<Description>Resolution (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Resolution</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>720x480</Display>
+						<Value>720x480</Value>
+					</Discreet>
+					<Discreet>
+						<Display>720x576</Display>
+						<Value>720x576</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1280x720</Display>
+						<Value>1280x720</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1920x1080</Display>
+						<Value>1920x1080</Value>
+					</Discreet>
+					<Discreet>
+						<Display>3840x2160</Display>
+						<Value>3840x2160</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5010" trending="false">
+			<Name>ClipPlayerScanMode</Name>
+			<Description>Scan Mode (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Scan mode</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Interlaced</Display>
+						<Value>Interlaced</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Progressive</Display>
+						<Value>Progressive</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5011" trending="false">
+			<Name>ClipPlayerFrameRate</Name>
+			<Description>Frame Rate (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Frame rate</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>24000x1001</Display>
+						<Value>24000x1001</Value>
+					</Discreet>
+					<Discreet>
+						<Display>24x1</Display>
+						<Value>24x1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>25x1</Display>
+						<Value>25x1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>30000x1001</Display>
+						<Value>30000x1001</Value>
+					</Discreet>
+					<Discreet>
+						<Display>50x1</Display>
+						<Value>50x1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>60000x1001</Display>
+						<Value>60000x1001</Value>
+					</Discreet>
+					<Discreet>
+						<Display>60x1</Display>
+						<Value>60x1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5012" trending="false">
+			<Name>ClipPlayerFile</Name>
+			<Description>File (ClipPlayer)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>File</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>

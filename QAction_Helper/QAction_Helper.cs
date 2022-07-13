@@ -543,6 +543,144 @@ public static class Parameter
 			public const int systemresultmessage = 5;
 		}
 	}
+	public class Clipplayer
+	{
+		/// <summary>PID: 5000</summary>
+		public const int tablePid = 5000;
+		/// <summary>IDX: 0</summary>
+		public const int indexColumn = 0;
+		/// <summary>PID: 5001</summary>
+		public const int indexColumnPid = 5001;
+		public class Pid
+		{
+			/// <summary>PID: 5001 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerinstance_5001 = 5001;
+			/// <summary>PID: 5001 | Type: read</summary>
+			public const int clipplayerinstance = 5001;
+			/// <summary>PID: 5002 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerstate_5002 = 5002;
+			/// <summary>PID: 5002 | Type: read</summary>
+			public const int clipplayerstate = 5002;
+			/// <summary>PID: 5003 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerendbehavior_5003 = 5003;
+			/// <summary>PID: 5003 | Type: read</summary>
+			public const int clipplayerendbehavior = 5003;
+			/// <summary>PID: 5004 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerposition_5004 = 5004;
+			/// <summary>PID: 5004 | Type: read</summary>
+			public const int clipplayerposition = 5004;
+			/// <summary>PID: 5005 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerinposition_5005 = 5005;
+			/// <summary>PID: 5005 | Type: read</summary>
+			public const int clipplayerinposition = 5005;
+			/// <summary>PID: 5006 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayeroutpoisition_5006 = 5006;
+			/// <summary>PID: 5006 | Type: read</summary>
+			public const int clipplayeroutpoisition = 5006;
+			/// <summary>PID: 5007 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerrate_5007 = 5007;
+			/// <summary>PID: 5007 | Type: read</summary>
+			public const int clipplayerrate = 5007;
+			/// <summary>PID: 5008 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerpreserveresolution_5008 = 5008;
+			/// <summary>PID: 5008 | Type: read</summary>
+			public const int clipplayerpreserveresolution = 5008;
+			/// <summary>PID: 5009 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerresolution_5009 = 5009;
+			/// <summary>PID: 5009 | Type: read</summary>
+			public const int clipplayerresolution = 5009;
+			/// <summary>PID: 5010 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerscanmode_5010 = 5010;
+			/// <summary>PID: 5010 | Type: read</summary>
+			public const int clipplayerscanmode = 5010;
+			/// <summary>PID: 5011 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerframerate_5011 = 5011;
+			/// <summary>PID: 5011 | Type: read</summary>
+			public const int clipplayerframerate = 5011;
+			/// <summary>PID: 5012 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerfile_5012 = 5012;
+			/// <summary>PID: 5012 | Type: read</summary>
+			public const int clipplayerfile = 5012;
+			public class Write
+			{
+			}
+		}
+		public class Idx
+		{
+			/// <summary>IDX: 0 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerinstance_5001 = 0;
+			/// <summary>IDX: 0 | Type: read</summary>
+			public const int clipplayerinstance = 0;
+			/// <summary>IDX: 1 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerstate_5002 = 1;
+			/// <summary>IDX: 1 | Type: read</summary>
+			public const int clipplayerstate = 1;
+			/// <summary>IDX: 2 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerendbehavior_5003 = 2;
+			/// <summary>IDX: 2 | Type: read</summary>
+			public const int clipplayerendbehavior = 2;
+			/// <summary>IDX: 3 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerposition_5004 = 3;
+			/// <summary>IDX: 3 | Type: read</summary>
+			public const int clipplayerposition = 3;
+			/// <summary>IDX: 4 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerinposition_5005 = 4;
+			/// <summary>IDX: 4 | Type: read</summary>
+			public const int clipplayerinposition = 4;
+			/// <summary>IDX: 5 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayeroutpoisition_5006 = 5;
+			/// <summary>IDX: 5 | Type: read</summary>
+			public const int clipplayeroutpoisition = 5;
+			/// <summary>IDX: 6 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerrate_5007 = 6;
+			/// <summary>IDX: 6 | Type: read</summary>
+			public const int clipplayerrate = 6;
+			/// <summary>IDX: 7 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerpreserveresolution_5008 = 7;
+			/// <summary>IDX: 7 | Type: read</summary>
+			public const int clipplayerpreserveresolution = 7;
+			/// <summary>IDX: 8 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerresolution_5009 = 8;
+			/// <summary>IDX: 8 | Type: read</summary>
+			public const int clipplayerresolution = 8;
+			/// <summary>IDX: 9 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerscanmode_5010 = 9;
+			/// <summary>IDX: 9 | Type: read</summary>
+			public const int clipplayerscanmode = 9;
+			/// <summary>IDX: 10 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerframerate_5011 = 10;
+			/// <summary>IDX: 10 | Type: read</summary>
+			public const int clipplayerframerate = 10;
+			/// <summary>IDX: 11 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerfile_5012 = 11;
+			/// <summary>IDX: 11 | Type: read</summary>
+			public const int clipplayerfile = 11;
+		}
+	}
 }
 public class WriteParameters
 {
@@ -594,6 +732,8 @@ public interface SLProtocolExt : SLProtocol
 	TestsignalgeneratorsQActionTable testsignalgenerators { get; set; }
 	/// <summary>PID: 4000</summary>
 	SystemQActionTable system { get; set; }
+	/// <summary>PID: 5000</summary>
+	ClipplayerQActionTable clipplayer { get; set; }
 	object Afterstartup_dummy { get; set; }
 	object Messagefromampp_40 { get; set; }
 	object Messagefromampp { get; set; }
@@ -707,6 +847,30 @@ public interface SLProtocolExt : SLProtocol
 	object Systemresultmessage_4007 { get; set; }
 	object Systemresultmessage { get; set; }
 	object Systemsnapshotid_4054 { get; set; }
+	object Clipplayerinstance_5001 { get; set; }
+	object Clipplayerinstance { get; set; }
+	object Clipplayerstate_5002 { get; set; }
+	object Clipplayerstate { get; set; }
+	object Clipplayerendbehavior_5003 { get; set; }
+	object Clipplayerendbehavior { get; set; }
+	object Clipplayerposition_5004 { get; set; }
+	object Clipplayerposition { get; set; }
+	object Clipplayerinposition_5005 { get; set; }
+	object Clipplayerinposition { get; set; }
+	object Clipplayeroutpoisition_5006 { get; set; }
+	object Clipplayeroutpoisition { get; set; }
+	object Clipplayerrate_5007 { get; set; }
+	object Clipplayerrate { get; set; }
+	object Clipplayerpreserveresolution_5008 { get; set; }
+	object Clipplayerpreserveresolution { get; set; }
+	object Clipplayerresolution_5009 { get; set; }
+	object Clipplayerresolution { get; set; }
+	object Clipplayerscanmode_5010 { get; set; }
+	object Clipplayerscanmode { get; set; }
+	object Clipplayerframerate_5011 { get; set; }
+	object Clipplayerframerate { get; set; }
+	object Clipplayerfile_5012 { get; set; }
+	object Clipplayerfile { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -719,6 +883,8 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public TestsignalgeneratorsQActionTable testsignalgenerators { get; set; }
 	/// <summary>PID: 4000</summary>
 	public SystemQActionTable system { get; set; }
+	/// <summary>PID: 5000</summary>
+	public ClipplayerQActionTable clipplayer { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
 	/// <summary>PID: 40  | Type: read</summary>
@@ -991,10 +1157,10 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Systemactions_4005 {get { return GetParameter(4005); }set { SetParameter(4005, value); }}
 	/// <summary>PID: 4005  | Type: write | DISCREETS: Stop = 0, Start = 1</summary>
 	public System.Object Systemactions {get { return Write.Systemactions; }set { Write.Systemactions = value; }}
-	/// <summary>PID: 4006  | Type: read</summary>
+	/// <summary>PID: 4006  | Type: read | DISCREETS: Error = 0, OK = 1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Systemoperationresult_4006 {get { return GetParameter(4006); }set { SetParameter(4006, value); }}
-	/// <summary>PID: 4006  | Type: read</summary>
+	/// <summary>PID: 4006  | Type: read | DISCREETS: Error = 0, OK = 1</summary>
 	public System.Object Systemoperationresult {get { return GetParameter(4006); }set { SetParameter(4006, value); }}
 	/// <summary>PID: 4007  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
@@ -1004,6 +1170,66 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	/// <summary>PID: 4054  | Type: write</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Systemsnapshotid_4054 {get { return GetParameter(4054); }set { SetParameter(4054, value); }}
+	/// <summary>PID: 5001  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerinstance_5001 {get { return GetParameter(5001); }set { SetParameter(5001, value); }}
+	/// <summary>PID: 5001  | Type: read</summary>
+	public System.Object Clipplayerinstance {get { return GetParameter(5001); }set { SetParameter(5001, value); }}
+	/// <summary>PID: 5002  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerstate_5002 {get { return GetParameter(5002); }set { SetParameter(5002, value); }}
+	/// <summary>PID: 5002  | Type: read</summary>
+	public System.Object Clipplayerstate {get { return GetParameter(5002); }set { SetParameter(5002, value); }}
+	/// <summary>PID: 5003  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerendbehavior_5003 {get { return GetParameter(5003); }set { SetParameter(5003, value); }}
+	/// <summary>PID: 5003  | Type: read</summary>
+	public System.Object Clipplayerendbehavior {get { return GetParameter(5003); }set { SetParameter(5003, value); }}
+	/// <summary>PID: 5004  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerposition_5004 {get { return GetParameter(5004); }set { SetParameter(5004, value); }}
+	/// <summary>PID: 5004  | Type: read</summary>
+	public System.Object Clipplayerposition {get { return GetParameter(5004); }set { SetParameter(5004, value); }}
+	/// <summary>PID: 5005  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerinposition_5005 {get { return GetParameter(5005); }set { SetParameter(5005, value); }}
+	/// <summary>PID: 5005  | Type: read</summary>
+	public System.Object Clipplayerinposition {get { return GetParameter(5005); }set { SetParameter(5005, value); }}
+	/// <summary>PID: 5006  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayeroutpoisition_5006 {get { return GetParameter(5006); }set { SetParameter(5006, value); }}
+	/// <summary>PID: 5006  | Type: read</summary>
+	public System.Object Clipplayeroutpoisition {get { return GetParameter(5006); }set { SetParameter(5006, value); }}
+	/// <summary>PID: 5007  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerrate_5007 {get { return GetParameter(5007); }set { SetParameter(5007, value); }}
+	/// <summary>PID: 5007  | Type: read</summary>
+	public System.Object Clipplayerrate {get { return GetParameter(5007); }set { SetParameter(5007, value); }}
+	/// <summary>PID: 5008  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerpreserveresolution_5008 {get { return GetParameter(5008); }set { SetParameter(5008, value); }}
+	/// <summary>PID: 5008  | Type: read</summary>
+	public System.Object Clipplayerpreserveresolution {get { return GetParameter(5008); }set { SetParameter(5008, value); }}
+	/// <summary>PID: 5009  | Type: read | DISCREETS: 720x480 = 720x480, 720x576 = 720x576, 1280x720 = 1280x720, 1920x1080 = 1920x1080, 3840x2160 = 3840x2160</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerresolution_5009 {get { return GetParameter(5009); }set { SetParameter(5009, value); }}
+	/// <summary>PID: 5009  | Type: read | DISCREETS: 720x480 = 720x480, 720x576 = 720x576, 1280x720 = 1280x720, 1920x1080 = 1920x1080, 3840x2160 = 3840x2160</summary>
+	public System.Object Clipplayerresolution {get { return GetParameter(5009); }set { SetParameter(5009, value); }}
+	/// <summary>PID: 5010  | Type: read | DISCREETS: Interlaced = Interlaced, Progressive = Progressive</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerscanmode_5010 {get { return GetParameter(5010); }set { SetParameter(5010, value); }}
+	/// <summary>PID: 5010  | Type: read | DISCREETS: Interlaced = Interlaced, Progressive = Progressive</summary>
+	public System.Object Clipplayerscanmode {get { return GetParameter(5010); }set { SetParameter(5010, value); }}
+	/// <summary>PID: 5011  | Type: read | DISCREETS: 24000x1001 = 24000x1001, 24x1 = 24x1, 25x1 = 25x1, 30000x1001 = 30000x1001, 50x1 = 50x1, 60000x1001 = 60000x1001, 60x1 = 60x1</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerframerate_5011 {get { return GetParameter(5011); }set { SetParameter(5011, value); }}
+	/// <summary>PID: 5011  | Type: read | DISCREETS: 24000x1001 = 24000x1001, 24x1 = 24x1, 25x1 = 25x1, 30000x1001 = 30000x1001, 50x1 = 50x1, 60000x1001 = 60000x1001, 60x1 = 60x1</summary>
+	public System.Object Clipplayerframerate {get { return GetParameter(5011); }set { SetParameter(5011, value); }}
+	/// <summary>PID: 5012  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerfile_5012 {get { return GetParameter(5012); }set { SetParameter(5012, value); }}
+	/// <summary>PID: 5012  | Type: read</summary>
+	public System.Object Clipplayerfile {get { return GetParameter(5012); }set { SetParameter(5012, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -1011,6 +1237,7 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 		workloads = new WorkloadsQActionTable(this, 2000, "workloads");
 		testsignalgenerators = new TestsignalgeneratorsQActionTable(this, 3000, "testsignalgenerators");
 		system = new SystemQActionTable(this, 4000, "system");
+		clipplayer = new ClipplayerQActionTable(this, 5000, "clipplayer");
 		Write = new WriteParameters(this);
 	}
 }
@@ -1041,6 +1268,13 @@ public class SystemQActionTable : QActionTable, IEnumerable<SystemQActionRow>
 	public SystemQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
 	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
 	public IEnumerator<SystemQActionRow> GetEnumerator() { return new QActionTableEnumerator<SystemQActionRow>(this); }
+}
+/// <summary>IDX: 0</summary>
+public class ClipplayerQActionTable : QActionTable, IEnumerable<ClipplayerQActionRow>
+{
+	public ClipplayerQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
+	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
+	public IEnumerator<ClipplayerQActionRow> GetEnumerator() { return new QActionTableEnumerator<ClipplayerQActionRow>(this); }
 }
 /// <summary>IDX: 0</summary>
 public class ApplicationtypesQActionRow : QActionTableRow
@@ -1231,5 +1465,73 @@ public class SystemQActionRow : QActionTableRow
 	public SystemQActionRow(System.Object[] oRow) : base(0, 7, oRow) { }
 	public static implicit operator SystemQActionRow(System.Object[] source) { return new SystemQActionRow(source); }
 	public static implicit operator System.Object[](SystemQActionRow source) { return source.ToObjectArray(); }
+}
+/// <summary>IDX: 0</summary>
+public class ClipplayerQActionRow : QActionTableRow
+{
+	/// <summary>PID: 5001 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerinstance_5001 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 5001 | Type: read</summary>
+	public System.Object Clipplayerinstance { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 5002 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerstate_5002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 5002 | Type: read</summary>
+	public System.Object Clipplayerstate { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 5003 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerendbehavior_5003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 5003 | Type: read</summary>
+	public System.Object Clipplayerendbehavior { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 5004 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerposition_5004 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 5004 | Type: read</summary>
+	public System.Object Clipplayerposition { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 5005 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerinposition_5005 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 5005 | Type: read</summary>
+	public System.Object Clipplayerinposition { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 5006 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayeroutpoisition_5006 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 5006 | Type: read</summary>
+	public System.Object Clipplayeroutpoisition { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 5007 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerrate_5007 { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	/// <summary>PID: 5007 | Type: read</summary>
+	public System.Object Clipplayerrate { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	/// <summary>PID: 5008 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerpreserveresolution_5008 { get { if (base.Columns.ContainsKey(7)) { return base.Columns[7]; } else { return null; } } set { if (base.Columns.ContainsKey(7)) { base.Columns[7] = value; } else { base.Columns.Add(7, value); } } }
+	/// <summary>PID: 5008 | Type: read</summary>
+	public System.Object Clipplayerpreserveresolution { get { if (base.Columns.ContainsKey(7)) { return base.Columns[7]; } else { return null; } } set { if (base.Columns.ContainsKey(7)) { base.Columns[7] = value; } else { base.Columns.Add(7, value); } } }
+	/// <summary>PID: 5009 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerresolution_5009 { get { if (base.Columns.ContainsKey(8)) { return base.Columns[8]; } else { return null; } } set { if (base.Columns.ContainsKey(8)) { base.Columns[8] = value; } else { base.Columns.Add(8, value); } } }
+	/// <summary>PID: 5009 | Type: read</summary>
+	public System.Object Clipplayerresolution { get { if (base.Columns.ContainsKey(8)) { return base.Columns[8]; } else { return null; } } set { if (base.Columns.ContainsKey(8)) { base.Columns[8] = value; } else { base.Columns.Add(8, value); } } }
+	/// <summary>PID: 5010 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerscanmode_5010 { get { if (base.Columns.ContainsKey(9)) { return base.Columns[9]; } else { return null; } } set { if (base.Columns.ContainsKey(9)) { base.Columns[9] = value; } else { base.Columns.Add(9, value); } } }
+	/// <summary>PID: 5010 | Type: read</summary>
+	public System.Object Clipplayerscanmode { get { if (base.Columns.ContainsKey(9)) { return base.Columns[9]; } else { return null; } } set { if (base.Columns.ContainsKey(9)) { base.Columns[9] = value; } else { base.Columns.Add(9, value); } } }
+	/// <summary>PID: 5011 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerframerate_5011 { get { if (base.Columns.ContainsKey(10)) { return base.Columns[10]; } else { return null; } } set { if (base.Columns.ContainsKey(10)) { base.Columns[10] = value; } else { base.Columns.Add(10, value); } } }
+	/// <summary>PID: 5011 | Type: read</summary>
+	public System.Object Clipplayerframerate { get { if (base.Columns.ContainsKey(10)) { return base.Columns[10]; } else { return null; } } set { if (base.Columns.ContainsKey(10)) { base.Columns[10] = value; } else { base.Columns.Add(10, value); } } }
+	/// <summary>PID: 5012 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerfile_5012 { get { if (base.Columns.ContainsKey(11)) { return base.Columns[11]; } else { return null; } } set { if (base.Columns.ContainsKey(11)) { base.Columns[11] = value; } else { base.Columns.Add(11, value); } } }
+	/// <summary>PID: 5012 | Type: read</summary>
+	public System.Object Clipplayerfile { get { if (base.Columns.ContainsKey(11)) { return base.Columns[11]; } else { return null; } } set { if (base.Columns.ContainsKey(11)) { base.Columns[11] = value; } else { base.Columns.Add(11, value); } } }
+	public ClipplayerQActionRow() : base(0, 12) { }
+	public ClipplayerQActionRow(System.Object[] oRow) : base(0, 12, oRow) { }
+	public static implicit operator ClipplayerQActionRow(System.Object[] source) { return new ClipplayerQActionRow(source); }
+	public static implicit operator System.Object[](ClipplayerQActionRow source) { return source.ToObjectArray(); }
 }
 }
