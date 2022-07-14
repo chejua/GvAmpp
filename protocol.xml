@@ -1821,7 +1821,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		</Param>
 		<Param id="5000">
 			<Name>ClipPlayer</Name>
-			<Description>ClipPlayer</Description>
+			<Description>Clip Player</Description>
 			<Type>array</Type>
 			<ArrayOptions index="0">
 				<ColumnOption idx="0" pid="5001" type="retrieved" options=""/>
@@ -1881,15 +1881,25 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Subtext>State</Subtext>
 			</Information>
 			<Interprete>
-				<RawType>numeric text</RawType>
-				<Type>double</Type>
+				<RawType>other</RawType>
+				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
-				<Type>number</Type>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Play</Display>
+						<Value>play</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Pause</Display>
+						<Value>pause</Value>
+					</Discreet>
+				</Discreets>
 			</Measurement>
 		</Param>
 		<Param id="5003" trending="false">
@@ -1908,7 +1918,17 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
-				<Type>string</Type>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Loop</Display>
+						<Value>loop</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Repeat</Display>
+						<Value>repeat</Value>
+					</Discreet>
+				</Discreets>
 			</Measurement>
 		</Param>
 		<Param id="5004" trending="false">

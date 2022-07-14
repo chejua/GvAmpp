@@ -802,7 +802,7 @@ namespace Skyline.Protocol
 					}
 					else if (result is ClipPlayerTransportState || result is ClipPlayerPosition || result is ClipPlayerConfiguration || result is ClipPlayerFile)
 					{
-						ParseClipPlayerResponses(result);
+						ParseClipPlayerResponses(result, notification.workload);
 					}
 					else if (result is SystemResponse)
 					{
@@ -826,21 +826,21 @@ namespace Skyline.Protocol
 				}
 			}
 
-			private void ParseClipPlayerResponses(object result)
+			private void ParseClipPlayerResponses(object result, string workId)
 			{
 				var clipPlayerRow = new ClipplayerQActionRow();
 
 				if (result is ClipPlayerTransportState)
 				{
 					var clipTransportState = result as ClipPlayerTransportState;
-					//clipPlayerRow.Clipplayerinstance_5001 = clipTransportState.
+					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerstate_5002 = clipTransportState.State;
 					clipPlayerRow.Clipplayerendbehavior_5003 = clipTransportState.EndBehaviour;
 				}
 				else if (result is ClipPlayerPosition)
 				{
 					var clipPosition = result as ClipPlayerPosition;
-					//clipPlayerRow.Clipplayerinstance_5001 = clipPosition.
+					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerposition_5004 = clipPosition.Position;
 					clipPlayerRow.Clipplayerinposition_5005 = clipPosition.InPosition;
 					clipPlayerRow.Clipplayeroutpoisition_5006 = clipPosition.OutPosition;
@@ -850,7 +850,7 @@ namespace Skyline.Protocol
 				else if (result is ClipPlayerConfiguration)
 				{
 					var clipConfiguration = result as ClipPlayerConfiguration;
-					//clipPlayerRow.Clipplayerinstance_5001 = clipConfiguration.
+					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerpreserveresolution_5008 = clipConfiguration.PreserveResolution;
 					clipPlayerRow.Clipplayerresolution_5009 = clipConfiguration.Resolution;
 					clipPlayerRow.Clipplayerscanmode_5010 = clipConfiguration.ScanMode;
@@ -859,13 +859,13 @@ namespace Skyline.Protocol
 				else
 				{
 					var clipFile = result as ClipPlayerFile;
-					//clipPlayerRow.Clipplayerinstance_5001 = clipConfiguration.
+					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerfile_5012 = clipFile.file;
 				}
 
-				protocol.Log("QA" + protocol.QActionID + "|ParseClipPlayerResponses|Not setting row yet need to see response to parse workId", LogType.Information, LogLevel.NoLogging);
+				//protocol.Log("QA" + protocol.QActionID + "|ParseClipPlayerResponses|Not setting row yet need to see response to parse workId", LogType.Information, LogLevel.NoLogging);
 
-				//protocol.clipplayer.SetRow(clipPlayerRow, true);
+				protocol.clipplayer.SetRow(clipPlayerRow, true);
 
 			}
 

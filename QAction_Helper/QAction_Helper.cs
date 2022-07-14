@@ -1175,15 +1175,15 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Clipplayerinstance_5001 {get { return GetParameter(5001); }set { SetParameter(5001, value); }}
 	/// <summary>PID: 5001  | Type: read</summary>
 	public System.Object Clipplayerinstance {get { return GetParameter(5001); }set { SetParameter(5001, value); }}
-	/// <summary>PID: 5002  | Type: read</summary>
+	/// <summary>PID: 5002  | Type: read | DISCREETS: Play = play, Pause = pause</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Clipplayerstate_5002 {get { return GetParameter(5002); }set { SetParameter(5002, value); }}
-	/// <summary>PID: 5002  | Type: read</summary>
+	/// <summary>PID: 5002  | Type: read | DISCREETS: Play = play, Pause = pause</summary>
 	public System.Object Clipplayerstate {get { return GetParameter(5002); }set { SetParameter(5002, value); }}
-	/// <summary>PID: 5003  | Type: read</summary>
+	/// <summary>PID: 5003  | Type: read | DISCREETS: Loop = loop, Repeat = repeat</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Clipplayerendbehavior_5003 {get { return GetParameter(5003); }set { SetParameter(5003, value); }}
-	/// <summary>PID: 5003  | Type: read</summary>
+	/// <summary>PID: 5003  | Type: read | DISCREETS: Loop = loop, Repeat = repeat</summary>
 	public System.Object Clipplayerendbehavior {get { return GetParameter(5003); }set { SetParameter(5003, value); }}
 	/// <summary>PID: 5004  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
