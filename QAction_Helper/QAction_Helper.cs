@@ -294,14 +294,14 @@ public static class Parameter
 		{
 			/// <summary>PID: 3001 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int signalgeneratorsinstance_3001 = 3001;
+			public const int testsignalgeneratorsinstance_3001 = 3001;
 			/// <summary>PID: 3001 | Type: read</summary>
-			public const int signalgeneratorsinstance = 3001;
+			public const int testsignalgeneratorsinstance = 3001;
 			/// <summary>PID: 3002 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int framerate_3002 = 3002;
+			public const int testsignalgeneratorsframerate_3002 = 3002;
 			/// <summary>PID: 3002 | Type: read</summary>
-			public const int framerate = 3002;
+			public const int testsignalgeneratorsframerate = 3002;
 			/// <summary>PID: 3003 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			public const int testsignalgeneratorsresolution_3003 = 3003;
@@ -380,14 +380,14 @@ public static class Parameter
 		{
 			/// <summary>IDX: 0 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int signalgeneratorsinstance_3001 = 0;
+			public const int testsignalgeneratorsinstance_3001 = 0;
 			/// <summary>IDX: 0 | Type: read</summary>
-			public const int signalgeneratorsinstance = 0;
+			public const int testsignalgeneratorsinstance = 0;
 			/// <summary>IDX: 1 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
-			public const int framerate_3002 = 1;
+			public const int testsignalgeneratorsframerate_3002 = 1;
 			/// <summary>IDX: 1 | Type: read</summary>
-			public const int framerate = 1;
+			public const int testsignalgeneratorsframerate = 1;
 			/// <summary>IDX: 2 | Type: read</summary>
 			[EditorBrowsable(EditorBrowsableState.Never)]
 			public const int testsignalgeneratorsresolution_3003 = 2;
@@ -613,6 +613,11 @@ public static class Parameter
 			public const int clipplayerfile_5012 = 5012;
 			/// <summary>PID: 5012 | Type: read</summary>
 			public const int clipplayerfile = 5012;
+			/// <summary>PID: 5013 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerworkloadname_5013 = 5013;
+			/// <summary>PID: 5013 | Type: read</summary>
+			public const int clipplayerworkloadname = 5013;
 			public class Write
 			{
 			}
@@ -679,6 +684,11 @@ public static class Parameter
 			public const int clipplayerfile_5012 = 11;
 			/// <summary>IDX: 11 | Type: read</summary>
 			public const int clipplayerfile = 11;
+			/// <summary>IDX: 12 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int clipplayerworkloadname_5013 = 12;
+			/// <summary>IDX: 12 | Type: read</summary>
+			public const int clipplayerworkloadname = 12;
 		}
 	}
 }
@@ -789,10 +799,10 @@ public interface SLProtocolExt : SLProtocol
 	object Applicationpackageversion { get; set; }
 	object Workloadgetstate_2070 { get; set; }
 	object Workloadgetstate { get; set; }
-	object Signalgeneratorsinstance_3001 { get; set; }
-	object Signalgeneratorsinstance { get; set; }
-	object Framerate_3002 { get; set; }
-	object Framerate { get; set; }
+	object Testsignalgeneratorsinstance_3001 { get; set; }
+	object Testsignalgeneratorsinstance { get; set; }
+	object Testsignalgeneratorsframerate_3002 { get; set; }
+	object Testsignalgeneratorsframerate { get; set; }
 	object Testsignalgeneratorsresolution_3003 { get; set; }
 	object Testsignalgeneratorsresolution { get; set; }
 	object Testsignalgeneratorsscanmode_3004 { get; set; }
@@ -871,6 +881,8 @@ public interface SLProtocolExt : SLProtocol
 	object Clipplayerframerate { get; set; }
 	object Clipplayerfile_5012 { get; set; }
 	object Clipplayerfile { get; set; }
+	object Clipplayerworkloadname_5013 { get; set; }
+	object Clipplayerworkloadname { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -1022,14 +1034,14 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Workloadgetstate {get { return Write.Workloadgetstate; }set { Write.Workloadgetstate = value; }}
 	/// <summary>PID: 3001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Signalgeneratorsinstance_3001 {get { return GetParameter(3001); }set { SetParameter(3001, value); }}
+	public System.Object Testsignalgeneratorsinstance_3001 {get { return GetParameter(3001); }set { SetParameter(3001, value); }}
 	/// <summary>PID: 3001  | Type: read</summary>
-	public System.Object Signalgeneratorsinstance {get { return GetParameter(3001); }set { SetParameter(3001, value); }}
+	public System.Object Testsignalgeneratorsinstance {get { return GetParameter(3001); }set { SetParameter(3001, value); }}
 	/// <summary>PID: 3002  | Type: read | DISCREETS: 24000x1001 = 24000x1001, 24x1 = 24x1, 25x1 = 25x1, 30000x1001 = 30000x1001, 30x1 = 30x1, 50x1 = 50x1, 60000x1001 = 60000x1001, 60x1 = 60x1</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Framerate_3002 {get { return GetParameter(3002); }set { SetParameter(3002, value); }}
+	public System.Object Testsignalgeneratorsframerate_3002 {get { return GetParameter(3002); }set { SetParameter(3002, value); }}
 	/// <summary>PID: 3002  | Type: read | DISCREETS: 24000x1001 = 24000x1001, 24x1 = 24x1, 25x1 = 25x1, 30000x1001 = 30000x1001, 30x1 = 30x1, 50x1 = 50x1, 60000x1001 = 60000x1001, 60x1 = 60x1</summary>
-	public System.Object Framerate {get { return GetParameter(3002); }set { SetParameter(3002, value); }}
+	public System.Object Testsignalgeneratorsframerate {get { return GetParameter(3002); }set { SetParameter(3002, value); }}
 	/// <summary>PID: 3003  | Type: read | DISCREETS: 720x480 = 720x480, 720x576 = 720x576, 1280x720 = 1280x720, 1920x1080 = 1920x1080, 3840x2160 = 3840x2160</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Testsignalgeneratorsresolution_3003 {get { return GetParameter(3003); }set { SetParameter(3003, value); }}
@@ -1230,6 +1242,11 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Clipplayerfile_5012 {get { return GetParameter(5012); }set { SetParameter(5012, value); }}
 	/// <summary>PID: 5012  | Type: read</summary>
 	public System.Object Clipplayerfile {get { return GetParameter(5012); }set { SetParameter(5012, value); }}
+	/// <summary>PID: 5013  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerworkloadname_5013 {get { return GetParameter(5013); }set { SetParameter(5013, value); }}
+	/// <summary>PID: 5013  | Type: read</summary>
+	public System.Object Clipplayerworkloadname {get { return GetParameter(5013); }set { SetParameter(5013, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -1341,14 +1358,14 @@ public class TestsignalgeneratorsQActionRow : QActionTableRow
 {
 	/// <summary>PID: 3001 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Signalgeneratorsinstance_3001 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	public System.Object Testsignalgeneratorsinstance_3001 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
 	/// <summary>PID: 3001 | Type: read</summary>
-	public System.Object Signalgeneratorsinstance { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	public System.Object Testsignalgeneratorsinstance { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
 	/// <summary>PID: 3002 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Framerate_3002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	public System.Object Testsignalgeneratorsframerate_3002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
 	/// <summary>PID: 3002 | Type: read</summary>
-	public System.Object Framerate { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	public System.Object Testsignalgeneratorsframerate { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
 	/// <summary>PID: 3003 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Testsignalgeneratorsresolution_3003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
@@ -1529,8 +1546,13 @@ public class ClipplayerQActionRow : QActionTableRow
 	public System.Object Clipplayerfile_5012 { get { if (base.Columns.ContainsKey(11)) { return base.Columns[11]; } else { return null; } } set { if (base.Columns.ContainsKey(11)) { base.Columns[11] = value; } else { base.Columns.Add(11, value); } } }
 	/// <summary>PID: 5012 | Type: read</summary>
 	public System.Object Clipplayerfile { get { if (base.Columns.ContainsKey(11)) { return base.Columns[11]; } else { return null; } } set { if (base.Columns.ContainsKey(11)) { base.Columns[11] = value; } else { base.Columns.Add(11, value); } } }
-	public ClipplayerQActionRow() : base(0, 12) { }
-	public ClipplayerQActionRow(System.Object[] oRow) : base(0, 12, oRow) { }
+	/// <summary>PID: 5013 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerworkloadname_5013 { get { if (base.Columns.ContainsKey(12)) { return base.Columns[12]; } else { return null; } } set { if (base.Columns.ContainsKey(12)) { base.Columns[12] = value; } else { base.Columns.Add(12, value); } } }
+	/// <summary>PID: 5013 | Type: read</summary>
+	public System.Object Clipplayerworkloadname { get { if (base.Columns.ContainsKey(12)) { return base.Columns[12]; } else { return null; } } set { if (base.Columns.ContainsKey(12)) { base.Columns[12] = value; } else { base.Columns.Add(12, value); } } }
+	public ClipplayerQActionRow() : base(0, 13) { }
+	public ClipplayerQActionRow(System.Object[] oRow) : base(0, 13, oRow) { }
 	public static implicit operator ClipplayerQActionRow(System.Object[] source) { return new ClipplayerQActionRow(source); }
 	public static implicit operator System.Object[](ClipplayerQActionRow source) { return source.ToObjectArray(); }
 }

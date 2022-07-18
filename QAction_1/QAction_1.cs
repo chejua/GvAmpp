@@ -802,7 +802,8 @@ namespace Skyline.Protocol
 					}
 					else if (result is ClipPlayerTransportState || result is ClipPlayerPosition || result is ClipPlayerConfiguration || result is ClipPlayerFile)
 					{
-						ParseClipPlayerResponses(result, notification.workload);
+						var workloadName = protocol.GetParameterIndexByKey(Parameter.Workloads.tablePid, notification.workload, Parameter.Workloads.Idx.workloadname_2002 + 1) as string;
+						ParseClipPlayerResponses(result, notification.workload, workloadName);
 					}
 					else if (result is SystemResponse)
 					{
@@ -826,21 +827,21 @@ namespace Skyline.Protocol
 				}
 			}
 
-			private void ParseClipPlayerResponses(object result, string workId)
+			private void ParseClipPlayerResponses(object result, string workId, string workloadName)
 			{
 				var clipPlayerRow = new ClipplayerQActionRow();
+				clipPlayerRow.Clipplayerinstance_5001 = workId;
+				clipPlayerRow.Clipplayerworkloadname_5013 = workloadName;
 
 				if (result is ClipPlayerTransportState)
 				{
 					var clipTransportState = result as ClipPlayerTransportState;
-					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerstate_5002 = clipTransportState.State;
 					clipPlayerRow.Clipplayerendbehavior_5003 = clipTransportState.EndBehaviour;
 				}
 				else if (result is ClipPlayerPosition)
 				{
 					var clipPosition = result as ClipPlayerPosition;
-					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerposition_5004 = clipPosition.Position;
 					clipPlayerRow.Clipplayerinposition_5005 = clipPosition.InPosition;
 					clipPlayerRow.Clipplayeroutpoisition_5006 = clipPosition.OutPosition;
@@ -850,7 +851,6 @@ namespace Skyline.Protocol
 				else if (result is ClipPlayerConfiguration)
 				{
 					var clipConfiguration = result as ClipPlayerConfiguration;
-					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerpreserveresolution_5008 = clipConfiguration.PreserveResolution;
 					clipPlayerRow.Clipplayerresolution_5009 = clipConfiguration.Resolution;
 					clipPlayerRow.Clipplayerscanmode_5010 = clipConfiguration.ScanMode;
@@ -859,14 +859,10 @@ namespace Skyline.Protocol
 				else
 				{
 					var clipFile = result as ClipPlayerFile;
-					clipPlayerRow.Clipplayerinstance_5001 = workId;
 					clipPlayerRow.Clipplayerfile_5012 = clipFile.file;
 				}
 
-				//protocol.Log("QA" + protocol.QActionID + "|ParseClipPlayerResponses|Not setting row yet need to see response to parse workId", LogType.Information, LogLevel.NoLogging);
-
 				protocol.clipplayer.SetRow(clipPlayerRow, true);
-
 			}
 
 			private void SetSystemTableWithResponse(SystemResponse result, string workloadId)
@@ -910,9 +906,9 @@ namespace Skyline.Protocol
 				var workloadname = protocol.GetParameterIndexByKey(Parameter.Workloads.tablePid, id, 2) as string;
 				TestsignalgeneratorsQActionRow row = new TestsignalgeneratorsQActionRow
 				{
-					Signalgeneratorsinstance_3001 = id,
+					Testsignalgeneratorsinstance_3001 = id,
 					Testsignageneratorsworkloadname_3016 = workloadname,
-					Framerate_3002 = sectionA.FrameRate,
+					Testsignalgeneratorsframerate_3002 = sectionA.FrameRate,
 					Testsignalgeneratorsresolution_3003 = sectionA.Resolution,
 					Testsignalgeneratorsscanmode_3004 = sectionA.ScanMode,
 				};

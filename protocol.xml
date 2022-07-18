@@ -285,7 +285,8 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			</Interprete>
 		</Param>
 		<Param id="58">
-			<Name>WorkloadsResponse</Name>2 vgv
+			<Name>WorkloadsResponse</Name>
+			2 vgv
 			<Description>Workloads Response</Description>
 			<Type>read</Type>
 			<Interprete>
@@ -746,7 +747,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="3001" trending="false">
-			<Name>SignalGeneratorsInstance</Name>
+			<Name>TestSignalGeneratorsInstance</Name>
 			<Description>Instance (Test Signal Generators)</Description>
 			<Type>read</Type>
 			<Information>
@@ -765,11 +766,11 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="3002" trending="true">
-			<Name>FrameRate</Name>
-			<Description>Frame Rate (Test Signal Generator)</Description>
+			<Name>TestSignalGeneratorsFrameRate</Name>
+			<Description>Frame Rate (Test Signal Generators)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Frame Rate (Test Signal Generators)</Subtext>
+				<Subtext>Frame Rate</Subtext>
 			</Information>
 			<Measurement>
 				<Type>discreet</Type>
@@ -1827,15 +1828,16 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<ColumnOption idx="0" pid="5001" type="retrieved" options=""/>
 				<ColumnOption idx="1" pid="5002" type="retrieved" options="" />
 				<ColumnOption idx="2" pid="5003" type="retrieved" options="" />
-				<ColumnOption idx="3" pid="5004" type="retrieved" options="" />
-				<ColumnOption idx="4" pid="5005" type="retrieved" options="" />
-				<ColumnOption idx="5" pid="5006" type="retrieved" options="" />
-				<ColumnOption idx="6" pid="5007" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="5004" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
+				<ColumnOption idx="4" pid="5005" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
+				<ColumnOption idx="5" pid="5006" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
+				<ColumnOption idx="6" pid="5007" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
 				<ColumnOption idx="7" pid="5008" type="retrieved" options="" />
 				<ColumnOption idx="8" pid="5009" type="retrieved" options="" />
 				<ColumnOption idx="9" pid="5010" type="retrieved" options="" />
 				<ColumnOption idx="10" pid="5011" type="retrieved" options="" />
 				<ColumnOption idx="11" pid="5012" type="retrieved" options="" />
+				<ColumnOption idx="12" pid="5013" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>Clip player table with the response from the GetState</Subtext>
@@ -1851,12 +1853,12 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:5001|0-5002|1-5003|2-5004|3-5005|4-5006|5-5007|6-5008|7-5009|8-5010|9-5011|10-5012|11,width:100-100-100-100-100-100-100-130-100-100-100-100,sort:STRING-INT-STRING-INT-INT-INT-INT-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:5001|0-5013|12-5002|1-5003|2-5004|3-5005|4-5006|5-5007|6-5008|7-5009|8-5010|9-5011|10-5012|11,width:149-110-116-162-133-147-157-113-199-147-150-151-107,sort:STRING-STRING-INT-STRING-INT-INT-INT-INT-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="5001" trending="false">
 			<Name>ClipPlayerInstance</Name>
-			<Description>Instance (ClipPlayer)</Description>
+			<Description>Instance (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>Workload ID.</Subtext>
@@ -1873,9 +1875,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="5002" trending="false">
+		<Param id="5002" trending="true">
 			<Name>ClipPlayerState</Name>
-			<Description>State (ClipPlayer)</Description>
+			<Description>State (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>State</Subtext>
@@ -1885,6 +1887,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1902,9 +1907,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="5003" trending="false">
+		<Param id="5003" trending="true">
 			<Name>ClipPlayerEndBehavior</Name>
-			<Description>End Behavior (ClipPlayer)</Description>
+			<Description>End Behavior (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>End behavior</Subtext>
@@ -1914,6 +1919,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1931,9 +1939,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="5004" trending="false">
+		<Param id="5004" trending="true">
 			<Name>ClipPlayerPosition</Name>
-			<Description>Position (ClipPlayer)</Description>
+			<Description>Position (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>Position</Subtext>
@@ -1943,6 +1951,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1950,9 +1961,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-		<Param id="5005" trending="false">
+		<Param id="5005" trending="true">
 			<Name>ClipPlayerInPosition</Name>
-			<Description>In Position (ClipPlayer)</Description>
+			<Description>In Position (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>In position</Subtext>
@@ -1962,6 +1973,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1969,9 +1983,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-		<Param id="5006" trending="false">
+		<Param id="5006" trending="true">
 			<Name>ClipPlayerOutPoisition</Name>
-			<Description>Out Position (ClipPlayer)</Description>
+			<Description>Out Position (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>Out position</Subtext>
@@ -1981,6 +1995,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1988,9 +2005,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>number</Type>
 			</Measurement>
 		</Param>
-		<Param id="5007" trending="false">
+		<Param id="5007" trending="true">
 			<Name>ClipPlayerRate</Name>
-			<Description>Rate (ClipPlayer)</Description>
+			<Description>Rate (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>Rate</Subtext>
@@ -2000,6 +2017,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>double</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -2009,7 +2029,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		</Param>
 		<Param id="5008" trending="false">
 			<Name>ClipPlayerPreserveResolution</Name>
-			<Description>Preserve Resolution (ClipPlayer)</Description>
+			<Description>Preserve Resolution (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 			</Information>
@@ -2018,6 +2038,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -2025,9 +2048,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="5009" trending="false">
+		<Param id="5009" trending="true">
 			<Name>ClipPlayerResolution</Name>
-			<Description>Resolution (ClipPlayer)</Description>
+			<Description>Resolution (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>Resolution</Subtext>
@@ -2037,6 +2060,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -2066,9 +2092,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="5010" trending="false">
+		<Param id="5010" trending="true">
 			<Name>ClipPlayerScanMode</Name>
-			<Description>Scan Mode (ClipPlayer)</Description>
+			<Description>Scan Mode (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>Scan mode</Subtext>
@@ -2078,6 +2104,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -2095,9 +2124,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="5011" trending="false">
+		<Param id="5011" trending="true">
 			<Name>ClipPlayerFrameRate</Name>
-			<Description>Frame Rate (ClipPlayer)</Description>
+			<Description>Frame Rate (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>Frame rate</Subtext>
@@ -2107,6 +2136,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -2146,10 +2178,32 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		</Param>
 		<Param id="5012" trending="false">
 			<Name>ClipPlayerFile</Name>
-			<Description>File (ClipPlayer)</Description>
+			<Description>File (Clip Player)</Description>
 			<Type>read</Type>
 			<Information>
 				<Subtext>File</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5013" trending="false">
+			<Name>ClipPlayerWorkloadName</Name>
+			<Description>Workload Name (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload Name</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>other</RawType>
