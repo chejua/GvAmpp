@@ -35,7 +35,7 @@ public static class QAction
 			{
 				command = ReturnTestSignalCommand(workloadId, triggerPid, Convert.ToString(value));
 			}
-			else
+			else if (triggerPid == 4005)
 			{
 				var snapShotId = GetSnapshotId(protocol, workloadId);
 				if (String.IsNullOrEmpty(snapShotId))
@@ -46,7 +46,12 @@ public static class QAction
 
 				command = ReturnStartStopSnapshot(workloadId, snapShotId, (SnapShotAction)Convert.ToInt32(value));
 			}
+			else
+			{
+				command = ReturnClipPlayerCommand(triggerPid, Convert.ToString(value), workloadId);
+			}
 
+			protocol.Log(command);
 			protocol.SetParameter(Parameter.genericcommandcontrolbody_63, command);
 			protocol.CheckTrigger(44);
 		}
@@ -59,6 +64,23 @@ public static class QAction
 	public static string GetSnapshotId(SLProtocol protocol, string workloadId)
 	{
 		return Convert.ToString(protocol.GetParameterIndexByKey(Parameter.System.tablePid, workloadId, Parameter.System.Idx.systemsnapshotid_4004 + 1));
+	}
+
+	private static string ReturnClipPlayerCommand(int triggerPid, string value, string workloadId)
+	{
+		var formData = String.Empty;
+
+		if (triggerPid == Parameter.Write.clipplayerfile_5112)
+		{
+			formData = "{\"file\":\"" + value + "\"}";
+			return JsonConvert.SerializeObject(new GenericCommand("ClipPlayer", "clip", workloadId, formData, "AMPP-Control-Service-Key"));
+		}
+		else
+		{
+			var command = value.Equals("start", StringComparison.InvariantCultureIgnoreCase) ? "startat" : "stopat";
+			formData = "{\"" + value + "\":\"$now\"}";
+			return JsonConvert.SerializeObject(new GenericCommand("ClipPlayer", command, workloadId, formData, "AMPP-Control-Service-Key"));
+		}
 	}
 
 	public static string ReturnStartStopSnapshot(string workloadId, string snapshotId, SnapShotAction action)

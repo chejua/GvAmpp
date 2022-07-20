@@ -160,6 +160,11 @@ public static class Parameter
 		public const int systemsnapshotid_4054 = 4054;
 		/// <summary>PID: 4054 | Type: write</summary>
 		public const int systemsnapshotid = 4054;
+		/// <summary>PID: 5112 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int clipplayerfile_5112 = 5112;
+		/// <summary>PID: 5112 | Type: write</summary>
+		public const int clipplayerfile = 5112;
 	}
 	public class Applicationtypes
 	{
@@ -620,6 +625,11 @@ public static class Parameter
 			public const int clipplayerworkloadname = 5013;
 			public class Write
 			{
+				/// <summary>PID: 5014 | Type: write</summary>
+				[EditorBrowsable(EditorBrowsableState.Never)]
+				public const int clipplayeractions_5014 = 5014;
+				/// <summary>PID: 5014 | Type: write</summary>
+				public const int clipplayeractions = 5014;
 			}
 		}
 		public class Idx
@@ -726,6 +736,10 @@ public class WriteParameters
 	public System.Object Systemactions {get { return Protocol.GetParameter(4005); }set { Protocol.SetParameter(4005, value); }}
 	/// <summary>PID: 4054  | Type: write</summary>
 	public System.Object Systemsnapshotid {get { return Protocol.GetParameter(4054); }set { Protocol.SetParameter(4054, value); }}
+	/// <summary>PID: 5014  | Type: write | DISCREETS: Stop = Stop, Start = Start</summary>
+	public System.Object Clipplayeractions {get { return Protocol.GetParameter(5014); }set { Protocol.SetParameter(5014, value); }}
+	/// <summary>PID: 5112  | Type: write</summary>
+	public System.Object Clipplayerfile {get { return Protocol.GetParameter(5112); }set { Protocol.SetParameter(5112, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -883,6 +897,9 @@ public interface SLProtocolExt : SLProtocol
 	object Clipplayerfile { get; set; }
 	object Clipplayerworkloadname_5013 { get; set; }
 	object Clipplayerworkloadname { get; set; }
+	object Clipplayeractions_5014 { get; set; }
+	object Clipplayeractions { get; set; }
+	object Clipplayerfile_5112 { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
@@ -1247,6 +1264,13 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Clipplayerworkloadname_5013 {get { return GetParameter(5013); }set { SetParameter(5013, value); }}
 	/// <summary>PID: 5013  | Type: read</summary>
 	public System.Object Clipplayerworkloadname {get { return GetParameter(5013); }set { SetParameter(5013, value); }}
+	/// <summary>PID: 5014  | Type: write | DISCREETS: Stop = Stop, Start = Start</summary>
+	public System.Object Clipplayeractions_5014 {get { return GetParameter(5014); }set { SetParameter(5014, value); }}
+	/// <summary>PID: 5014  | Type: write | DISCREETS: Stop = Stop, Start = Start</summary>
+	public System.Object Clipplayeractions {get { return Write.Clipplayeractions; }set { Write.Clipplayeractions = value; }}
+	/// <summary>PID: 5112  | Type: write</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Clipplayerfile_5112 {get { return GetParameter(5112); }set { SetParameter(5112, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
@@ -1551,8 +1575,12 @@ public class ClipplayerQActionRow : QActionTableRow
 	public System.Object Clipplayerworkloadname_5013 { get { if (base.Columns.ContainsKey(12)) { return base.Columns[12]; } else { return null; } } set { if (base.Columns.ContainsKey(12)) { base.Columns[12] = value; } else { base.Columns.Add(12, value); } } }
 	/// <summary>PID: 5013 | Type: read</summary>
 	public System.Object Clipplayerworkloadname { get { if (base.Columns.ContainsKey(12)) { return base.Columns[12]; } else { return null; } } set { if (base.Columns.ContainsKey(12)) { base.Columns[12] = value; } else { base.Columns.Add(12, value); } } }
-	public ClipplayerQActionRow() : base(0, 13) { }
-	public ClipplayerQActionRow(System.Object[] oRow) : base(0, 13, oRow) { }
+	/// <summary>PID: 5014 | Type: write</summary>
+	public System.Object Clipplayeractions_5014 { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
+	/// <summary>PID: 5014 | Type: write</summary>
+	public System.Object Clipplayeractions { get { if (base.Columns.ContainsKey(13)) { return base.Columns[13]; } else { return null; } } set { if (base.Columns.ContainsKey(13)) { base.Columns[13] = value; } else { base.Columns.Add(13, value); } } }
+	public ClipplayerQActionRow() : base(0, 14) { }
+	public ClipplayerQActionRow(System.Object[] oRow) : base(0, 14, oRow) { }
 	public static implicit operator ClipplayerQActionRow(System.Object[] source) { return new ClipplayerQActionRow(source); }
 	public static implicit operator System.Object[](ClipplayerQActionRow source) { return source.ToObjectArray(); }
 }

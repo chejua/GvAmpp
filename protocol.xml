@@ -1838,6 +1838,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<ColumnOption idx="10" pid="5011" type="retrieved" options="" />
 				<ColumnOption idx="11" pid="5012" type="retrieved" options="" />
 				<ColumnOption idx="12" pid="5013" type="retrieved" options="" />
+				<ColumnOption idx="13" pid="5014" type="custom" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>Clip player table with the response from the GetState</Subtext>
@@ -1853,7 +1854,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:5001|0-5013|12-5002|1-5003|2-5004|3-5005|4-5006|5-5007|6-5008|7-5009|8-5010|9-5011|10-5012|11,width:149-110-116-162-133-147-157-113-199-147-150-151-107,sort:STRING-STRING-INT-STRING-INT-INT-INT-INT-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:5001|0-5013|12-5002|1-5003|2-5004|3-5005|4-5006|5-5007|6-5008|7-5009|8-5010|9-5011|10-5012|11-5014|13,width:149-110-116-162-133-147-157-113-199-147-150-151-107-108,sort:STRING-STRING-INT-STRING-INT-INT-INT-INT-STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="5001" trending="false">
@@ -2198,6 +2199,22 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		<Param id="5112" setter="true">
+			<Name>ClipPlayerFile</Name>
+			<Description>File (Clip Player)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 		<Param id="5013" trending="false">
 			<Name>ClipPlayerWorkloadName</Name>
 			<Description>Workload Name (Clip Player)</Description>
@@ -2215,6 +2232,35 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			</Display>
 			<Measurement>
 				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5014" trending="false">
+			<Name>ClipPlayerActions</Name>
+			<Description>Actions (Clip Player)</Description>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Buttons to start and stop.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Value>Stop</Value>
+						<Display>Stop</Display>
+					</Discreet>
+					<Discreet>
+						<Value>Start</Value>
+						<Display>Start</Display>
+					</Discreet>
+				</Discreets>
 			</Measurement>
 		</Param>
 	</Params>
@@ -2246,7 +2292,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		<QAction id="2071" name="Other On Workload GetState" encoding="csharp" triggers="2070" row="true">
 			
 		</QAction>
-		<QAction id="3000" name="Test Signal Generator Table Sets" encoding="csharp" triggers="3055;3056;3057;3058;3059;3060;3061;3062;3063;3064;3065;4005" row="true">
+		<QAction id="3000" name="Test Signal Generator Table Sets" encoding="csharp" triggers="3055;3056;3057;3058;3059;3060;3061;3062;3063;3064;3065;4005;5112;5014" row="true">
 			
 		</QAction>
 		<QAction id="59" name="Parse Generic Control Response" encoding="csharp" triggers="59">
