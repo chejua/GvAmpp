@@ -224,9 +224,8 @@
 		/// Creates an ElementPortPortInfo object based on the field contents.
 		/// </summary>
 		/// <param name="portPosition">The corresponding port number.</param>
-		/// <param name="isCompatibilityIssueDetected">Indicates if compatibility changes need to be taken into account.</param>
 		/// <returns>ElementPortInfo object.</returns>
-		internal override ElementPortInfo CreateElementPortInfo(int portPosition, bool isCompatibilityIssueDetected)
+		internal override ElementPortInfo CreateElementPortInfo(int portPosition)
 		{
 			var portInfo = new ElementPortInfo
 				               {

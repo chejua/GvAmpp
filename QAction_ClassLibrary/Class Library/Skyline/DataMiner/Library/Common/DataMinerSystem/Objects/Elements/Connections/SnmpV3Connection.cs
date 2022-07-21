@@ -300,7 +300,7 @@
 		///     Creates an ElementPortPortInfo object based on the field contents.
 		/// </summary>
 		/// <returns>ElementPortInfo object.</returns>
-		internal override ElementPortInfo CreateElementPortInfo(int portPosition, bool isCompatibilityIssueDetected)
+		internal override ElementPortInfo CreateElementPortInfo(int portPosition)
 		{
 			var portInfo = new ElementPortInfo
 			               {
@@ -376,6 +376,21 @@
 			{
 				udpSettings.UpdateElementPortInfo(portInfo, isCompatibilityIssueDetected);
 			}
+		}
+
+		/// <summary>
+		/// Verifies if changes will need to be done to the SnmpV3 security. If that is the case then there will be a different value needed, depending on the running DMA version.
+		/// </summary>
+		/// <returns>Boolean indicating is there are changes present for SnmpV3 security.</returns>
+		internal bool ContainsSnmpV3Changes()
+		{
+			if (this.ChangedPropertyList.Contains(ConnectionSetting.SecurityConfig))
+			{
+				return true;
+			}
+
+			ConnectionSettings mySecurityConfig = (ConnectionSettings)this.securityConfig;
+			return mySecurityConfig.IsUpdated;
 		}
 	}
 }

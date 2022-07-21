@@ -1,51 +1,50 @@
-﻿using System.ComponentModel;
-using System.Reflection;
-
-namespace Skyline.DataMiner.Library.Common
+﻿namespace Skyline.DataMiner.Library.Common
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
 
-	using System.Globalization;
-	using System.Linq;
+    using System.Globalization;
+    using System.Linq;
 
-	using Net.Messages;
-	using Net.Messages.Advanced;
-	using Properties;
+    using Net.Messages;
+    using Net.Messages.Advanced;
+    using Properties;
 
-	/// <summary>
-	/// Class containing helper methods.
-	/// </summary>
-	internal static class HelperClass
+    /// <summary>
+    /// Class containing helper methods.
+    /// </summary>
+    internal static class HelperClass
 	{
-		/// <summary>
-		/// Checks the element state and throws an exception if no operation is possible due to the current element state.
-		/// </summary>
-		/// <param name="element">The element on which to check the state.</param>
-		/// <exception cref="ElementNotFoundException">The element was not found in the DataMiner system.</exception>
-		/// <exception cref="ElementStoppedException">The element is stopped.</exception>
-		internal static void CheckElementState(IDmsElement element)
+        /// <summary>
+        /// Checks the element state and throws an exception if no operation is possible due to the current element state.
+        /// </summary>
+        /// <param name="element">The element on which to check the state.</param>
+        /// <param name="ignoreDeletedState">Optional. Indicates if the check ignores the Deleted State. Default false.</param>
+        /// <param name="ignoreStoppedState">Optional. Indicates if the check ignores the Stopped State. Default false.</param>
+        /// <exception cref="ElementNotFoundException">The element was not found in the DataMiner system.</exception>
+        /// <exception cref="ElementStoppedException">The element is stopped.</exception>
+        internal static void CheckElementState(IDmsElement element, bool ignoreDeletedState = false, bool ignoreStoppedState = false)
 		{
-			if (element.State == ElementState.Deleted)
+			if (!ignoreDeletedState && element.State == ElementState.Deleted)
 			{
 				throw new ElementNotFoundException(String.Format(CultureInfo.InvariantCulture, "Failed to perform an operation on the element: {0} because it has been deleted.", element.Name));
 			}
 
-			if (element.State == ElementState.Stopped)
-			{
-				throw new ElementStoppedException(String.Format(CultureInfo.InvariantCulture, "Failed to perform an operation on the element: {0} because it has been stopped.", element.Name));
-			}
-		}
+            if (!ignoreStoppedState && element.State == ElementState.Stopped)
+            {
+                throw new ElementStoppedException(String.Format(CultureInfo.InvariantCulture, "Failed to perform an operation on the element: {0} because it has been stopped.", element.Name));
+            }
+        }
 
-		/// <summary>
-		/// Converts provided enumerable to an array string.
-		/// </summary>
-		/// <param name="primaryKeys">The primary keys.</param>
-		/// <param name="parameterName">The name of the parameter.</param>
-		/// <exception cref="ArgumentNullException"><paramref name="primaryKeys"/> is <see langword="null"/>.</exception>
-		/// <exception cref="ArgumentException">The provided primary keys contains null references.</exception>
-		/// <returns>The array string.</returns>
-		internal static string[] ToStringArray(IEnumerable<string> primaryKeys, string parameterName)
+        /// <summary>
+        /// Converts provided enumerable to an array string.
+        /// </summary>
+        /// <param name="primaryKeys">The primary keys.</param>
+        /// <param name="parameterName">The name of the parameter.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="primaryKeys"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentException">The provided primary keys contains null references.</exception>
+        /// <returns>The array string.</returns>
+        internal static string[] ToStringArray(IEnumerable<string> primaryKeys, string parameterName)
 		{
 			string[] keys = null;
 
@@ -92,7 +91,7 @@ namespace Skyline.DataMiner.Library.Common
 		/// </summary>
 		/// <param name="elementConfiguration">The element configuration.</param>
 		/// <returns>The <see cref="AddElementMessage"/> message instance.</returns>
-		internal static AddElementMessage CreateAddElementMessage(ElementConfiguration elementConfiguration,bool isCompatibilityIssueDetected)
+		internal static AddElementMessage CreateAddElementMessage(ElementConfiguration elementConfiguration)
 		{
 			AddElementMessage addMessage = new AddElementMessage
 				                               {
@@ -148,7 +147,7 @@ namespace Skyline.DataMiner.Library.Common
 				addMessage.Properties = propertyInfo.ToArray();
 			}
 
-			IEnumerable<ElementPortInfo> portInfoMessages = elementConfiguration.Connections.CreatePortInfo(isCompatibilityIssueDetected);
+			IEnumerable<ElementPortInfo> portInfoMessages = elementConfiguration.Connections.CreatePortInfo();
 			addMessage.Ports = portInfoMessages.ToArray();
 
 			return addMessage;
@@ -233,9 +232,8 @@ namespace Skyline.DataMiner.Library.Common
 		/// </summary>
 		/// <param name="dms">Object implementing the <see cref="IDms"/> interface.</param>
 		/// <param name="element">The element.</param>
-		/// <param name="isCompatibilityIssueDetected"></param>
 		/// <returns>The <see cref="AddElementMessage"/> message.</returns>
-		internal static AddElementMessage CreateAddElementMessage(IDms dms, IDmsElement element,bool isCompatibilityIssueDetected)
+		internal static AddElementMessage CreateAddElementMessage(IDms dms, IDmsElement element)
 		{
 			AddElementMessage addMessage = new AddElementMessage
 				                               {
@@ -305,7 +303,7 @@ namespace Skyline.DataMiner.Library.Common
 			// Build port info objects.
 			ElementConnectionCollection connections = element.Connections as ElementConnectionCollection;
 			//ElementConnectionCollection connectionCollection;
-			IEnumerable<ElementPortInfo> portInfo = connections.CreatePortInfo(isCompatibilityIssueDetected);
+			IEnumerable<ElementPortInfo> portInfo = connections.CreatePortInfo();
 			addMessage.Ports = portInfo.ToArray();
 
 			return addMessage;

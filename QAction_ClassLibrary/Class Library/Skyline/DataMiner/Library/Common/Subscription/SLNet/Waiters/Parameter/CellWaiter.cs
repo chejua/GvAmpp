@@ -1,19 +1,18 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Waiters.Parameter
 {
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Selectors.Data;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Selectors.Data;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
 
-	using System;
-	using System.Collections.Concurrent;
-	using System.Collections.Generic;
-	using System.Globalization;
-	using System.Linq;
-	using System.Threading;
-
-	/// <summary>
-	/// Class that uses SLNet subscriptions to wait for expected values.
-	/// </summary>
-	internal class CellWaiter : IDisposable
+    /// <summary>
+    /// Class that uses SLNet subscriptions to wait for expected values.
+    /// </summary>
+    internal class CellWaiter : IDisposable
 	{
 		private readonly List<WaitHandle> handles;
 		private readonly object locker = new object();

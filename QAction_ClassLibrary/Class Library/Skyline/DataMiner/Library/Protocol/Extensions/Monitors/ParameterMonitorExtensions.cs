@@ -1,16 +1,16 @@
 ﻿namespace Skyline.DataMiner.Library.Protocol.Subscription.Monitors
 {
-	using Skyline.DataMiner.Library.Common;
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Subscription.Monitors;
+    using Skyline.DataMiner.Library.Common;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Subscription.Monitors;
 	using Skyline.DataMiner.Scripting;
 
-	using System;
+    using System;
 
-	/// <summary>
-	/// Defines extension methods on <see cref="IDmsStandaloneParameter"/> for monitoring.
-	/// </summary>
-	public static class ParameterMonitorExtensions
+    /// <summary>
+    /// Defines extension methods on <see cref="IDmsStandaloneParameter"/> for monitoring.
+    /// </summary>
+    public static class ParameterMonitorExtensions
 	{
 		/// <summary>
 		///  Starts monitoring alarm level changes. Every change will perform the onChange action. Important: do not use SLProtocol in the provided action.
@@ -113,7 +113,7 @@
 			ParamAlarmLevelMonitor monitor = new ParamAlarmLevelMonitor(parameter.Element.Host.Dms.Communication, sourceElement, selection);
 			monitor.Stop(force);
 		}
-
+				
 		/// <summary>
 		///  Stops monitoring value changes of the specified parameter.
 		/// </summary>

@@ -5,7 +5,7 @@
 	/// <summary>
 	/// Represents an executor for messages. Command pattern: splits the logic into well defined methods but leaves internal logic for the concrete classes.
 	/// </summary>
-	public interface IMessageExecutor
+	public interface IMessageExecutor : IBaseMessageExecutor
 	{
 		/// <summary>
 		/// Creates a return message. (Optional.)

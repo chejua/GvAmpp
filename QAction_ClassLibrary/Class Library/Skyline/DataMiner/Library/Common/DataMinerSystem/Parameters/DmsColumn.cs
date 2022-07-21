@@ -1,22 +1,20 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using Net.Exceptions;
-	using Net.Messages;
-	using Net.Messages.Advanced;
+    using Net.Exceptions;
+    using Net.Messages;
+    using Net.Messages.Advanced;
+    using Skyline.DataMiner.Library.Common.Subscription.Waiters;
+    using Skyline.DataMiner.Library.Common.Subscription.Waiters.Parameter;
 
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Subscription.Waiters;
-	using Skyline.DataMiner.Library.Common.Subscription.Waiters.Parameter;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-
-	/// <summary>
-	/// Represents a table column.
-	/// </summary>
-	/// <typeparam name="T">The type of the values this column holds.</typeparam>
-	internal class DmsColumn<T> : DmsParameter<T>, IDmsColumn<T>
+    /// <summary>
+    /// Represents a table column.
+    /// </summary>
+    /// <typeparam name="T">The type of the values this column holds.</typeparam>
+    internal class DmsColumn<T> : DmsParameter<T>, IDmsColumn<T>
 	{
 		/// <summary>
 		/// The table this column belongs to.
@@ -280,7 +278,7 @@
 		/// <summary>
 		/// Sends a <see cref="GetParameterMessage"/> SLNet message.
 		/// </summary>
-		/// <param name="primaryKey">The primary key in case a call value needs to be retrieved.</param>
+		/// <param name="primaryKey">The primary key in case a cell value needs to be retrieved.</param>
 		/// <exception cref="ParameterNotFoundException">The parameter was not found.</exception>
 		/// <exception cref="ElementStoppedException">The element is stopped.</exception>
 		/// <exception cref="ElementNotFoundException">

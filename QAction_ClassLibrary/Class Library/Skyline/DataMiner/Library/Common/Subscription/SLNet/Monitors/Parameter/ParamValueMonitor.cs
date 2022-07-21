@@ -1,11 +1,10 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Monitors
 {
-	using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using System;
+    using System.Globalization;
 
-	using System;
-	using System.Globalization;
-
-	internal class ParamValueMonitor : ValueMonitor
+    internal class ParamValueMonitor : ValueMonitor
 	{
 		internal ParamValueMonitor(ICommunication connection, string sourceId, Param selection, string handleId) : base(connection, sourceId, selection, handleId)
 		{

@@ -1,14 +1,12 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Net.Messages;
+    using System;
+    using Net.Messages;
 
-	/// <summary>
-	/// Represents a configuration class for services that are included in services.
-	/// </summary>
-	public class ServiceParamConfiguration : ParamConfiguration
+    /// <summary>
+    /// Represents a configuration class for services that are included in services.
+    /// </summary>
+    public class ServiceParamConfiguration : ParamConfiguration
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ServiceParamConfiguration"/> class.

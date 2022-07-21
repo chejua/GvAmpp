@@ -1,16 +1,16 @@
 ﻿namespace Skyline.DataMiner.Library.Protocol.Subscription.Monitors
 {
-	using System;
+    using System;
 
-	using Skyline.DataMiner.Library.Common;
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Subscription.Monitors;
+    using Skyline.DataMiner.Library.Common;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Subscription.Monitors;
 	using Skyline.DataMiner.Scripting;
 
-	/// <summary>
-	/// Defines extension methods on <see cref="IDmsTable"/> for monitoring.
-	/// </summary>
-	public static class TableMonitorExtensions
+    /// <summary>
+    /// Defines extension methods on <see cref="IDmsTable"/> for monitoring.
+    /// </summary>
+    public static class TableMonitorExtensions
 	{
 #pragma warning disable S3242 // Method parameters should be declared with base types
 		/// <summary>

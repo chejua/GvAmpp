@@ -1,16 +1,15 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Globalization;
-	using System.Text;
-	using Net.Messages;
-	using Templates;
+    using System;
+    using System.Globalization;
+    using System.Text;
+    using Net.Messages;
+    using Templates;
 
-	/// <summary>
-	/// Represents the advanced element information.
-	/// </summary>
-	internal class AdvancedServiceSettings : ServiceSettings, IAdvancedServiceSettings
+    /// <summary>
+    /// Represents the advanced element information.
+    /// </summary>
+    internal class AdvancedServiceSettings : ServiceSettings, IAdvancedServiceSettings
 	{
 		/// <summary>
 		/// Value indicating whether the service is a service template.

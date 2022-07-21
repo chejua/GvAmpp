@@ -1,15 +1,13 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Monitors
 {
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Selectors.Data;
-	using Skyline.DataMiner.Library.Common.SLNetHelper;
-	using Skyline.DataMiner.Net;
-	using Skyline.DataMiner.Net.Messages;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Selectors.Data;
+    using Skyline.DataMiner.Library.Common.SLNetHelper;
+    using Skyline.DataMiner.Net;
+    using Skyline.DataMiner.Net.Messages;
+    using System;
 
-	using System;
-	using System.IO;
-
-	internal class ParamValueMonitor<T> : ParamValueMonitor
+    internal class ParamValueMonitor<T> : ParamValueMonitor
 	{
 		private Action<ParamValueChange<T>> onChange;
 

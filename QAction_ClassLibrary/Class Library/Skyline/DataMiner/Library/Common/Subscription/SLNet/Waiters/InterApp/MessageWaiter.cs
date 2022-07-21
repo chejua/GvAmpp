@@ -1,19 +1,18 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Waiters.InterApp
 {
-	using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Serializing;
-	using Skyline.DataMiner.Library.Common.Subscription.Monitors;
+    using Skyline.DataMiner.Library.Common.InterAppCalls.CallBulk;
+    using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Serializing;
+    using Skyline.DataMiner.Library.Common.Subscription.Monitors;
+    using System;
+    using System.Collections.Concurrent;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
 
-	using System;
-	using System.Collections.Concurrent;
-	using System.Collections.Generic;
-	using System.Globalization;
-	using System.Linq;
-	using System.Threading;
-	using Skyline.DataMiner.Library.Common.InterAppCalls.CallBulk;
-
-	internal class MessageWaiter : IDisposable
+    internal class MessageWaiter : IDisposable
 	{
 		private readonly List<WaitHandle> handles;
 		private readonly HashSet<string> monitoredGuids;
@@ -82,6 +81,14 @@
 			foreach (var handle in handles)
 			{
 				handle.Monitor.Stop();
+				try
+				{
+					Logger.Log("INFO: Stopped a MessageWaiter Monitor Subscription: " + handle.Monitor.Selection.ToString());
+				}
+				catch
+				{
+					// Do Nothing
+				}
 			}
 
 			handles.Clear();
@@ -97,6 +104,14 @@
 					foreach (var handle in handles)
 					{
 						handle.Monitor.Stop();
+						try
+						{
+							Logger.Log("INFO: Stopped a MessageWaiter Monitor Subscription: " + handle.Monitor.Selection.ToString());
+						}
+						catch
+						{
+							// Do Nothing
+						}
 					}
 
 					handles.Clear();
@@ -119,21 +134,34 @@
 
 			handles.Add(thisHandle);
 
+			System.Diagnostics.Debug.WriteLine("INFO: Started a MessageWaiter Monitor Subscription: " + monitor.Selection.ToString());
+			Logger.Log("INFO: Started a MessageWaiter Monitor Subscription: " + monitor.Selection.ToString());
 			monitor.Start(change =>
 			{
+				var parameterData = change.Value;
+				var rawData = Convert.ToString(parameterData, CultureInfo.InvariantCulture);
+
 				try
 				{
-					var parameterData = change.Value;
-					var rawData = Convert.ToString(parameterData, CultureInfo.InvariantCulture);
 					if (parameterData == null || String.IsNullOrWhiteSpace(rawData))
 					{
 						return;
 					}
-					
+
 					var interApp = InterAppCallFactory.CreateFromRawAndAcceptMessage(rawData, interAppSerializer: interAppSerializer, messageSerializer: messageSerializer);
 					if (interApp == null)
 					{
 						return;
+					}
+
+					try
+					{
+						System.Diagnostics.Debug.WriteLine("Monitor Event Received: "+ change.DataSource.ToString());
+						Logger.Log("INFO: Interapp Response Event received from: " + change.DataSource.ToString());
+					}
+					catch
+					{
+						// Do Nothing
 					}
 
 					foreach (Message messageReturn in interApp.Messages)
@@ -147,8 +175,8 @@
 				}
 				catch (Exception e)
 				{
-					System.Diagnostics.Debug.WriteLine("Exception during Message Deserializing: " + e);
-					// Do nothing for now, but this should eventually get logged to error logging.
+					System.Diagnostics.Debug.WriteLine("Exception during Return Message Deserializing: " + e + " With value:" + rawData);
+					Logger.Log("Exception during Return Message Deserializing: " + e + " With value:" + rawData);
 				}
 			});
 		}

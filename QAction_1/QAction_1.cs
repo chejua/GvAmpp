@@ -1,10 +1,10 @@
 namespace Skyline.Protocol
 {
-	using Newtonsoft.Json.Linq;
 	using System;
-	using System.Reflection;
-	using System.Linq;
 	using System.Collections.Generic;
+	using System.Linq;
+	using System.Reflection;
+	using Newtonsoft.Json.Linq;
 	using Skyline.Protocol.Models;
 
 	namespace Extensions
@@ -29,7 +29,7 @@ namespace Skyline.Protocol
 		public static class NotificationMessageBuilder
 		{
 			#region Fields
-			private static Dictionary<int, Type> KnownTypes = new Dictionary<int, Type>
+			private static Dictionary<int, Type> _knownTypes = new Dictionary<int, Type>
 			{
 				{
 					NotificationMessageBuilder.GetTypeHashCode<SignalGeneratorSectionAPayload>(),
@@ -46,6 +46,31 @@ namespace Skyline.Protocol
 				{
 					NotificationMessageBuilder.GetTypeHashCode<MultiviewerSectionAPayload>(),
 					typeof(MultiviewerSectionAPayload)
+				},
+				{
+					NotificationMessageBuilder.GetTypeHashCode<SystemClass>(),
+					typeof(SystemClass)
+				},
+				{
+					NotificationMessageBuilder.GetTypeHashCode<ClipPlayerTransportState>(),
+					typeof(ClipPlayerTransportState)
+				},
+				{
+					NotificationMessageBuilder.GetTypeHashCode<ClipPlayerPosition>(),
+					typeof(ClipPlayerPosition)
+				},
+				{
+					NotificationMessageBuilder.GetTypeHashCode<ClipPlayerConfiguration>(),
+					typeof(ClipPlayerConfiguration)
+				},
+				{
+					NotificationMessageBuilder.GetTypeHashCode<ClipPlayerFile>(),
+					typeof(ClipPlayerFile)
+				},
+				{
+					// Todo: 
+					NotificationMessageBuilder.GetTypeHashCode<SystemResponse>(),
+					typeof(SystemResponse)
 				},
 
 			};
@@ -67,7 +92,7 @@ namespace Skyline.Protocol
 			public static bool TryGetTypeFromHashCode(int hashcode, out Type type)
 			{
 				type = typeof(object);
-				return KnownTypes.TryGetValue(hashcode, out type);
+				return _knownTypes.TryGetValue(hashcode, out type);
 			}
 
 			public static bool TryGetObjectFromToken(JToken token, out object result)
@@ -79,7 +104,7 @@ namespace Skyline.Protocol
 				}
 				try
 				{
-					if (NotificationMessageBuilder.TryGetTypeFromHashCode(token.GetTokenHashCode(), out Type type))
+					if (TryGetTypeFromHashCode(token.GetTokenHashCode(), out Type type))
 					{
 						result = token.ToObject(type);
 						return true;
@@ -272,6 +297,83 @@ namespace Skyline.Protocol
 			#endregion
 		}
 
+		public class SystemClass
+		{
+			public string Name { get; set; }
+
+			public string Workload { get; set; }
+
+			public string version { get; set; }
+		}
+
+		public class Payload
+		{
+			public string id { get; set; }
+
+			public string Message { get; set; }
+
+			//public override int GetHashCode()
+			//{
+			//	return id.GetHashCode();
+			//	//return base.GetHashCode();
+			//}
+
+		}
+
+		public class SystemResponse
+		{
+			//public Payload payload { get; set; }
+
+			public string id { get; set; }
+
+			public string Message { get; set; }
+
+			//public string workload { get; set; }
+		}
+
+		#region CipPlayer
+
+		public class ClipPlayerTransportState
+		{
+			public string State { get; set; }
+
+			public string EndBehaviour { get; set; }
+
+			public object start { get; set; }
+		}
+
+		public class ClipPlayerPosition
+		{
+			public int Position { get; set; }
+
+			public int InPosition { get; set; }
+
+			public int OutPosition { get; set; }
+
+			public int Rate { get; set; }
+			public string EndBehaviour { get; set; }
+
+			public string start { get; set; }
+		}
+
+		public class ClipPlayerConfiguration
+		{
+			public bool PreserveResolution { get; set; }
+
+			public string Resolution { get; set; }
+
+			public string ScanMode { get; set; }
+
+			public string FrameRate { get; set; }
+		}
+
+		public class ClipPlayerFile
+		{
+			public string file { get; set; }
+		}
+
+		#endregion
+
 		public class MultiviewerSectionAPayload
 		{
 			public string AudioLevelMode { get; set; }
@@ -366,16 +468,14 @@ namespace Skyline.Protocol
 
 	namespace MessageProcessing
 	{
+		using System;
+		using System.Text;
 		using Newtonsoft.Json;
 		using Skyline.DataMiner.Net.Messages.Advanced;
 		using Skyline.DataMiner.Scripting;
-		using Skyline.Protocol.Models;
-		using System;
-		using System.Collections.Generic;
-		using System.Linq;
-		using System.Text;
-		using SLNetMessages = Skyline.DataMiner.Net.Messages;
 		using Skyline.Protocol.Extensions;
+		using Skyline.Protocol.Models;
+		using SLNetMessages = Skyline.DataMiner.Net.Messages;
 
 		public class AutomationScript
 		{
@@ -594,7 +694,9 @@ namespace Skyline.Protocol
 			public IMessageHandler GetMessageHandler(string path, string message)
 			{
 				var factoryDictionary = new Dictionary<string, Func<IMessageHandler>>
-				{ { "/notification", () => new HandleNotificationMessage(protocol, message) }, };
+				{
+					{ "/notification", () => new HandleNotificationMessage(protocol, message) },
+				};
 
 				if (factoryDictionary.ContainsKey(path))
 				{
@@ -686,6 +788,32 @@ namespace Skyline.Protocol
 							};
 						}
 					}
+					else if (result is SystemClass)
+					{
+						var systemResponse = result as SystemClass;
+
+						protocol.system.SetRow(
+							new SystemQActionRow
+							{
+								Systeminstance_4001 = systemResponse.Workload,
+								Systemworkloadname_4002 = systemResponse.Name,
+								Systemversion_4003 = systemResponse.version,
+							}, createRow: true);
+					}
+					else if (result is ClipPlayerTransportState || result is ClipPlayerPosition || result is ClipPlayerConfiguration || result is ClipPlayerFile)
+					{
+						var workloadName = protocol.GetParameterIndexByKey(Parameter.Workloads.tablePid, notification.workload, Parameter.Workloads.Idx.workloadname_2002 + 1) as string;
+						ParseClipPlayerResponses(result, notification.workload, workloadName);
+					}
+					else if (result is SystemResponse)
+					{
+						var response = result as SystemResponse;
+						SetSystemTableWithResponse(response, notification.workload);
+					}
+					else
+					{
+						protocol.Log("QA" + protocol.QActionID + "|ExecuteMessage|The message was not response yet implemented", LogType.Information, LogLevel.NoLogging);
+					}
 
 					protocol.Log(string.Format(">>>QA{0} ExecuteMessage succesfully deserialized the object:\n\r {1}", protocol.QActionID, JsonConvert.SerializeObject(result, Formatting.Indented)),
 					 LogType.Allways,
@@ -699,9 +827,72 @@ namespace Skyline.Protocol
 				}
 			}
 
+			private void ParseClipPlayerResponses(object result, string workId, string workloadName)
+			{
+				var clipPlayerRow = new ClipplayerQActionRow();
+				clipPlayerRow.Clipplayerinstance_5001 = workId;
+				clipPlayerRow.Clipplayerworkloadname_5013 = workloadName;
+
+				if (result is ClipPlayerTransportState)
+				{
+					var clipTransportState = result as ClipPlayerTransportState;
+					clipPlayerRow.Clipplayerstate_5002 = clipTransportState.State;
+					clipPlayerRow.Clipplayerendbehavior_5003 = clipTransportState.EndBehaviour;
+				}
+				else if (result is ClipPlayerPosition)
+				{
+					var clipPosition = result as ClipPlayerPosition;
+					clipPlayerRow.Clipplayerposition_5004 = clipPosition.Position;
+					clipPlayerRow.Clipplayerinposition_5005 = clipPosition.InPosition;
+					clipPlayerRow.Clipplayeroutpoisition_5006 = clipPosition.OutPosition;
+					clipPlayerRow.Clipplayerrate_5007 = clipPosition.Rate;
+
+				}
+				else if (result is ClipPlayerConfiguration)
+				{
+					var clipConfiguration = result as ClipPlayerConfiguration;
+					clipPlayerRow.Clipplayerpreserveresolution_5008 = clipConfiguration.PreserveResolution;
+					clipPlayerRow.Clipplayerresolution_5009 = clipConfiguration.Resolution;
+					clipPlayerRow.Clipplayerscanmode_5010 = clipConfiguration.ScanMode;
+					clipPlayerRow.Clipplayerframerate_5011 = clipConfiguration.FrameRate;
+				}
+				else
+				{
+					var clipFile = result as ClipPlayerFile;
+					clipPlayerRow.Clipplayerfile_5012 = clipFile.file;
+				}
+
+				protocol.clipplayer.SetRow(clipPlayerRow, true);
+			}
+
+			private void SetSystemTableWithResponse(SystemResponse result, string workloadId)
+			{
+				if (String.IsNullOrEmpty(workloadId))
+				{
+					protocol.Log("QA" + protocol.QActionID + "|SetSystemTableWithResponse|The workId was empty and was not able to be matched with a row in the system table", LogType.Error, LogLevel.NoLogging);
+					return;
+				}
+
+				if (!protocol.system.Exists(workloadId))
+				{
+					protocol.Log("QA" + protocol.QActionID + "|SetSystemTableWithResponse|The workId: " + workloadId + " does not belong to the system table", LogType.Error, LogLevel.NoLogging);
+					return;
+				}
+
+				var row = new SystemQActionRow(protocol.system.GetRow(workloadId));
+
+				if (Convert.ToString(row.Systemsnapshotid_4004) == result.id)
+				{
+					row.Systemoperationresult_4006 = result.Message == "Ok" ? 1 : 0;
+					row.Systemresultmessage_4007 = result.Message;
+				}
+
+				protocol.system.SetRow(row);
+			}
+
 			private void ExecuteActionBaseOnWorkLoadType(string id, object result)
 			{
-				var workLoadRow =  new WorkloadsQActionRow((object[])protocol.GetRow(Parameter.Workloads.tablePid, id));
+				var workLoadRow = new WorkloadsQActionRow((object[])protocol.GetRow(Parameter.Workloads.tablePid, id));
 
 				if (workLoadRow.Workloadapplicationname_2003 is "Test Signal Generator")
 					MapTestSignalGenerator(id, (SignalGeneratorSectionAPayload) result);
@@ -715,9 +906,9 @@ namespace Skyline.Protocol
 				var workloadname = protocol.GetParameterIndexByKey(Parameter.Workloads.tablePid, id, 2) as string;
 				TestsignalgeneratorsQActionRow row = new TestsignalgeneratorsQActionRow
 				{
-					Signalgeneratorsinstance_3001 = id,
+					Testsignalgeneratorsinstance_3001 = id,
 					Testsignageneratorsworkloadname_3016 = workloadname,
-					Framerate_3002 = sectionA.FrameRate,
+					Testsignalgeneratorsframerate_3002 = sectionA.FrameRate,
 					Testsignalgeneratorsresolution_3003 = sectionA.Resolution,
 					Testsignalgeneratorsscanmode_3004 = sectionA.ScanMode,
 				};

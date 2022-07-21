@@ -1,16 +1,15 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using System;
-	using System.Collections.Generic;
-	using System.ComponentModel;
-	using System.Linq;
-	using Skyline.DataMiner.Library.Common.Properties;
-	using Templates;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Linq;
+    using Skyline.DataMiner.Library.Common.Properties;
 
-	/// <summary>
-	/// Represents a service configuration.
-	/// </summary>
-	public class ServiceConfiguration
+    /// <summary>
+    /// Represents a service configuration.
+    /// </summary>
+    public class ServiceConfiguration
 	{
 		/// <summary>
 		/// The parameter settings.

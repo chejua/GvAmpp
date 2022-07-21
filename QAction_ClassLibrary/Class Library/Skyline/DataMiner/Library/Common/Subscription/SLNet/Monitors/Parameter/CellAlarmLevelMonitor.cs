@@ -1,15 +1,15 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Monitors
 {
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Selectors.Data;
-	using Skyline.DataMiner.Library.Common.SLNetHelper;
-	using Skyline.DataMiner.Net;
-	using Skyline.DataMiner.Net.Messages;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Selectors.Data;
+    using Skyline.DataMiner.Library.Common.SLNetHelper;
+    using Skyline.DataMiner.Net;
+    using Skyline.DataMiner.Net.Messages;
 
-	using System;
-	using System.Globalization;
+    using System;
+    using System.Globalization;
 
-	internal class CellAlarmLevelMonitor : ValueMonitor
+    internal class CellAlarmLevelMonitor : ValueMonitor
 	{
 		private Action<CellAlarmLevelChange> onChange;
 

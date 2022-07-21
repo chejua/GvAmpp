@@ -11,6 +11,12 @@ using Skyline.DataMiner.Scripting;
 /// </summary>
 public static class QAction
 {
+	public enum SnapShotAction
+	{
+		Stop,
+		Start,
+	}
+
 	/// <summary>
 	/// The QAction entry point.
 	/// </summary>
@@ -20,68 +26,120 @@ public static class QAction
 		try
 		{
 			var workloadId = protocol.RowKey();
-
 			var triggerPid = protocol.GetTriggerParameter();
+			var value = protocol.GetParameter(triggerPid);
 
-			var value = Convert.ToString(protocol.GetParameter(triggerPid));
+			var command = string.Empty;
 
-			var formData = string.Empty;
+			if (triggerPid < 4000)
+			{
+				command = ReturnTestSignalCommand(workloadId, triggerPid, Convert.ToString(value));
+			}
+			else if (triggerPid == 4005)
+			{
+				var snapShotId = GetSnapshotId(protocol, workloadId);
+				if (String.IsNullOrEmpty(snapShotId))
+				{
+					protocol.Log("QA" + protocol.QActionID + "|Run|Snapshot Id is empty or null when building the command triggerPid: " + triggerPid, LogType.Error, LogLevel.NoLogging);
+					return;
+				}
 
-			if (triggerPid == Parameter.Write.testsignalgeneratorscolor_3055)
-			{
-				formData = "{\"Color\":\"" + value + "\"}";
+				command = ReturnStartStopSnapshot(workloadId, snapShotId, (SnapShotAction)Convert.ToInt32(value));
 			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorsfrequency_3056)
+			else
 			{
-				formData = "{\"Frequency\":\""+ value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorsident_3057)
-			{
-				formData = "{\"Ident\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorsidentoverlay_3058)
-			{
-				formData = "{\"IdentOverlay\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorspattern_3059)
-			{
-				formData = "{\"Pattern\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorssoundmode_3060)
-			{
-				formData = "{\"SoundMode\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorssyncflash_3061)
-			{
-				formData = "{\"SyncFlash\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorssyncperiod_3062)
-			{
-				formData = "{\"SyncPeriod\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorstonelevel_3063)
-			{
-				formData = "{\"ToneLevel\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorstodoverlay_3064)
-			{
-				formData = "{\"TodOverlay\":\"" + value + "\"}";
-			}
-			else if (triggerPid == Parameter.Write.testsignalgeneratorsinfooverlay_3065)
-			{
-				formData = "{\"InfoOverlay\":\"" + value + "\"}";
+				command = ReturnClipPlayerCommand(triggerPid, Convert.ToString(value), workloadId);
 			}
 
-			var command = new GenericCommand("TestSignalGenerator", "control", workloadId, formData, "AMPP-Control-Service-Key");
-
-			protocol.SetParameter(Parameter.genericcommandcontrolbody_63, JsonConvert.SerializeObject(command));
-
+			protocol.Log(command);
+			protocol.SetParameter(Parameter.genericcommandcontrolbody_63, command);
 			protocol.CheckTrigger(44);
 		}
 		catch (Exception ex)
 		{
 			protocol.Log("QA" + protocol.QActionID + "|" + protocol.GetTriggerParameter() + "|Run|Exception thrown:" + Environment.NewLine + ex, LogType.Error, LogLevel.NoLogging);
 		}
+	}
+
+	public static string GetSnapshotId(SLProtocol protocol, string workloadId)
+	{
+		return Convert.ToString(protocol.GetParameterIndexByKey(Parameter.System.tablePid, workloadId, Parameter.System.Idx.systemsnapshotid_4004 + 1));
+	}
+
+	private static string ReturnClipPlayerCommand(int triggerPid, string value, string workloadId)
+	{
+		var formData = String.Empty;
+
+		if (triggerPid == Parameter.Write.clipplayerfile_5112)
+		{
+			formData = "{\"file\":\"" + value + "\"}";
+			return JsonConvert.SerializeObject(new GenericCommand("ClipPlayer", "clip", workloadId, formData, "AMPP-Control-Service-Key"));
+		}
+		else
+		{
+			var command = value.Equals("start", StringComparison.InvariantCultureIgnoreCase) ? "startat" : "stopat";
+			formData = "{\"" + value + "\":\"$now\"}";
+			return JsonConvert.SerializeObject(new GenericCommand("ClipPlayer", command, workloadId, formData, "AMPP-Control-Service-Key"));
+		}
+	}
+
+	public static string ReturnStartStopSnapshot(string workloadId, string snapshotId, SnapShotAction action)
+	{
+		var formData = "{\"Id\":\"" + snapshotId + "\"}";
+
+		return JsonConvert.SerializeObject(new GenericCommand("System", action == SnapShotAction.Start ? "startsnapshot" : "stopsnapshot", workloadId, formData, "RECONNECTION KEY"));
+	}
+
+	public static string ReturnTestSignalCommand(string workloadId, int triggerPid, string value)
+	{
+		var formData = string.Empty;
+
+		if (triggerPid == Parameter.Write.testsignalgeneratorscolor_3055)
+		{
+			formData = "{\"Color\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorsfrequency_3056)
+		{
+			formData = "{\"Frequency\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorsident_3057)
+		{
+			formData = "{\"Ident\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorsidentoverlay_3058)
+		{
+			formData = "{\"IdentOverlay\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorspattern_3059)
+		{
+			formData = "{\"Pattern\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorssoundmode_3060)
+		{
+			formData = "{\"SoundMode\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorssyncflash_3061)
+		{
+			formData = "{\"SyncFlash\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorssyncperiod_3062)
+		{
+			formData = "{\"SyncPeriod\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorstonelevel_3063)
+		{
+			formData = "{\"ToneLevel\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorstodoverlay_3064)
+		{
+			formData = "{\"TodOverlay\":\"" + value + "\"}";
+		}
+		else if (triggerPid == Parameter.Write.testsignalgeneratorsinfooverlay_3065)
+		{
+			formData = "{\"InfoOverlay\":\"" + value + "\"}";
+		}
+
+		return JsonConvert.SerializeObject(new GenericCommand("TestSignalGenerator", "control", workloadId, formData, "AMPP-Control-Service-Key"));
 	}
 
 	public class GenericCommand

@@ -1,14 +1,13 @@
-﻿using System;
-using Skyline.DataMiner.Net.Messages;
+﻿using Skyline.DataMiner.Net.Messages;
 
 namespace Skyline.DataMiner.Library.Common
 {
-	using System.Linq;
+    using System.Linq;
 
-	/// <summary>
-	/// Class representing a Virtual connection. 
-	/// </summary>
-	public class VirtualConnection : ConnectionSettings, IVirtualConnection
+    /// <summary>
+    /// Class representing a Virtual connection. 
+    /// </summary>
+    public class VirtualConnection : ConnectionSettings, IVirtualConnection
 	{
 
 		private readonly int id;
@@ -42,7 +41,7 @@ namespace Skyline.DataMiner.Library.Common
 		/// Create an ElementPortInfo object from the properties.
 		/// </summary>
 		/// <returns></returns>
-		internal override ElementPortInfo CreateElementPortInfo(int portPosition,bool isCompatibilityIssueDetected)
+		internal override ElementPortInfo CreateElementPortInfo(int portPosition)
 		{
 			ElementPortInfo portInfo = new ElementPortInfo
 			{

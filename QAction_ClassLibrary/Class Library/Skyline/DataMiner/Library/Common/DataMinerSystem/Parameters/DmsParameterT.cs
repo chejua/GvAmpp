@@ -1,22 +1,20 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using Net.Messages;
+    using Net.Messages;
+    using Skyline.DataMiner.Library.Common.SLNetHelper;
+    using Skyline.DataMiner.Library.Common.Subscription.Waiters;
+    using Skyline.DataMiner.Library.Common.Subscription.Waiters.Parameter;
 
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.SLNetHelper;
-	using Skyline.DataMiner.Library.Common.Subscription.Waiters;
-	using Skyline.DataMiner.Library.Common.Subscription.Waiters.Parameter;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
 
-	using System;
-	using System.Collections.Generic;
-	using System.Globalization;
-	using System.Linq;
-
-	/// <summary>
-	/// Base class for parameters.
-	/// </summary>
-	/// <typeparam name="T">The parameter type.</typeparam>
-	internal class DmsParameter<T>
+    /// <summary>
+    /// Base class for parameters.
+    /// </summary>
+    /// <typeparam name="T">The parameter type.</typeparam>
+    internal class DmsParameter<T>
 	{
 		/// <summary>
 		/// Setter delegates.

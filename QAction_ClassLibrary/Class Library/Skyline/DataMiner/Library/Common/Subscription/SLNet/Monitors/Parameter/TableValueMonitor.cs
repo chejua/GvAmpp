@@ -1,14 +1,14 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Subscription.Monitors
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
 
-	using Skyline.DataMiner.Library.Common.Selectors;
-	using Skyline.DataMiner.Library.Common.Subscription.Monitors.Parameter.Helpers;
-	using Skyline.DataMiner.Net;
-	using Skyline.DataMiner.Net.Messages;
+    using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common.Subscription.Monitors.Parameter.Helpers;
+    using Skyline.DataMiner.Net;
+    using Skyline.DataMiner.Net.Messages;
 
-	internal class TableValueMonitor : ParamValueMonitor
+    internal class TableValueMonitor : ParamValueMonitor
 	{
 		private readonly TableCache cache = new TableCache();
 

@@ -1,13 +1,12 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using System;
-	using System.Collections;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Library.Common;
-	using Skyline.DataMiner.Library.Common.Properties;
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Skyline.DataMiner.Library.Common.Properties;
 
-	internal class PropertyCollection<T, U> : IPropertyCollection<T, U> where T : IDmsProperty<U> where U : IDmsPropertyDefinition
+    internal class PropertyCollection<T, U> : IPropertyCollection<T, U> where T : IDmsProperty<U> where U : IDmsPropertyDefinition
 	{
 		private readonly ICollection<T> collection = new List<T>();
 

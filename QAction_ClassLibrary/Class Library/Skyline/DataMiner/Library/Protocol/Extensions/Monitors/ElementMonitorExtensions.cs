@@ -1,16 +1,15 @@
 ﻿namespace Skyline.DataMiner.Library.Protocol.Subscription.Monitors
 {
-	using Skyline.DataMiner.Library.Common;
-	using Skyline.DataMiner.Library.Common.Selectors;
+    using Skyline.DataMiner.Library.Common;
+    using Skyline.DataMiner.Library.Common.Selectors;
 	using Skyline.DataMiner.Library.Common.Subscription.Monitors;
-	using Skyline.DataMiner.Scripting;
+    using Skyline.DataMiner.Scripting;
+    using System;
 
-	using System;
-
-	/// <summary>
-	/// Defines extension methods on <see cref="IDmsElement"/> for monitoring.
-	/// </summary>
-	public static class ElementMonitorExtensions
+    /// <summary>
+    /// Defines extension methods on <see cref="IDmsElement"/> for monitoring.
+    /// </summary>
+    public static class ElementMonitorExtensions
 	{
 		/// <summary>
 		/// Starts monitoring alarm changes. Every change will perform the onChange action. Important: do not use SLProtocol in the provided action.

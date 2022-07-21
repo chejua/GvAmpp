@@ -299,7 +299,7 @@
 		///     Creates an ElementPortPortInfo object based on the field contents.
 		/// </summary>
 		/// <returns>ElementPortInfo object.</returns>
-		internal override ElementPortInfo CreateElementPortInfo(int portPosition, bool isCompatibilityIssueDetected)
+		internal override ElementPortInfo CreateElementPortInfo(int portPosition)
 		{
 			var portInfo = new ElementPortInfo
 			               {

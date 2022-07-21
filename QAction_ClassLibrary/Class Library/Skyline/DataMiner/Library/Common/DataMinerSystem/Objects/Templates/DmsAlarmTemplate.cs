@@ -1,13 +1,12 @@
 ﻿namespace Skyline.DataMiner.Library.Common.Templates
 {
-	using System;
-	using Net.Exceptions;
-	using Net.Messages;
+    using System;
+    using Net.Messages;
 
-	/// <summary>
-	/// Base class for standalone alarm templates and alarm template groups.
-	/// </summary>
-	internal abstract class DmsAlarmTemplate : DmsTemplate, IDmsAlarmTemplate
+    /// <summary>
+    /// Base class for standalone alarm templates and alarm template groups.
+    /// </summary>
+    internal abstract class DmsAlarmTemplate : DmsTemplate, IDmsAlarmTemplate
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DmsAlarmTemplate"/> class.

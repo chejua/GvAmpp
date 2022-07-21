@@ -23,6 +23,6 @@
 		/// <summary>
 		/// The duplex status is full duplex. Calculating the utilization will be based on the rate that is the highest: input or output rate.
 		/// </summary>
-		FullDuplex = 3
+		FullDuplex = 3,
 	}
 }

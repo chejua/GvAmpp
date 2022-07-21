@@ -11,13 +11,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.Serialization;
 
     [DllImport("System.Runtime.Serialization.dll")]
     internal class InterAppCall : IInterAppCall
     {
-        private ISerializer internalSerializer;
-
         public InterAppCall(string guid)
         {
             if (String.IsNullOrWhiteSpace(guid))
@@ -35,26 +32,7 @@
             Messages = new Messages(this);
         }
 
-        public string Guid { get; set; }
-
-        /// <summary>
-        /// The internal serializer used to serialize this message.
-        /// </summary>
-        [IgnoreDataMember]
-        public ISerializer InternalSerializer
-        {
-            get
-            {
-                if (internalSerializer == null)
-                {
-                    internalSerializer = SerializerFactory.CreateInterAppSerializer(typeof(InterAppCall));
-                }
-
-                return internalSerializer;
-            }
-
-            set { internalSerializer = value; }
-        }
+		public string Guid { get; set; }
 
         public Messages Messages { get; private set; }
 
@@ -66,52 +44,45 @@
 
         public Source Source { get; set; }
 
-        public void Send(IConnection connection, int agentId, int elementId, int parameterId)
+        public void Send(IConnection connection, int agentId, int elementId, int parameterId, List<Type>knownTypes)
         {
-            DmsElementId destination = new DmsElementId(agentId, elementId);
-
-            BubbleDownReturn();
-
-            SendToElement(connection, destination, parameterId);
-        }
+			var defaultSerializer = SerializerFactory.CreateInterAppSerializer(typeof(InterAppCall), knownTypes);
+			Send(connection, agentId, elementId, parameterId, defaultSerializer);
+		}
 
         public void Send(IConnection connection, int agentId, int elementId, int parameterId, ISerializer serializer)
         {
-            InternalSerializer = serializer;
-            Send(connection, agentId, elementId, parameterId);
-        }
+			DmsElementId destination = new DmsElementId(agentId, elementId);
+			BubbleDownReturn();
+			SendToElement(connection, destination, parameterId, serializer);
+		}
 
-        public IEnumerable<Message> Send(IConnection connection, int agentId, int elementId, int parameterId, TimeSpan timeout)
-        {
-            if (ReturnAddress != null)
-            {
-                BubbleDownReturn();
-
-                using (MessageWaiter waiter = new MessageWaiter(new ConnectionCommunication(connection), InternalSerializer, InternalSerializer, Messages.ToArray()))
-                {
-                    DmsElementId destination = new DmsElementId(agentId, elementId);
-                    SendToElement(connection, destination, parameterId);
-                    foreach (var returnedMessage in waiter.WaitNext(timeout))
-                    {
-                        yield return returnedMessage;
-                    }
-                }
-            }
-            else
-            {
-                throw new InvalidOperationException("Call is missing ReturnAddress, either add a ReturnAddress or send without defined timeout.");
-            }
-        }
+        public IEnumerable<Message> Send(IConnection connection, int agentId, int elementId, int parameterId, TimeSpan timeout, List<Type>knownTypes)
+        {			
+			var defaultSerializer = SerializerFactory.CreateInterAppSerializer(typeof(InterAppCall), knownTypes);
+			return Send(connection, agentId, elementId, parameterId, timeout, defaultSerializer);
+		}
 
         public IEnumerable<Message> Send(IConnection connection, int agentId, int elementId, int parameterId, TimeSpan timeout, ISerializer serializer)
         {
-            InternalSerializer = serializer;
-            return Send(connection, agentId, elementId, parameterId, timeout);
-        }
+			if (ReturnAddress != null)
+			{
+				BubbleDownReturn();
 
-        public string Serialize()
-        {
-            return InternalSerializer.SerializeToString(this);
+				using (MessageWaiter waiter = new MessageWaiter(new ConnectionCommunication(connection), serializer, serializer, Messages.ToArray()))
+				{
+					DmsElementId destination = new DmsElementId(agentId, elementId);
+					SendToElement(connection, destination, parameterId, serializer);
+					foreach (var returnedMessage in waiter.WaitNext(timeout))
+					{
+						yield return returnedMessage;
+					}
+				}
+			}
+			else
+			{
+				throw new InvalidOperationException("Call is missing ReturnAddress, either add a ReturnAddress or send without defined timeout.");
+			}
         }
 
         private void BubbleDownReturn()
@@ -123,7 +94,7 @@
             }
         }
 
-        private void SendToElement(IConnection connection, DmsElementId destination, int parameterId)
+        private void SendToElement(IConnection connection, DmsElementId destination, int parameterId, ISerializer internalSerializer)
         {
             IDms thisDms = connection.GetDms();
             var element = thisDms.GetElement(destination);
@@ -132,7 +103,7 @@
             {
                 var parameter = element.GetStandaloneParameter<string>(parameterId);
                 SendingTime = DateTime.Now;
-                string value = InternalSerializer.SerializeToString(this);
+                string value = internalSerializer.SerializeToString(this);
                 parameter.SetValue(value);
             }
             else

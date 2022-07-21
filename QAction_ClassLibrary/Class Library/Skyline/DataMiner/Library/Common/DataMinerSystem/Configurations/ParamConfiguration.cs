@@ -1,14 +1,12 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using Net.Messages;
+    using System;
+    using Net.Messages;
 
-	/// <summary>
-	/// Represents an abstract configuration class for elements or services that are included in a service.
-	/// </summary>
-	public abstract class ParamConfiguration : IServiceParamConfiguration
+    /// <summary>
+    /// Represents an abstract configuration class for elements or services that are included in a service.
+    /// </summary>
+    public abstract class ParamConfiguration : IServiceParamConfiguration
 	{
 		/// <summary>
 		/// Gets or sets the Alias of the element.

@@ -1,15 +1,11 @@
 ﻿namespace Skyline.DataMiner.Library.Common
 {
-	using System;
-	using System.Globalization;
-	using System.Runtime.Serialization;
-	using Net.Messages;
-	using Newtonsoft.Json;
+    using Net.Messages;
 
-	/// <summary>
-	/// The state of the service retrieved from a SLNetMessage.
-	/// </summary>
-	public class ServiceState : IServiceState
+    /// <summary>
+    /// The state of the service retrieved from a SLNetMessage.
+    /// </summary>
+    public class ServiceState : IServiceState
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ServiceState"/> class. 

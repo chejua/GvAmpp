@@ -531,21 +531,13 @@
 
 			try
 			{
-				var isCompatibilityIssueDetected = false;
-				if (agent == null)
+				ElementConnectionCollection connections = (ElementConnectionCollection)this.elementCommunicationConnections;
+				if (connections.ContainsSnmpV3())
 				{
-					IDma targetDma = new Dma(this.Dms, this.DmsElementId.AgentId);
-					isCompatibilityIssueDetected = targetDma.IsVersionHigher(Dma.SnmpV3AuthenticationChangeDMAVersion);
-				}
-				else
-				{
-					isCompatibilityIssueDetected = agent.IsVersionHigher(Dma.SnmpV3AuthenticationChangeDMAVersion);
+					this.generalSettings.Host.LoadRsa();    // RSA Public key will need to be loaded in case of SnmpV3
 				}
 
-				AddElementMessage configuration = HelperClass.CreateAddElementMessage(
-					this.Dms,
-					this,
-					isCompatibilityIssueDetected);
+				AddElementMessage configuration = HelperClass.CreateAddElementMessage(this.Dms, this);
 				configuration.DataMinerID = agent == null ? configuration.DataMinerID : agent.Id;
 				configuration.ElementName = trimmedName;
 				configuration.ElementID = -1;
@@ -697,7 +689,6 @@
 		/// <param name="parameterId">The parameter ID.</param>
 		/// <exception cref="ArgumentException"><paramref name="parameterId" /> is invalid.</exception>
 		/// <exception cref="ElementNotFoundException">The element was not found in the DataMiner System.</exception>
-		/// <exception cref="ElementStoppedException">The element is stopped.</exception>
 		/// <exception cref="NotSupportedException">A type other than string, int?, double? or DateTime? was provided.</exception>
 		/// <returns>The standalone parameter that corresponds with the specified ID.</returns>
 		public IDmsStandaloneParameter<T> GetStandaloneParameter<T>(int parameterId)
@@ -715,7 +706,7 @@
 					"Only one of the following types is supported: string, int?, double? or DateTime?.");
 			}
 
-			HelperClass.CheckElementState(this);
+			HelperClass.CheckElementState(this, ignoreStoppedState: true);
 
 			return new DmsStandaloneParameter<T>(this, parameterId);
 		}
@@ -726,11 +717,10 @@
 		/// <param name="tableId">The table parameter ID.</param>
 		/// <exception cref="ArgumentException"><paramref name="tableId" /> is invalid.</exception>
 		/// <exception cref="ElementNotFoundException">The element was not found in the DataMiner System.</exception>
-		/// <exception cref="ElementStoppedException">The element is stopped.</exception>
 		/// <returns>The table that corresponds with the specified ID.</returns>
 		public IDmsTable GetTable(int tableId)
 		{
-			HelperClass.CheckElementState(this);
+			HelperClass.CheckElementState(this, ignoreStoppedState: true);
 
 			if (tableId < 1)
 			{
@@ -894,11 +884,7 @@
 							"Views must not be empty; an element must belong to at least one view.");
 					}
 
-					IDma targetDma = this.Host;
-					bool isCompatibilityIssueDetected =
-						targetDma.IsVersionHigher(Dma.SnmpV3AuthenticationChangeDMAVersion);
-
-					AddElementMessage message = this.CreateUpdateMessage(isCompatibilityIssueDetected);
+					AddElementMessage message = this.CreateUpdateMessage();
 
 					this.Communication.SendSingleResponseMessage(message);
 					this.ClearChangeList();
@@ -1070,7 +1056,7 @@
 		///     Creates the AddElementMessage based on the current state of the object.
 		/// </summary>
 		/// <returns>The AddElementMessage.</returns>
-		private AddElementMessage CreateUpdateMessage(bool isCompatibilityIssueDetected)
+		private AddElementMessage CreateUpdateMessage()
 		{
 			var message = new AddElementMessage
 			{
@@ -1112,6 +1098,11 @@
 				}
 
 				var elementPortInfos = HelperClass.ObtainElementPortInfos(elemInfo);
+				bool isCompatibilityIssueDetected = false;  // boolean value doesn't matter in this version. Might as well have been assigned 'true' in this case.
+				if (connections.ContainsSnmpV3Changes())
+				{
+					this.generalSettings.Host.LoadRsa();    // RSA Public key will need to be loaded in case of SnmpV3
+				}
 
 				connections.UpdatePortInfo(elementPortInfos, isCompatibilityIssueDetected);
 				message.Ports = elementPortInfos;

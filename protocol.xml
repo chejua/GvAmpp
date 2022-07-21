@@ -49,11 +49,19 @@ Revision History (auto generated):
 DATE          VERSION    AUTHOR                         COMMENTS
 
 17/05/2022    1.0.0.1    GMV, Skyline Communications    NF: Initial version
+
+
+Revision History (auto generated):
+
+DATE          VERSION    AUTHOR                         COMMENTS
+
+17/05/2022    1.0.0.2    GMV, Skyline Communications    NF: Initial version
+                                                        NF: Added workload name to the Test Signal Generators
 -->
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>GV AMPP</Name>
 	<Description>GV AMPP DataMiner driver</Description>
-	<Version>1.0.0.2</Version>
+	<Version>1.0.0.5</Version>
 	<IntegrationID>DMS-DRV-999</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -61,7 +69,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 	<DeviceOID>99</DeviceOID>
 	<ElementType>Platform</ElementType>
 	<Type relativeTimers="true" advanced="http:HTTP Connection">smart-serial</Type>
-	<Display defaultPage="General" pageOrder="General;Test Signal Generatos;Applications;Workloads;Debug;Web Interface#https://us-east-1.gvampp.com/portal/ampp" wideColumnPages="Debug;Applications;Workloads;Test Signal Generatos" />
+	<Display defaultPage="General" pageOrder="General;Test Signal Generatos;System;Clip Player;----------;Applications;Workloads;Debug;----------;Web Interface#https://us-east-1.gvampp.com/portal/ampp" wideColumnPages="Debug;Applications;Workloads;Test Signal Generatos;System;Clip Player" />
 	<SNMP includepages="true">auto</SNMP>
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
@@ -278,6 +286,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		</Param>
 		<Param id="58">
 			<Name>WorkloadsResponse</Name>
+			2 vgv
 			<Description>Workloads Response</Description>
 			<Type>read</Type>
 			<Interprete>
@@ -479,7 +488,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<RTDisplay>true</RTDisplay>
 			</Display>
 		</Param>
-		<Param id="1002" trending="false">
+		<Param id="1002" trending="true">
 			<Name>NeedSaving</Name>
 			<Description>Needs Saving</Description>
 			<Type>read</Type>
@@ -504,6 +513,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>double</Type>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -593,6 +605,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -612,6 +627,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -631,6 +649,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -650,6 +671,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Measurement>
 				<Type>string</Type>
 			</Measurement>
@@ -723,7 +747,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			</Measurement>
 		</Param>
 		<Param id="3001" trending="false">
-			<Name>SignalGeneratorsInstance</Name>
+			<Name>TestSignalGeneratorsInstance</Name>
 			<Description>Instance (Test Signal Generators)</Description>
 			<Type>read</Type>
 			<Information>
@@ -741,12 +765,12 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="3002" trending="false">
-			<Name>FrameRate</Name>
-			<Description>Frame Rate (Test Signal Generator)</Description>
+		<Param id="3002" trending="true">
+			<Name>TestSignalGeneratorsFrameRate</Name>
+			<Description>Frame Rate (Test Signal Generators)</Description>
 			<Type>read</Type>
 			<Information>
-				<Subtext>Frame Rate (Test Signal Generator)</Subtext>
+				<Subtext>Frame Rate</Subtext>
 			</Information>
 			<Measurement>
 				<Type>discreet</Type>
@@ -790,11 +814,14 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<LengthType>next param</LengthType>
 				<Type>string</Type>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
 		</Param>
-		<Param id="3003" trending="false">
+		<Param id="3003" trending="true">
 			<Name>TestSignalGeneratorsResolution</Name>
 			<Description>Resolution (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -806,6 +833,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -835,7 +865,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3004" trending="false">
+		<Param id="3004" trending="true">
 			<Name>TestSignalGeneratorsScanMode</Name>
 			<Description>Scan Mode (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -847,6 +877,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -864,7 +897,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3005" trending="false">
+		<Param id="3005" trending="true">
 			<Name>TestSignalGeneratorsColor</Name>
 			<Description>Color (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -876,6 +909,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -967,7 +1003,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3006" trending="false">
+		<Param id="3006" trending="true">
 			<Name>TestSignalGeneratorsFrequency</Name>
 			<Description>Frequency (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -979,6 +1015,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1057,7 +1096,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="3008" trending="false">
+		<Param id="3008" trending="true">
 			<Name>TestSignalGeneratorsIdentOverlay</Name>
 			<Description>Ident Overlay (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1069,6 +1108,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1112,7 +1154,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3009" trending="false">
+		<Param id="3009" trending="true">
 			<Name>TestSignalGeneratorsPattern</Name>
 			<Description>Pattern (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1124,6 +1166,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1167,7 +1212,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3010" trending="false">
+		<Param id="3010" trending="true">
 			<Name>TestSignalGeneratorsSoundMode</Name>
 			<Description>Sound Mode (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1179,6 +1224,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1230,7 +1278,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3011" trending="false">
+		<Param id="3011" trending="true">
 			<Name>TestSignalGeneratorsSyncFlash</Name>
 			<Description>Sync Flash (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1242,6 +1290,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1285,7 +1336,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3012" trending="false">
+		<Param id="3012" trending="true">
 			<Name>TestSignalGeneratorsSyncPeriod</Name>
 			<Description>Sync Period (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1297,6 +1348,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1340,7 +1394,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3013" trending="false">
+		<Param id="3013" trending="true">
 			<Name>TestSignalGeneratorsToneLevel</Name>
 			<Description>Tone Level (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1352,6 +1406,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1427,7 +1484,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3014" trending="false">
+		<Param id="3014" trending="true">
 			<Name>TestSignalGeneratorsTodOverlay</Name>
 			<Description>Tod Overlay (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1439,6 +1496,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1482,7 +1542,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3015" trending="false">
+		<Param id="3015" trending="true">
 			<Name>TestSignalGeneratorsInfoOverlay</Name>
 			<Description>Info Overlay (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1494,6 +1554,9 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Type>string</Type>
 				<LengthType>next param</LengthType>
 			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
@@ -1537,7 +1600,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="3016" trending="false" >
+		<Param id="3016" trending="false">
 			<Name>TestSignaGeneratorsWorkloadName</Name>
 			<Description>Workload Name (Test Signal Generators)</Description>
 			<Type>read</Type>
@@ -1556,37 +1619,684 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<RTDisplay>true</RTDisplay>
 			</Display>
 		</Param>
+		<Param id="4000">
+			<Name>System</Name>
+			<Description>System</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="4001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="4002" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="4003" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="4004" type="retrieved" options="" />
+				<ColumnOption idx="4" pid="4006" type="retrieved" options="" />
+				<ColumnOption idx="5" pid="4007" type="retrieved" options="" />
+				<ColumnOption idx="6" pid="4005" type="custom" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>tableInformation</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>System</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:4001|0-4002|1-4003|2-4004|3-4005|6-4006|4-4007|5,width:100-110-100-100-150-113-105,sort:STRING-STRING-STRING-STRING-STRING-INT-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="4001" trending="false">
+			<Name>SystemInstance</Name>
+			<Description>Instance (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload ID.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4002" trending="false">
+			<Name>SystemWorkloadName</Name>
+			<Description>Workload Name (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4003" trending="false">
+			<Name>SystemVersion</Name>
+			<Description>Version (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Version</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4004" trending="false">
+			<Name>SystemSnapshotID</Name>
+			<Description>Snapshot ID (System)</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4054" setter="true">
+			<Name>SystemSnapshotID</Name>
+			<Description>Snapshot ID (System)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="4005">
+			<Name>SystemActions</Name>
+			<Description>Actions (System)</Description>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Buttons to start and stop the snapshot</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>Stop</Display>
+					</Discreet>
+					<Discreet>
+						<Value>1</Value>
+						<Display>Start</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="4006" trending="true">
+			<Name>SystemOperationResult</Name>
+			<Description>Operation Result (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Operation result</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>Error</Display>
+					</Discreet>
+					<Discreet>
+						<Value>1</Value>
+						<Display>OK</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="4007" trending="false">
+			<Name>SystemResultMessage</Name>
+			<Description>Result Message (System)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Result message</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5000">
+			<Name>ClipPlayer</Name>
+			<Description>Clip Player</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0">
+				<ColumnOption idx="0" pid="5001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="5002" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="5003" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="5004" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
+				<ColumnOption idx="4" pid="5005" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
+				<ColumnOption idx="5" pid="5006" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
+				<ColumnOption idx="6" pid="5007" type="retrieved" options=";disableHeaderSum;disableHistogram;disableHeatmap" />
+				<ColumnOption idx="7" pid="5008" type="retrieved" options="" />
+				<ColumnOption idx="8" pid="5009" type="retrieved" options="" />
+				<ColumnOption idx="9" pid="5010" type="retrieved" options="" />
+				<ColumnOption idx="10" pid="5011" type="retrieved" options="" />
+				<ColumnOption idx="11" pid="5012" type="retrieved" options="" />
+				<ColumnOption idx="12" pid="5013" type="retrieved" options="" />
+				<ColumnOption idx="13" pid="5014" type="custom" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>Clip player table with the response from the GetState</Subtext>
+			</Information>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Clip Player</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:5001|0-5013|12-5002|1-5003|2-5004|3-5005|4-5006|5-5007|6-5008|7-5009|8-5010|9-5011|10-5012|11-5014|13,width:149-110-116-162-133-147-157-113-199-147-150-151-107-108,sort:STRING-STRING-INT-STRING-INT-INT-INT-INT-STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="5001" trending="false">
+			<Name>ClipPlayerInstance</Name>
+			<Description>Instance (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload ID.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5002" trending="true">
+			<Name>ClipPlayerState</Name>
+			<Description>State (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>State</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Play</Display>
+						<Value>play</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Pause</Display>
+						<Value>pause</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5003" trending="true">
+			<Name>ClipPlayerEndBehavior</Name>
+			<Description>End Behavior (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>End behavior</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Loop</Display>
+						<Value>loop</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Repeat</Display>
+						<Value>repeat</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5004" trending="true">
+			<Name>ClipPlayerPosition</Name>
+			<Description>Position (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Position</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5005" trending="true">
+			<Name>ClipPlayerInPosition</Name>
+			<Description>In Position (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>In position</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5006" trending="true">
+			<Name>ClipPlayerOutPoisition</Name>
+			<Description>Out Position (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Out position</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5007" trending="true">
+			<Name>ClipPlayerRate</Name>
+			<Description>Rate (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Rate</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="5008" trending="false">
+			<Name>ClipPlayerPreserveResolution</Name>
+			<Description>Preserve Resolution (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5009" trending="true">
+			<Name>ClipPlayerResolution</Name>
+			<Description>Resolution (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Resolution</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>720x480</Display>
+						<Value>720x480</Value>
+					</Discreet>
+					<Discreet>
+						<Display>720x576</Display>
+						<Value>720x576</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1280x720</Display>
+						<Value>1280x720</Value>
+					</Discreet>
+					<Discreet>
+						<Display>1920x1080</Display>
+						<Value>1920x1080</Value>
+					</Discreet>
+					<Discreet>
+						<Display>3840x2160</Display>
+						<Value>3840x2160</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5010" trending="true">
+			<Name>ClipPlayerScanMode</Name>
+			<Description>Scan Mode (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Scan mode</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Interlaced</Display>
+						<Value>Interlaced</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Progressive</Display>
+						<Value>Progressive</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5011" trending="true">
+			<Name>ClipPlayerFrameRate</Name>
+			<Description>Frame Rate (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Frame rate</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>24000x1001</Display>
+						<Value>24000x1001</Value>
+					</Discreet>
+					<Discreet>
+						<Display>24x1</Display>
+						<Value>24x1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>25x1</Display>
+						<Value>25x1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>30000x1001</Display>
+						<Value>30000x1001</Value>
+					</Discreet>
+					<Discreet>
+						<Display>50x1</Display>
+						<Value>50x1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>60000x1001</Display>
+						<Value>60000x1001</Value>
+					</Discreet>
+					<Discreet>
+						<Display>60x1</Display>
+						<Value>60x1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="5012" trending="false">
+			<Name>ClipPlayerFile</Name>
+			<Description>File (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>File</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5112" setter="true">
+			<Name>ClipPlayerFile</Name>
+			<Description>File (Clip Player)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5013" trending="false">
+			<Name>ClipPlayerWorkloadName</Name>
+			<Description>Workload Name (Clip Player)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Workload Name</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="5014" trending="false">
+			<Name>ClipPlayerActions</Name>
+			<Description>Actions (Clip Player)</Description>
+			<Type>write</Type>
+			<Information>
+				<Subtext>Buttons to start and stop.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Value>Stop</Value>
+						<Display>Stop</Display>
+					</Discreet>
+					<Discreet>
+						<Value>Start</Value>
+						<Display>Start</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
 	</Params>
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
-
+			
 		</QAction>
 		<QAction id="2" name="After Startup" encoding="csharp" triggers="2">
-
+			
 		</QAction>
 		<QAction id="60" name="Connect to GV" encoding="csharp" triggers="60">
-
+			
 		</QAction>
 		<QAction id="54" name="Parse Token" encoding="csharp" inputParameters="54" triggers="54">
-
+			
 		</QAction>
 		<QAction id="57" name="Parse Applications" encoding="csharp" triggers="57" inputParameters="57">
-
+			
 		</QAction>
 		<QAction id="58" name="Parse Workloads" encoding="csharp" triggers="58" inputParameters="58">
-
+			
 		</QAction>
 		<QAction id="42" name="Process Message From AMPP" encoding="csharp" triggers="42" inputParameters="40">
-
+			
 		</QAction>
 		<QAction id="62" name="Process Message" encoding="csharp" triggers="62">
-
+			
 		</QAction>
 		<QAction id="2071" name="Other On Workload GetState" encoding="csharp" triggers="2070" row="true">
+			
 		</QAction>
-		<QAction id="3000" name="Test Signal Generator Table Sets" encoding="csharp" triggers="3055;3056;3057;3058;3059;3060;3061;3062;3063;3064;3065" row="true">
+		<QAction id="3000" name="Test Signal Generator Table Sets" encoding="csharp" triggers="3055;3056;3057;3058;3059;3060;3061;3062;3063;3064;3065;4005;5112;5014" row="true">
+			
 		</QAction>
 		<QAction id="59" name="Parse Generic Control Response" encoding="csharp" triggers="59">
+			
 		</QAction>
 	</QActions>
 	<HTTP>
@@ -1639,7 +2349,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 						<Header key="Authorization" pid="55" />
 						<Header key="Content-Type">application/json</Header>
 					</Headers>
-					<Data pid="63"></Data>
+					<Data pid="63" />
 				</Request>
 				<Response statusCode="200">
 					<Content pid="59" />
@@ -1926,6 +2636,30 @@ DATE          VERSION    AUTHOR                         COMMENTS
 											<NewFeature>Initial version</NewFeature>
 											<NewFeature>Added workload name to the Test Signal Generators</NewFeature>
 										</Changes>
+									</MinorVersion>
+									<MinorVersion id="3" basedOn="1.0.0.2">
+										<Date>2022-06-29</Date>
+										<Provider>
+											<Author>GGA</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<NewFeature>Adding snapshot commands</NewFeature>
+										</Changes>
+									</MinorVersion>
+									<MinorVersion id="5" basedOn="1.0.0.4">
+										<Date>2022-07-21</Date>
+										<Provider>
+											<Author>JYE</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<NewFeature>Added start/stop action to Clip Player table</NewFeature>
+											<NewFeature>Added command to add media file to clip player</NewFeature>
+										</Changes>
+										<References>
+											<TaskId>189892</TaskId>
+										</References>
 									</MinorVersion>
 								</MinorVersions>
 							</MajorVersion>
