@@ -61,7 +61,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>GV AMPP</Name>
 	<Description>GV AMPP DataMiner driver</Description>
-	<Version>1.0.0.4</Version>
+	<Version>1.0.0.5</Version>
 	<IntegrationID>DMS-DRV-999</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -2646,6 +2646,20 @@ DATE          VERSION    AUTHOR                         COMMENTS
 										<Changes>
 											<NewFeature>Adding snapshot commands</NewFeature>
 										</Changes>
+									</MinorVersion>
+									<MinorVersion id="5" basedOn="1.0.0.4">
+										<Date>2022-07-21</Date>
+										<Provider>
+											<Author>JYE</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<NewFeature>Added start/stop action to Clip Player table</NewFeature>
+											<NewFeature>Added command to add media file to clip player</NewFeature>
+										</Changes>
+										<References>
+											<TaskId>189892</TaskId>
+										</References>
 									</MinorVersion>
 								</MinorVersions>
 							</MajorVersion>
