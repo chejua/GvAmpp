@@ -16,24 +16,20 @@ public static class QAction
     /// <param name="protocol">Link with SLProtocol process.</param>
     public static void Run(SLProtocolExt protocol)
     {
-        try
-        {
-			if(!protocol.IsEmpty(Parameter.apitoken_50))
+		try
+		{
+			if (!protocol.IsEmpty(Parameter.apitoken_50))
 			{
 				protocol.SetParameter(Parameter.authorizationapikey_52, "Basic " + Convert.ToString(protocol.GetParameter(Parameter.apitoken_50)));
 				protocol.SetParameter(Parameter.loginstatus_53, 0.0);
 				protocol.CheckTrigger(2);
 			}
+
 			protocol.SetParameter(Parameter.messagequeue_61, string.Empty);
-			//TODO: For testing purposes, remove all the TestSignalGenerators
-			foreach (string key in protocol.testsignalgenerators.Keys)
-			{
-				protocol.testsignalgenerators.DeleteRow(key);
-			}
 		}
-        catch (Exception ex)
-        {
-            protocol.Log("QA" + protocol.QActionID + "|" + protocol.GetTriggerParameter() + "|Run|Exception thrown:" + Environment.NewLine + ex, LogType.Error, LogLevel.NoLogging);
-        }
+		catch (Exception ex)
+		{
+			protocol.Log("QA" + protocol.QActionID + "|" + protocol.GetTriggerParameter() + "|Run|Exception thrown:" + Environment.NewLine + ex, LogType.Error, LogLevel.NoLogging);
+		}
     }
 }

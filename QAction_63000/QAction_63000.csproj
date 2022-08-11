@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{96E3D348-CFB2-4D1A-8A8C-F67D92806291}</ProjectGuid>
+    <ProjectGuid>{92B0F2FA-4DB2-434D-894E-929EC26F1D64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QAction_2071</RootNamespace>
-    <AssemblyName>QAction_2071</AssemblyName>
+    <RootNamespace>QAction_63000</RootNamespace>
+    <AssemblyName>QAction_63000</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <LangVersion>7.3</LangVersion>
@@ -23,7 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Internal\Code Analysis\qaction-debug.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\QAction_2071.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\QAction_63000.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,24 +33,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Internal\Code Analysis\qaction-release.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Release\QAction_2071.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\QAction_63000.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <ProjectReference Include="..\QAction_1\QAction_1.csproj">
-      <Project>{59CBE1AD-B3C2-451A-8F28-0505C108E3F7}</Project>
-      <Name>QAction_1</Name>
-    </ProjectReference>
     <ProjectReference Include="..\QAction_Helper\QAction_Helper.csproj">
       <Project>{21A8ADD0-3039-4DE7-92ED-E9BA03A45677}</Project>
       <Name>QAction_Helper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QAction_ClassLibrary\QAction_ClassLibrary.csproj">
-      <Project>{ECB9AACA-554D-480C-8F3F-F5E7D6559EAE}</Project>
-      <Name>QAction_ClassLibrary</Name>
     </ProjectReference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
@@ -74,18 +66,14 @@
     <Reference Include="SLLoggerUtil">
       <HintPath>C:\Skyline DataMiner\Files\SLLoggerUtil.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>C:\Skyline DataMiner\Files\System.Net.Http.dll</HintPath>
-    </Reference>
     <AdditionalFiles Include="stylecop.json" />
     <Content Include=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QAction_2071.cs" />
+    <Compile Include="QAction_63000.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +83,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="2071" />
+      <UserProperties DisLinkId="63000" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

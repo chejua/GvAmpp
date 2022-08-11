@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using Skyline.DataMiner.Scripting;
 using Skyline.Protocol.Extensions;
+using Skyline.Protocol.MessageProcessing;
 
 /// <summary>
 /// DataMiner QAction Class: Send Enabled Workloads Get State After Restart.
@@ -29,13 +30,9 @@ public static class QAction
 					continue;
 				}
 
-				// TODO: need to try this
-				// Enabled therefore needs to be sent to the forwarded app
-				protocol.Log("QA" + protocol.QActionID + "|%%%%%%%%%%%%%|Setting table", LogType.Information, LogLevel.NoLogging);
-				protocol.SetParameterIndexByKey(Parameter.Workloads.tablePid, workload.Key, 2070, 0);
+				var httpHelper = new HttpHelper(protocol, workload.Key);
+				httpHelper.SendHttpQuery();
 				Thread.Sleep(1000);
-
-				
 			}
 
 			// Setting flag to one so it only does this once after getting the workloads

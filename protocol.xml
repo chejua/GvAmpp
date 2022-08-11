@@ -702,6 +702,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			<Description>Refresh State On Restart (Workloads)</Description>
 			<Type>read</Type>
 			<Information>
+				<Subtext>When enable the Get State action would be preform for this workload after start up or after an element restart</Subtext>
 			</Information>
 			<Interprete>
 				<RawType>numeric text</RawType>

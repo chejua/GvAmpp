@@ -543,6 +543,7 @@ namespace Skyline.Protocol
 	namespace MessageProcessing
 	{
 		using System;
+		using System.Net.Http;
 		using System.Text;
 		using Newtonsoft.Json;
 		using Skyline.DataMiner.Net.Messages.Advanced;
@@ -1131,6 +1132,40 @@ namespace Skyline.Protocol
 			#region Public methods
 			void HandleMessage();
 			#endregion
+		}
+
+		public class HttpHelper
+		{
+			private SLProtocol _protocol;
+			private string _rowKey;
+
+			public HttpHelper(SLProtocol protocol, string rowKey)
+			{
+				_protocol = protocol;
+				_rowKey = rowKey;
+			}
+
+			public void SendHttpQuery()
+			{
+				using (var client = new HttpClient())
+				{
+					Uri loginUri = new Uri(string.Format("http://localhost:5002/api/Forwarder/pushworkloadnotification/{0}", _rowKey));
+
+					StringContent loginBodyContent = new StringContent(string.Empty, Encoding.ASCII);
+
+					var loginResponse = client.PostAsync(loginUri, loginBodyContent).Result;
+
+					if (!loginResponse.IsSuccessStatusCode)
+					{
+						_protocol.Log("QA" + _protocol.QActionID + "|Run|The subscribe workload request failed " + loginResponse.IsSuccessStatusCode, LogType.Information, LogLevel.NoLogging);
+						return;
+					}
+
+					var loginResponseData = loginResponse.Content.ReadAsStringAsync().Result;
+
+					_protocol.Log("QA" + _protocol.QActionID + "|Run|Response from the subscribe to workload was " + loginResponseData, LogType.Information, LogLevel.NoLogging);
+				}
+			}
 		}
 	}
 }
