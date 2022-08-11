@@ -19,6 +19,8 @@ public static class QAction
 	{
 		try
 		{
+			protocol.Log("QA" + protocol.QActionID + "|@@@@@@@@@@@@@@@|Start of QACTION!!!!!!!!!!!!!!!!", LogType.Information, LogLevel.NoLogging);
+
 			using (var client = new HttpClient())
 			{
 				Uri loginUri = new Uri(string.Format("http://localhost:5002/api/Forwarder/pushworkloadnotification/{0}", protocol.RowKey()));

@@ -8,6 +8,11 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
+	/// <summary>PID: 4 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public const int getstateflagcompleted_4 = 4;
+	/// <summary>PID: 4 | Type: read</summary>
+	public const int getstateflagcompleted = 4;
 	/// <summary>PID: 40 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public const int messagefromampp_40 = 40;
@@ -100,6 +105,11 @@ public static class Parameter
 		public const int apitoken_150 = 150;
 		/// <summary>PID: 150 | Type: write</summary>
 		public const int apitoken = 150;
+		/// <summary>PID: 2007 | Type: write</summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public const int workloadsrefreshstateonrestart_2007 = 2007;
+		/// <summary>PID: 2007 | Type: write</summary>
+		public const int workloadsrefreshstateonrestart = 2007;
 		/// <summary>PID: 3055 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public const int testsignalgeneratorscolor_3055 = 3055;
@@ -249,6 +259,11 @@ public static class Parameter
 			public const int applicationpackageversion_2005 = 2005;
 			/// <summary>PID: 2005 | Type: read</summary>
 			public const int applicationpackageversion = 2005;
+			/// <summary>PID: 2006 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int workloadsrefreshstateonrestart_2006 = 2006;
+			/// <summary>PID: 2006 | Type: read</summary>
+			public const int workloadsrefreshstateonrestart = 2006;
 			public class Write
 			{
 				/// <summary>PID: 2070 | Type: write</summary>
@@ -285,6 +300,11 @@ public static class Parameter
 			public const int applicationpackageversion_2005 = 4;
 			/// <summary>IDX: 4 | Type: read</summary>
 			public const int applicationpackageversion = 4;
+			/// <summary>IDX: 6 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int workloadsrefreshstateonrestart_2006 = 6;
+			/// <summary>IDX: 6 | Type: read</summary>
+			public const int workloadsrefreshstateonrestart = 6;
 		}
 	}
 	public class Testsignalgenerators
@@ -708,6 +728,8 @@ public class WriteParameters
 	public System.Object Connect {get { return Protocol.GetParameter(60); }set { Protocol.SetParameter(60, value); }}
 	/// <summary>PID: 150  | Type: write</summary>
 	public System.Object Apitoken {get { return Protocol.GetParameter(150); }set { Protocol.SetParameter(150, value); }}
+	/// <summary>PID: 2007  | Type: write | DISCREETS: Disabled = 0, Enabled = 1</summary>
+	public System.Object Workloadsrefreshstateonrestart {get { return Protocol.GetParameter(2007); }set { Protocol.SetParameter(2007, value); }}
 	/// <summary>PID: 2070  | Type: write | DISCREETS: Get State = 0</summary>
 	public System.Object Workloadgetstate {get { return Protocol.GetParameter(2070); }set { Protocol.SetParameter(2070, value); }}
 	/// <summary>PID: 3055  | Type: write | DISCREETS: Black = Black, White = White, Red = Red, Green = Green, Blue = Blue, Magenta = Magenta, Cyan = Cyan, Yellow = Yellow</summary>
@@ -759,6 +781,9 @@ public interface SLProtocolExt : SLProtocol
 	/// <summary>PID: 5000</summary>
 	ClipplayerQActionTable clipplayer { get; set; }
 	object Afterstartup_dummy { get; set; }
+	object Getstateflagcompleted_4 { get; set; }
+	object Getstateflagcompleted { get; set; }
+	object Runqactionsendgetstateworkloads_dummy { get; set; }
 	object Messagefromampp_40 { get; set; }
 	object Messagefromampp { get; set; }
 	object Responsetoampp_41 { get; set; }
@@ -811,6 +836,9 @@ public interface SLProtocolExt : SLProtocol
 	object Applicationpackagename { get; set; }
 	object Applicationpackageversion_2005 { get; set; }
 	object Applicationpackageversion { get; set; }
+	object Workloadsrefreshstateonrestart_2006 { get; set; }
+	object Workloadsrefreshstateonrestart { get; set; }
+	object Workloadsrefreshstateonrestart_2007 { get; set; }
 	object Workloadgetstate_2070 { get; set; }
 	object Workloadgetstate { get; set; }
 	object Testsignalgeneratorsinstance_3001 { get; set; }
@@ -916,6 +944,13 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public ClipplayerQActionTable clipplayer { get; set; }
 	/// <summary>PID: 2  | Type: dummy</summary>
 	public System.Object Afterstartup_dummy {get { return GetParameter(2); }set { SetParameter(2, value); }}
+	/// <summary>PID: 4  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Getstateflagcompleted_4 {get { return GetParameter(4); }set { SetParameter(4, value); }}
+	/// <summary>PID: 4  | Type: read</summary>
+	public System.Object Getstateflagcompleted {get { return GetParameter(4); }set { SetParameter(4, value); }}
+	/// <summary>PID: 5  | Type: dummy</summary>
+	public System.Object Runqactionsendgetstateworkloads_dummy {get { return GetParameter(5); }set { SetParameter(5, value); }}
 	/// <summary>PID: 40  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public System.Object Messagefromampp_40 {get { return GetParameter(40); }set { SetParameter(40, value); }}
@@ -1045,6 +1080,14 @@ public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 	public System.Object Applicationpackageversion_2005 {get { return GetParameter(2005); }set { SetParameter(2005, value); }}
 	/// <summary>PID: 2005  | Type: read</summary>
 	public System.Object Applicationpackageversion {get { return GetParameter(2005); }set { SetParameter(2005, value); }}
+	/// <summary>PID: 2006  | Type: read | DISCREETS: Disabled = 0, Enabled = 1</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Workloadsrefreshstateonrestart_2006 {get { return GetParameter(2006); }set { SetParameter(2006, value); }}
+	/// <summary>PID: 2006  | Type: read | DISCREETS: Disabled = 0, Enabled = 1</summary>
+	public System.Object Workloadsrefreshstateonrestart {get { return GetParameter(2006); }set { SetParameter(2006, value); }}
+	/// <summary>PID: 2007  | Type: write | DISCREETS: Disabled = 0, Enabled = 1</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Workloadsrefreshstateonrestart_2007 {get { return GetParameter(2007); }set { SetParameter(2007, value); }}
 	/// <summary>PID: 2070  | Type: write | DISCREETS: Get State = 0</summary>
 	public System.Object Workloadgetstate_2070 {get { return GetParameter(2070); }set { SetParameter(2070, value); }}
 	/// <summary>PID: 2070  | Type: write | DISCREETS: Get State = 0</summary>
@@ -1372,8 +1415,13 @@ public class WorkloadsQActionRow : QActionTableRow
 	public System.Object Workloadgetstate_2070 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
 	/// <summary>PID: 2070 | Type: write</summary>
 	public System.Object Workloadgetstate { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
-	public WorkloadsQActionRow() : base(0, 6) { }
-	public WorkloadsQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
+	/// <summary>PID: 2006 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Workloadsrefreshstateonrestart_2006 { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	/// <summary>PID: 2006 | Type: read</summary>
+	public System.Object Workloadsrefreshstateonrestart { get { if (base.Columns.ContainsKey(6)) { return base.Columns[6]; } else { return null; } } set { if (base.Columns.ContainsKey(6)) { base.Columns[6] = value; } else { base.Columns.Add(6, value); } } }
+	public WorkloadsQActionRow() : base(0, 7) { }
+	public WorkloadsQActionRow(System.Object[] oRow) : base(0, 7, oRow) { }
 	public static implicit operator WorkloadsQActionRow(System.Object[] source) { return new WorkloadsQActionRow(source); }
 	public static implicit operator System.Object[](WorkloadsQActionRow source) { return source.ToObjectArray(); }
 }

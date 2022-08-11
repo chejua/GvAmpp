@@ -61,7 +61,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>GV AMPP</Name>
 	<Description>GV AMPP DataMiner driver</Description>
-	<Version>1.0.0.5</Version>
+	<Version>1.0.0.6</Version>
 	<IntegrationID>DMS-DRV-999</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -79,6 +79,22 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		<Param id="2">
 			<Name>AfterStartup</Name>
 			<Description>After Startup</Description>
+			<Type>dummy</Type>
+		</Param>
+		<Param id="4">
+			<Name>GetStateFlagCompleted</Name>
+			<Description>Get State After Restart Completed</Description>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue>0</DefaultValue>
+			</Interprete>
+		</Param>
+		<Param id="5">
+			<Name>RunQactionSendGetStateWorkloads</Name>
+			<Description>Run Qaction 5 Get State Enabled Workloads</Description>
 			<Type>dummy</Type>
 		</Param>
 		<Param id="40" trending="false">
@@ -286,7 +302,6 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		</Param>
 		<Param id="58">
 			<Name>WorkloadsResponse</Name>
-			2 vgv
 			<Description>Workloads Response</Description>
 			<Type>read</Type>
 			<Interprete>
@@ -551,6 +566,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<ColumnOption idx="3" pid="2004" type="retrieved" value="" options="" />
 				<ColumnOption idx="4" pid="2005" type="retrieved" value="" options="" />
 				<ColumnOption idx="5" pid="2070" type="retrieved" value="" options="" />
+				<ColumnOption idx="6" pid="2006" type="retrieved" options=";save" />
 			</ArrayOptions>
 			<Information>
 				<Text>description</Text>
@@ -571,7 +587,7 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				</Positions>
 			</Display>
 			<Measurement>
-				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2070|5,width:121-110-120-102-110-110,sort:INT-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+				<Type options="tab=columns:2001|0-2002|1-2003|2-2004|3-2005|4-2070|5-2006|6,width:121-110-120-102-110-110-141,sort:INT-STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
 			</Measurement>
 		</Param>
 		<Param id="2001" trending="false">
@@ -680,6 +696,63 @@ DATE          VERSION    AUTHOR                         COMMENTS
 			<Display>
 				<RTDisplay>true</RTDisplay>
 			</Display>
+		</Param>
+		<Param id="2006" trending="true">
+			<Name>WorkloadsRefreshStateOnRestart</Name>
+			<Description>Refresh State On Restart (Workloads)</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Alarm>
+				<Monitored>true</Monitored>
+			</Alarm>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>Disabled</Display>
+					</Discreet>
+					<Discreet>
+						<Value>1</Value>
+						<Display>Enabled</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="2007" setter="true">
+			<Name>WorkloadsRefreshStateOnRestart</Name>
+			<Description>Refresh State On Restart (Workloads)</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Value>0</Value>
+						<Display>Disabled</Display>
+					</Discreet>
+					<Discreet>
+						<Value>1</Value>
+						<Display>Enabled</Display>
+					</Discreet>
+				</Discreets>
+			</Measurement>
 		</Param>
 		<Param id="2070">
 			<Name>WorkLoadGetState</Name>
@@ -2298,6 +2371,8 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		<QAction id="59" name="Parse Generic Control Response" encoding="csharp" triggers="59">
 			
 		</QAction>
+		<QAction id="5" name="Send Enabled Workloads Get State After Restart" encoding="csharp" triggers="5">
+		</QAction>
 	</QActions>
 	<HTTP>
 		<Session id="1" name="Login">
@@ -2501,6 +2576,16 @@ DATE          VERSION    AUTHOR                         COMMENTS
 				<Id>100</Id>
 			</Content>
 		</Trigger>
+		<Trigger id="4">
+			<Name>SendAfterRestartGetStateForWorkloads</Name>
+			<Condition><![CDATA[id:4 == 0]]></Condition>
+			<On id="3">group</On>
+			<Time>after</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>5</Id>
+			</Content>
+		</Trigger>
 	</Triggers>
 	<Actions>
 		<Action id="1">
@@ -2556,6 +2641,11 @@ DATE          VERSION    AUTHOR                         COMMENTS
 		<Action id="101">
 			<Name>ProcessMessageQueueQAction</Name>
 			<On id="62">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+		<Action id="5">
+			<Name>ExecuteQactionGetStateForWorkloads</Name>
+			<On id="5">parameter</On>
 			<Type>run actions</Type>
 		</Action>
 	</Actions>

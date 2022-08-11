@@ -5,6 +5,7 @@ namespace Skyline.Protocol
 	using System.Linq;
 	using System.Reflection;
 	using Newtonsoft.Json.Linq;
+	using Skyline.DataMiner.Scripting;
 	using Skyline.Protocol.Models;
 
 	namespace Extensions
@@ -117,10 +118,83 @@ namespace Skyline.Protocol
 			}
 			#endregion
 		}
-		#endregion
 
-		#region Enumerations
-		public enum GeneralStatusEnumeration
+		public static class MiscExtensions
+		{
+
+			/// <summary>
+			/// Returns an object of the specified type and whose value is equivalent to the specified object.
+			/// </summary>
+			/// <typeparam name="T">Type of the result.</typeparam>
+			/// <param name="value">An object that implements the System.IConvertible interface.</param>
+			/// <returns>The converted object.</returns>
+			/// <exception cref="System.InvalidCastException">This conversion is not supported. -or-value is null and conversionType is a value type.-or-value does not implement the System.IConvertible interface.</exception>
+			/// <exception cref="System.FormatException">value is not in a format recognized by conversionType.</exception>
+			/// <exception cref="System.OverflowException">value represents a number that is out of the range of conversionType.</exception>
+			public static T ChangeType<T>(this object value)
+				where T : IConvertible
+			{
+				if (value == null)
+					return default(T);
+
+				if (typeof(T).IsEnum)
+				{
+					return (T)Enum.ToObject(typeof(T), value.ChangeType<Int32>());
+				}
+				else
+				{
+					return (T)Convert.ChangeType(value, typeof(T));
+				}
+			}
+
+			/// <summary>
+			/// Gets a column as dictionary, with the table keys as keys for this dictionary.
+			/// </summary>
+			/// <typeparam name="TKey">Type of the keys.</typeparam>
+			/// <typeparam name="TValue">Type of the Values.</typeparam>
+			/// <param name="protocol">Skyline.DataMiner.Scripting.SLProtocol instance.</param>
+			/// <param name="tableId">Table to get the column.</param>
+			/// <param name="keyIndex">Index of the table keys.</param>
+			/// <param name="columnIdx">Index of the column to retrieve.</param>
+			/// <param name="useCache">Boolean to define if caching will be used.</param>
+			/// <returns>A dictionary with the desired column.</returns>
+			public static Dictionary<TKey, TValue> GetColumnAsDictionary<TKey, TValue>(this SLProtocol protocol, int tableId, uint keyIndex, uint columnIdx, bool useCache = true)
+				where TKey : IConvertible
+				where TValue : IConvertible
+			{
+				object[] columns = (object[])protocol.NotifyProtocol(321, tableId, new uint[] { keyIndex, columnIdx });
+
+				object[] keys = (object[])columns[0];
+				object[] values = (object[])columns[1];
+
+				Dictionary<TKey, TValue> retrunValue = new Dictionary<TKey, TValue>();
+
+				for (int i = 0; i < keys.Length; i++)
+				{
+					if (typeof(TValue) == typeof(DateTime))
+					{
+						retrunValue.Add(
+							keys[i].ChangeType<TKey>(),
+							 DateTime.FromOADate(Convert.ToDouble(values[i])).ChangeType<TValue>()
+							);
+					}
+					else
+					{
+						retrunValue.Add(
+							keys[i].ChangeType<TKey>(),
+							values[i].ChangeType<TValue>()
+							);
+					}
+				}
+
+				return retrunValue;
+			}
+		}
+
+			#endregion
+
+			#region Enumerations
+			public enum GeneralStatusEnumeration
 		{
 			NA,
 			OK,

@@ -20,20 +20,34 @@ public static class QAction
 	{
 		try
 		{
-			var amppWorkloads = JsonConvert.DeserializeObject<AmppWorkloadRoot>((string)data);
-			var rows = amppWorkloads.workloads
-				.Select(
-					w => new WorkloadsQActionRow
-					{
-						Workloadid_2001 = w.workload.id,
-						Workloadname_2002 = w.workload.name,
-						Workloadapplicationname_2003 = w.workload.applicationName,
-						Applicationpackagename_2004 = w.workload.packageName,
-						Applicationpackageversion_2005 = w.workload.packageVersion,
-						Workloadgetstate_2070 = 0
-					})
-				.ToArray();
-			List<QActionTableRow> tableRows = new List<QActionTableRow>(rows);
+			var workloadIdGetState = protocol.GetColumnAsDictionary<string, int>(Parameter.Workloads.tablePid, Parameter.Workloads.Idx.workloadid_2001, Parameter.Workloads.Idx.workloadsrefreshstateonrestart_2006);
+
+			var amppWorkloads = JsonConvert.DeserializeObject<AmppWorkloadRoot>(Convert.ToString(data));
+
+			List<QActionTableRow> tableRows = new List<QActionTableRow>();
+
+			for (int i = 0; i < amppWorkloads.workloads.Length; i++)
+			{
+
+				var workloadId = amppWorkloads.workloads[i].workload.id;
+
+				int getStateConfigured;
+				if (!workloadIdGetState.TryGetValue(workloadId, out getStateConfigured))
+				{
+					// New workload was added.
+				}
+
+				tableRows.Add(new WorkloadsQActionRow
+				{
+					Workloadid_2001 = workloadId,
+					Workloadname_2002 = amppWorkloads.workloads[i].workload.name,
+					Workloadapplicationname_2003 = amppWorkloads.workloads[i].workload.applicationName,
+					Applicationpackagename_2004 = amppWorkloads.workloads[i].workload.packageName,
+					Applicationpackageversion_2005 = amppWorkloads.workloads[i].workload.packageVersion,
+					Workloadsrefreshstateonrestart_2006 = getStateConfigured,
+				});
+			}
+
 			protocol.workloads.FillArray(tableRows);
 			protocol.SetParameter(Parameter.debug_51, data);
 		}
