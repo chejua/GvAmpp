@@ -979,6 +979,7 @@ namespace Skyline.Protocol
 			private void MapTestSignalGenerator(string id, SignalGeneratorSectionAPayload sectionA)
 			{
 				var workloadname = protocol.GetParameterIndexByKey(Parameter.Workloads.tablePid, id, 2) as string;
+
 				TestsignalgeneratorsQActionRow row = new TestsignalgeneratorsQActionRow
 				{
 					Testsignalgeneratorsinstance_3001 = id,
@@ -987,7 +988,7 @@ namespace Skyline.Protocol
 					Testsignalgeneratorsresolution_3003 = sectionA.Resolution,
 					Testsignalgeneratorsscanmode_3004 = sectionA.ScanMode,
 				};
-				protocol.testsignalgenerators.AddRow(row);
+				protocol.testsignalgenerators.SetRow(row, true);
 			}
 
 			private void ReadQueue()
